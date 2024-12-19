@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle"; // Import Material UI CheckCircle icon
 
 const Home = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
@@ -44,7 +45,7 @@ const Home = () => {
       style={{ backgroundColor: "#dbe4ee" }}
     >
       {/* Top Dots Section */}
-      <div className="flex items-center justify-center space-x-2 mb-10 shadow-sm shadow-gray-200  bg-white p-3 rounded-lg w-fit mx-auto">
+      <div className="flex items-center justify-center space-x-2 mb-10 shadow-sm shadow-gray-200 bg-white p-3 rounded-lg w-fit mx-auto">
         <div className="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse"></div>
         <p className="text-lg font-medium text-gray-800">Simple</p>
         <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
@@ -72,16 +73,25 @@ const Home = () => {
                   key={idx}
                   className="flex items-center p-4 bg-white shadow-sm rounded-lg space-x-4 transition-shadow hover:shadow-lg"
                   initial={{ opacity: 0, scale: 0.9 }} // Start with low opacity and slightly scaled down
-                  animate={{ opacity: 1, scale: 1 }} // Scale and fade in
-                  exit={{ opacity: 0, scale: 0.9 }} // Fade out and scale down
-                  transition={{
-                    opacity: { duration: 1 }, // Increase duration for opacity
-                    scale: { duration: 1.2 }, // Increase duration for scaling
-                  }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    transition: {
+                      duration: 0.6, // Smooth transition duration
+                      ease: "easeOut", // Smoother easing
+                    },
+                  }} // Scale and fade in
+                  exit={{
+                    opacity: 0,
+                    scale: 0.9,
+                    transition: {
+                      duration: 0.6, // Smooth exit transition
+                      ease: "easeInOut", // Ease in and out for smoother exit
+                    },
+                  }} // Fade out and scale down
                 >
                   <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white">
-                    <i className="fas fa-check text-white text-xl"></i>{" "}
-                    {/* Ensuring icon is visible */}
+                    <CheckCircleIcon className="text-white text-xl" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800">
                     {text}
@@ -95,7 +105,10 @@ const Home = () => {
           <div className="flex flex-col items-center mt-8 space-y-2">
             <motion.button
               className="px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.3, ease: "easeOut" }, // Smooth hover transition
+              }}
             >
               {currentContent.button}
             </motion.button>
@@ -105,12 +118,12 @@ const Home = () => {
               <div
                 className={`h-1 w-10 rounded-full ${
                   carouselIndex === 0 ? "bg-orange-500" : "bg-gray-300"
-                } transition-all`}
+                } transition-all duration-300 ease-out`}
               ></div>
               <div
                 className={`w-3 h-3 rounded-full ${
                   carouselIndex === 1 ? "bg-orange-500" : "bg-gray-300"
-                } transition-all`}
+                } transition-all duration-300 ease-out`}
               ></div>
             </div>
           </div>
@@ -119,7 +132,7 @@ const Home = () => {
         {/* Right Section (Video) */}
         <div className="w-full md:w-1/2 flex justify-center">
           <div className="relative w-full max-w-md lg:max-w-lg bg-gray-200 shadow-xl rounded-tl-3xl rounded-br-3xl overflow-hidden">
-            {/* Embed YouTube Video */}
+            {/* Embed YouTube Video (No Carousel Effect) */}
             <iframe
               className="w-full h-56 md:h-72 lg:h-96"
               src="https://www.youtube.com/embed/H7kLcUM1ln0?si=imE5POY8w9VnZaEB"
@@ -128,7 +141,7 @@ const Home = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
-            ></iframe>
+            />
           </div>
         </div>
       </section>
