@@ -7,6 +7,7 @@ import Home from "../components/Home"; // Import the Home component
 import About from "../components/About/About"; // Import the About component
 import Howitworks from "../components/HowitWork/Howitwork";
 import WhatWeOffer from "../components/WhatWeOffer";
+import Team from "../components/Team";
 
 const LandingPage = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -21,6 +22,7 @@ const LandingPage = () => {
       <About /> {/* Use the About component here */}
       <Howitworks/>
       <WhatWeOffer/>
+      <Team/>
       {/* <Footer /> */}
     </div>
   );
