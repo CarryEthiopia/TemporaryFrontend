@@ -1,104 +1,134 @@
-// src/components/Home.jsx
-
 import React, { useState, useEffect } from "react";
-import city from "../assets/city.jpeg"; // Import your image
+import { motion, AnimatePresence } from "framer-motion";
 
 const Home = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const carouselMessages = [
+
+  const carouselContent = [
     {
-      title: "Sender Items Worldwide Via Trusted Travelers",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      title: "Send Items Worldwide Via Trusted Travelers",
+      description: "Discover a secure way to send your items globally.",
+      boxes: [
+        "Easy Item Pickup",
+        "Flexible Scheduling",
+        "Affordable Rates",
+        "Real-Time Tracking",
+      ],
       button: "Start Sending ->",
     },
     {
       title: "Travel and Help People Send Items Worldwide",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      description: "Earn rewards and help others while traveling.",
+      boxes: [
+        "Earn Extra Income",
+        "Meet New People",
+        "Flexible Routes",
+        "Trusted by Millions",
+      ],
       button: "Become a Traveler ->",
     },
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCarouselIndex(
-        (prevIndex) => (prevIndex + 1) % carouselMessages.length
-      );
-    }, 5000); // Change message every 5 seconds
-    return () => clearInterval(interval); // Clean up interval on unmount
+      setCarouselIndex((prevIndex) => (prevIndex + 1) % carouselContent.length);
+    }, 5000); // Change every 5 seconds
+    return () => clearInterval(interval);
   }, []);
 
+  const currentContent = carouselContent[carouselIndex];
+
   return (
-    <div className="bg-gray-50 min-h-screen pt-20">
-      {/* Small dot and text */}
-      <div className="flex items-center justify-center space-x-2 mb-10">
+    <div
+      className="bg-gray-50 min-h-screen pt-20 px-6 md:px-16 lg:px-32"
+      style={{ backgroundColor: "#dbe4ee" }}
+    >
+      {/* Top Dots Section */}
+      <div className="flex items-center justify-center space-x-2 mb-10 shadow-sm shadow-gray-200  bg-white p-3 rounded-lg w-fit mx-auto">
         <div className="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse"></div>
-        <p className="text-lg font-medium text-gray-800">
-          Simple. Secure. Swift.
-        </p>
+        <p className="text-lg font-medium text-gray-800">Simple</p>
+        <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+        <p className="text-lg font-medium text-gray-800">Secure</p>
+        <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+        <p className="text-lg font-medium text-gray-800">Swift</p>
       </div>
 
-      {/* Hero Section with Two Parts */}
-      <section className="flex flex-col md:flex-row items-center justify-between px-6 py-20 bg-white shadow-md rounded-lg mx-6 md:mx-16 lg:mx-32">
+      {/* Hero Section */}
+      <section className="flex flex-col md:flex-row items-start justify-between space-y-8 md:space-y-0">
         {/* Left Section */}
-        <div className="flex flex-col w-full md:w-1/2 space-y-6">
+        <div className="w-full md:w-1/2 space-y-6 pr-6">
+          {/* Title and Description */}
           <div className="text-center md:text-left space-y-3">
             <h1 className="text-3xl font-bold text-gray-800">
-              {carouselMessages[carouselIndex].title}
+              {currentContent.title}
             </h1>
-            <p className="text-gray-600">
-              {carouselMessages[carouselIndex].description}
-            </p>
+            <p className="text-gray-600">{currentContent.description}</p>
           </div>
 
-          {/* Boxes Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[1, 2].map((_, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col items-center justify-center p-6 bg-white shadow-lg rounded-xl"
-              >
-                <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white mb-3">
-                  <i className="fas fa-check"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800">
-                  Safe & Secure Delivery
-                </h3>
-                <p className="text-gray-600">Lorem ipsum dolor sit amet.</p>
-              </div>
-            ))}
-            {[3, 4].map((_, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col items-center justify-center p-6 bg-white shadow-lg rounded-xl"
-              >
-                <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white mb-3">
-                  <i className="fas fa-check"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800">
-                  Verified Traveler
-                </h3>
-                <p className="text-gray-600">Lorem ipsum dolor sit amet.</p>
-              </div>
-            ))}
+            <AnimatePresence>
+              {currentContent.boxes.map((text, idx) => (
+                <motion.div
+                  key={idx}
+                  className="flex items-center p-4 bg-white shadow-sm rounded-lg space-x-4 transition-shadow hover:shadow-lg"
+                  initial={{ opacity: 0, scale: 0.9 }} // Start with low opacity and slightly scaled down
+                  animate={{ opacity: 1, scale: 1 }} // Scale and fade in
+                  exit={{ opacity: 0, scale: 0.9 }} // Fade out and scale down
+                  transition={{
+                    opacity: { duration: 1 }, // Increase duration for opacity
+                    scale: { duration: 1.2 }, // Increase duration for scaling
+                  }}
+                >
+                  <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white">
+                    <i className="fas fa-check text-white text-xl"></i>{" "}
+                    {/* Ensuring icon is visible */}
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    {text}
+                  </h3>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
 
           {/* Action Button */}
-          <div className="flex items-center justify-center mt-8">
-            <button className="px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition">
-              {carouselMessages[carouselIndex].button}
-            </button>
-            <div className="w-2 h-2 rounded-full bg-gray-500 mx-3"></div>
-            <div className="h-1 w-16 bg-gray-300"></div>
+          <div className="flex flex-col items-center mt-8 space-y-2">
+            <motion.button
+              className="px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition"
+              whileHover={{ scale: 1.05 }}
+            >
+              {currentContent.button}
+            </motion.button>
+
+            {/* Horizontal Line and Dot */}
+            <div className="flex items-center space-x-3">
+              <div
+                className={`h-1 w-10 rounded-full ${
+                  carouselIndex === 0 ? "bg-orange-500" : "bg-gray-300"
+                } transition-all`}
+              ></div>
+              <div
+                className={`w-3 h-3 rounded-full ${
+                  carouselIndex === 1 ? "bg-orange-500" : "bg-gray-300"
+                } transition-all`}
+              ></div>
+            </div>
           </div>
         </div>
 
         {/* Right Section (Video) */}
-        <div className="w-full md:w-1/2 mt-8 md:mt-0">
-          <div className="relative w-full h-64 md:h-full bg-gray-200 rounded-lg">
-            {/* Placeholder for Video */}
-            <div className="absolute inset-0 bg-gray-400 flex items-center justify-center text-white font-bold">
-              Video Placeholder
-            </div>
+        <div className="w-full md:w-1/2 flex justify-center">
+          <div className="relative w-full max-w-md lg:max-w-lg bg-gray-200 shadow-xl rounded-tl-3xl rounded-br-3xl overflow-hidden">
+            {/* Embed YouTube Video */}
+            <iframe
+              className="w-full h-56 md:h-72 lg:h-96"
+              src="https://www.youtube.com/embed/H7kLcUM1ln0?si=imE5POY8w9VnZaEB"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
       </section>
