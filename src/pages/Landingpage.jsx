@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 // import Footer from "../components/Footer";
 import Home from "../components/Home"; // Import the Home component
 import About from "../components/About/About"; // Import the About component
+import Howitworks from "../components/HowitWork/Howitwork";
 
 const LandingPage = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -17,6 +18,7 @@ const LandingPage = () => {
       />
       <Home /> {/* Use the Home component here */}
       <About /> {/* Use the About component here */}
+      <Howitworks/>
       {/* <Footer /> */}
     </div>
   );
