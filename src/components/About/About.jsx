@@ -14,14 +14,18 @@ const About = () => {
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto my-6"></div>
           <p className="mt-8 max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
-            Transforming global logistics through innovation and reliability. 
-            We're committed to creating seamless shipping experiences that connect 
-            businesses and people worldwide.
+            Transforming global logistics through innovation and reliability.
+            We're committed to creating seamless shipping experiences that
+            connect businesses and people worldwide.
           </p>
         </div>
 
         {/* Our Component */}
-        <Our />
+        <div className="mb-60 mt-60">
+          {" "}
+          {/* Add margin for spacing */}
+          <Our />
+        </div>
 
         {/* CTA Section */}
         <div className="mt-20 text-center">

@@ -9,6 +9,7 @@ import Howitworks from "../components/HowitWork/Howitwork";
 import WhatWeOffer from "../components/WhatWeOffer";
 import Team from "../components/Team";
 import Testimony from "../components/Testimony";
+import Question from "../components/Question/Questions";
 
 const LandingPage = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -25,6 +26,7 @@ const LandingPage = () => {
       <Team />
       <About /> {/* Use the About component here */}
       <Testimony/>
+      <Question/>
       {/* <Footer /> */}
     </div>
   );
