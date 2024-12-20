@@ -10,6 +10,7 @@ import WhatWeOffer from "../components/WhatWeOffer";
 import Team from "../components/Team";
 import Testimony from "../components/Testimony";
 import Question from "../components/Question/Questions";
+import Ready from "../components/Ready";
 
 const LandingPage = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -27,6 +28,7 @@ const LandingPage = () => {
       <About /> {/* Use the About component here */}
       <Testimony/>
       <Question/>
+      <Ready/>
       {/* <Footer /> */}
     </div>
   );

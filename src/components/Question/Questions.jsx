@@ -5,8 +5,17 @@ const Question = () => {
   return (
     <div className="flex flex-col items-center justify-center py-8 px-4">
       {/* Frequently Asked and Questions */}
-      <h1 className="text-2xl font-bold text-orange-500">Frequently Asked</h1>
-      <h2 className="text-xl font-semibold text-blue-600">Questions</h2>
+      <h1
+        className="text-4xl  font-bold"
+        style={{
+          background: "linear-gradient(45deg, #2B2B2B 30%, #F66F1E 90%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
+      >
+        Frequently Asked  Questions
+      </h1>
+
 
       {/* Subtitle */}
       <p className="text-gray-700 text-center mt-4">
