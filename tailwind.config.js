@@ -8,19 +8,33 @@ export default {
         "custom-blue": "#34B1FF",
       },
       animation: {
-        "letter-change": "letterChange 8s linear infinite",
+        "open-door-animation": "openDoorAnimation 7s ease-in-out infinite",
       },
       keyframes: {
-        letterChange: {
-          "0%": { opacity: "1", color: "#08094b	" },
-          "25%": { opacity: "1", color: "#F66F1E" }, // Custom color change
-          "50%": { opacity: "1", color: "#1a3c5e" }, // Custom color change
-          "75%": { opacity: "1", color: "#727272	" }, // Custom color change
-          "100%": { opacity: "1", color: "#dbe4ee	" },
+        openDoorAnimation: {
+          "0%": {
+            width: "100%",
+            left: "0%",
+            right: "0%",
+          },
+          "50%": {
+            width: "50%",
+            left: "0%",
+            right: "50%",
+          },
+          "75%": {
+            width: "50%",
+            left: "50%",
+            right: "0%",
+          },
+          "100%": {
+            width: "100%",
+            left: "0%",
+            right: "0%",
+          },
         },
       },
     },
   },
   plugins: [],
 };
-

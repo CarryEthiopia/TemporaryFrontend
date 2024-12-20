@@ -27,13 +27,13 @@ const Steps = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-12">
+      <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-12 max-w-6xl mx-auto">
         {/* Step 1 */}
         <div
           className={`flex-1 p-6 bg-white shadow-lg rounded-lg flex flex-col items-center space-y-4 transition-all duration-1000 ${
             currentStep >= 1 ? "opacity-100" : "opacity-0"
-          } ${currentStep === 1 ? "h-full" : ""}`}
-          style={{ minHeight: "250px" }} // Ensure a minimum height for the steps
+          }`}
+          style={{ minHeight: "250px", height: "calc(100% - 20px)" }}
         >
           <div className="w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center">
             1
@@ -45,25 +45,24 @@ const Steps = () => {
             Provide details about your delivery needs and submit your request to
             get started.
           </p>
-          
         </div>
 
         {/* Vertical line between steps (only for small screens) */}
         {currentStep >= 2 && (
-          <div className="w-1 h-12 bg-orange-500 md:hidden"></div> // Ensure this line appears on small screens
+          <div className="w-1 h-12 bg-orange-500 md:hidden mx-2"></div> // Centered between steps for small screens
         )}
 
         {/* Horizontal line between steps, visible only on large screens */}
         {currentStep >= 2 && (
-          <div className="w-16 h-1 bg-orange-500 hidden md:block"></div>
+          <div className="w-16 h-1 bg-orange-500 hidden md:block mx-4 my-6"></div> // Centered with gap for large screens
         )}
 
         {/* Step 2 */}
         <div
           className={`flex-1 p-6 bg-white shadow-lg rounded-lg flex flex-col items-center space-y-4 transition-all duration-1000 ${
             currentStep >= 2 ? "opacity-100" : "opacity-0"
-          } ${currentStep === 2 ? "h-full" : ""}`}
-          style={{ minHeight: "250px" }}
+          }`}
+          style={{ minHeight: "250px", height: "calc(100% - 20px)" }}
         >
           <div className="w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center">
             2
@@ -75,25 +74,24 @@ const Steps = () => {
             We will connect you with a traveler who will carry your items
             securely to the destination.
           </p>
-
         </div>
 
         {/* Vertical line between steps (only for small screens) */}
         {currentStep >= 3 && (
-          <div className="w-1 h-12 bg-orange-500 md:hidden"></div>
+          <div className="w-1 h-12 bg-orange-500 md:hidden mx-2"></div> // Centered between steps for small screens
         )}
 
         {/* Horizontal line between steps, visible only on large screens */}
         {currentStep >= 3 && (
-          <div className="w-16 h-1 bg-orange-500 hidden md:block"></div>
+          <div className="w-16 h-1 bg-orange-500 hidden md:block mx-4 my-6"></div> // Centered with gap for large screens
         )}
 
         {/* Step 3 */}
         <div
           className={`flex-1 p-6 bg-white shadow-lg rounded-lg flex flex-col items-center space-y-4 transition-all duration-1000 ${
             currentStep >= 3 ? "opacity-100" : "opacity-0"
-          } ${currentStep === 3 ? "h-full" : ""}`}
-          style={{ minHeight: "250px" }}
+          }`}
+          style={{ minHeight: "250px", height: "calc(100% - 20px)" }}
         >
           <div className="w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center">
             3
