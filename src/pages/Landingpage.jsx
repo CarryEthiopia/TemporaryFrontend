@@ -23,12 +23,12 @@ const LandingPage = () => {
       />
       <Home /> {/* Use the Home component here */}
       <Howitworks />
-      <WhatWeOffer />
-      <Team />
       <About /> {/* Use the About component here */}
-      <Testimony/>
-      <Question/>
-      <Ready/>
+      <WhatWeOffer />
+      <Testimony />
+      <Question />
+      <Team />
+      <Ready />
       {/* <Footer /> */}
     </div>
   );
