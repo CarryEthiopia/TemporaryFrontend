@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiShield, FiDollarSign, FiGlobe } from "react-icons/fi";
 
@@ -7,7 +7,8 @@ const WhatWeOffer = () => {
     {
       icon: <FiShield className="w-6 h-6" />,
       title: "Secure Deliveries",
-      description: "Verified travelers and encrypted payments ensure your items' safety",
+      description:
+        "Verified travelers and encrypted payments ensure your items' safety",
       color: "from-orange-400 to-orange-600",
     },
     {
@@ -24,11 +25,18 @@ const WhatWeOffer = () => {
     },
   ];
 
+  const stats = [
+    { finalValue: 10, label: "Active Users", suffix: "K+" },
+    { finalValue: 50, label: "Countries", suffix: "+" },
+    { finalValue: 99, label: "Success Rate", suffix: "%" },
+    { finalValue: 24, label: "Support (Hours)" },
+  ];
+
   return (
     <section className="py-24 bg-gradient-to-b from-slate-50 to-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -39,7 +47,8 @@ const WhatWeOffer = () => {
           </h2>
           <div className="w-20 h-1 bg-orange-600 mx-auto rounded-full mb-6" />
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            Experience seamless global deliveries with our comprehensive suite of services
+            Experience seamless global deliveries with our comprehensive suite
+            of services
           </p>
         </motion.div>
 
@@ -57,7 +66,9 @@ const WhatWeOffer = () => {
                 {/* Card */}
                 <div className="relative z-10 h-full bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                   {/* Icon */}
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${offer.color} text-white flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300`}>
+                  <div
+                    className={`w-14 h-14 rounded-xl bg-gradient-to-r ${offer.color} text-white flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300`}
+                  >
                     {offer.icon}
                   </div>
 
@@ -74,37 +85,60 @@ const WhatWeOffer = () => {
                 </div>
 
                 {/* Background Decoration */}
-                <div className={`absolute -inset-0.5 bg-gradient-to-r ${offer.color} rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-300`} />
+                <div
+                  className={`absolute -inset-0.5 bg-gradient-to-r ${offer.color} rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-300`}
+                />
               </div>
             </motion.div>
           ))}
         </div>
 
         {/* Stats Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 bg-white rounded-2xl p-8 shadow-lg"
         >
-          {[
-            { value: "10K+", label: "Active Users" },
-            { value: "50+", label: "Countries" },
-            { value: "99%", label: "Success Rate" },
-            { value: "24/7", label: "Support" },
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">
-                {stat.value}
-              </div>
-              <div className="text-sm text-gray-600">
-                {stat.label}
-              </div>
-            </div>
+          {stats.map((stat, index) => (
+            <CountUpStat
+              key={index}
+              finalValue={stat.finalValue}
+              label={stat.label}
+              suffix={stat.suffix || ""}
+            />
           ))}
         </motion.div>
       </div>
     </section>
+  );
+};
+
+const CountUpStat = ({ finalValue, label, suffix }) => {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    let currentValue = 0;
+    const increment = Math.ceil(finalValue / 100); // Adjust for smoother counting
+    const interval = setInterval(() => {
+      currentValue += increment;
+      if (currentValue >= finalValue) {
+        currentValue = finalValue;
+        clearInterval(interval);
+      }
+      setValue(currentValue);
+    }, 30); // Speed of counting (adjust as needed)
+    return () => clearInterval(interval);
+  }, [finalValue]);
+
+  return (
+    <div className="text-center">
+      <div className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 #F66F1E  mb-2">
+        {value.toLocaleString()}
+        {suffix}
+      </div>
+      <div className="text-sm text-gray-600">{label}</div>
+    </div>
   );
 };
 
