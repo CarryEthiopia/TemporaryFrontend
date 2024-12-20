@@ -63,7 +63,7 @@ const Team = () => {
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:transform hover:scale-105"
+              className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300"
             >
               <div className="aspect-w-3 aspect-h-4">
                 <img
