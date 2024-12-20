@@ -1,44 +1,50 @@
 // src/components/About.jsx
-
 import React from "react";
-import Our from "./Our"; // Import the Our component
+import Our from "./Our";
 
 const About = () => {
   return (
-    <div className="bg-white py-16 px-6 md:px-16 lg:px-32">
-      {/* About Us Section */}
-      <div className="text-center space-y-6">
-        <h2 className="text-5xl font-bold text-gray-800">
-          <span className="text-blue-800">About</span>{" "}
-          <span className="text-orange-600">Us</span>
-        </h2>
-        <div className="w-24 mx-auto mt-4 mb-6">
-          {/* Orange colored horizontal line */}
-          <hr className="border-t-4 border-orange-600" />
+    <section className="min-h-screen bg-gradient-to-b from-white to-gray-50 py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <span className="text-gray-900">About </span>
+            <span className="text-blue-600">Us</span>
+          </h2>
+          <div className="w-24 h-1 bg-blue-600 mx-auto my-6"></div>
+          <p className="mt-8 max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
+            Transforming global logistics through innovation and reliability. 
+            We're committed to creating seamless shipping experiences that connect 
+            businesses and people worldwide.
+          </p>
         </div>
 
-        {/* Animated Text Below */}
-        <p className="text-lg space-y-4">
-          <span className="inline-block animate-letter-change">
-            Welcome to our platform!{" "}
-          </span>
-          <span className="inline-block animate-letter-change">
-            We are dedicated to making shipping simple, secure, and efficient
-            for everyone.
-          </span>
-        </p>
-      </div>
+        {/* Our Component */}
+        <Our />
 
-      {/* Use the Our component */}
-      <Our />
-
-      {/* Optional: Add team member section, images, or other info */}
-      <div className="mt-16 text-center">
-        <button className="px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition">
-          Contact Us
-        </button>
+        {/* CTA Section */}
+        <div className="mt-20 text-center">
+          <div className="inline-flex rounded-md shadow">
+            <button className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+              Get in Touch
+              <svg
+                className="ml-3 -mr-1 h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

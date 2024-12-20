@@ -1,7 +1,7 @@
 import React from "react";
-import teamMember1 from "../assets/teamMember1.jpg"; // Replace with actual image
-import teamMember2 from "../assets/teamMember2.jpg"; // Replace with actual image
-import teamMember3 from "../assets/teamMember3.jpg"; // Replace with actual image
+import teamMember1 from "../assets/teamMember1.jpg";
+import teamMember2 from "../assets/teamMember2.jpeg";
+import teamMember3 from "../assets/teamMember3.jpg";
 import { useState, useEffect } from "react";
 
 const Team = () => {
@@ -11,23 +11,26 @@ const Team = () => {
       img: teamMember1,
       name: "John Doe",
       role: "CEO & Founder",
+      bio: "Visionary leader with 15+ years of experience in sustainable development"
     },
     {
       img: teamMember2,
       name: "Jane Smith",
       role: "Marketing Director",
+      bio: "Strategic marketing expert specializing in global outreach campaigns"
     },
     {
       img: teamMember3,
       name: "Samuel Green",
       role: "Lead Developer",
+      bio: "Tech innovator with a passion for creating impactful solutions"
     },
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % teamMembers.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [teamMembers.length]);
 
@@ -42,72 +45,111 @@ const Team = () => {
   };
 
   return (
-    <div className="py-12 px-6 bg-gray-100">
-      <div className="max-w-7xl mx-auto text-center">
-        {/* Section Title */}
-        <h2 className="text-4xl font-semibold text-gray-800 mb-4">
-          Meet Our Team
-        </h2>
-        <p className="text-xl text-gray-600 mb-12">
-          The talented people behind Carry Ethiopia
-        </p>
+    <section className="py-20 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">
+            Meet Our Team
+          </h2>
+          <div className="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+          <p className="max-w-2xl mx-auto text-lg text-gray-600">
+            Our dedicated team of professionals working together to make a difference
+          </p>
+        </div>
 
-        {/* Team Members Section */}
-        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-2 lg:gap-4">
+        {/* Desktop View */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="relative group w-[280px] h-[550px] mx-auto rounded-lg overflow-hidden"
+              className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:transform hover:scale-105"
             >
-              <img
-                src={member.img}
-                alt={`Team Member ${index + 1}`}
-                className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black opacity-40"></div>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black text-white p-4 text-center">
-                <h3 className="text-xl font-semibold">{member.name}</h3>
-                <p className="text-sm">{member.role}</p>
+              <div className="aspect-w-3 aspect-h-4">
+                <img
+                  src={member.img}
+                  alt={member.name}
+                  className="w-full h-80  object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                  {member.name}
+                </h3>
+                <p className="text-blue-600 font-medium mb-4">{member.role}</p>
+                <p className="text-gray-600 text-sm">{member.bio}</p>
+                <div className="mt-6 flex justify-center space-x-4">
+                  <button className="text-blue-600 hover:text-blue-700">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.27 20.1H3.65V9.24h3.62V20.1zM5.47 7.76h-.03c-1.22 0-2-.83-2-1.87 0-1.06.8-1.87 2.05-1.87 1.24 0 2 .8 2.02 1.87 0 1.04-.78 1.87-2.05 1.87zM20.34 20.1h-3.63v-5.8c0-1.45-.52-2.45-1.83-2.45-1 0-1.6.67-1.87 1.32-.1.23-.11.55-.11.88v6.05H9.28s.05-9.82 0-10.84h3.63v1.54a3.6 3.6 0 0 1 3.26-1.8c2.39 0 4.18 1.56 4.18 4.89v6.21z" />
+                    </svg>
+                  </button>
+                  <button className="text-blue-600 hover:text-blue-700">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Carousel for Small Screens */}
-        <div className="sm:hidden relative w-full h-[550px] mx-auto rounded-lg overflow-hidden">
-          <img
-            src={teamMembers[currentSlide].img}
-            alt={`Team Member ${currentSlide + 1}`}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black opacity-40"></div>
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black text-white p-4 text-center">
-            <h3 className="text-xl font-semibold">
-              {teamMembers[currentSlide].name}
-            </h3>
-            <p className="text-sm">{teamMembers[currentSlide].role}</p>
+        {/* Mobile Carousel */}
+        <div className="sm:hidden relative">
+          <div className="overflow-hidden rounded-lg shadow-lg">
+            <div className="aspect-w-3 aspect-h-4">
+              <img
+                src={teamMembers[currentSlide].img}
+                alt={teamMembers[currentSlide].name}
+                className="w-full h-80 object-cover"
+              />
+            </div>
+            <div className="p-6 bg-white">
+              <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                {teamMembers[currentSlide].name}
+              </h3>
+              <p className="text-blue-600 font-medium mb-4">
+                {teamMembers[currentSlide].role}
+              </p>
+              <p className="text-gray-600 text-sm">
+                {teamMembers[currentSlide].bio}
+              </p>
+              <div className="mt-6 flex justify-center space-x-4">
+                <button className="text-blue-600 hover:text-blue-700">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.27 20.1H3.65V9.24h3.62V20.1zM5.47 7.76h-.03c-1.22 0-2-.83-2-1.87 0-1.06.8-1.87 2.05-1.87 1.24 0 2 .8 2.02 1.87 0 1.04-.78 1.87-2.05 1.87zM20.34 20.1h-3.63v-5.8c0-1.45-.52-2.45-1.83-2.45-1 0-1.6.67-1.87 1.32-.1.23-.11.55-.11.88v6.05H9.28s.05-9.82 0-10.84h3.63v1.54a3.6 3.6 0 0 1 3.26-1.8c2.39 0 4.18 1.56 4.18 4.89v6.21z" />
+                  </svg>
+                </button>
+                <button className="text-blue-600 hover:text-blue-700">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
-          {/* Backward Button */}
-          <div className="absolute top-0 left-0 h-full w-16 bg-gradient-to-r from-black/60 to-transparent rounded-r-lg flex items-center justify-center">
-            <button
-              onClick={handlePrev}
-              className="bg-white text-gray-800 rounded-full p-2 shadow-md focus:outline-none"
-            >
-              &lt;
-            </button>
-          </div>
-          {/* Forward Button */}
-          <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-black/60 to-transparent rounded-l-lg flex items-center justify-center">
-            <button
-              onClick={handleNext}
-              className="bg-white text-gray-800 rounded-full p-2 shadow-md focus:outline-none"
-            >
-              &gt;
-            </button>
-          </div>
+          
+          {/* Navigation Buttons */}
+          <button
+            onClick={handlePrev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-lg text-gray-800 hover:bg-gray-100 focus:outline-none"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-lg text-gray-800 hover:bg-gray-100 focus:outline-none"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

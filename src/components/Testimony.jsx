@@ -1,176 +1,197 @@
 import React from "react";
-import { Box, Typography, Avatar } from "@mui/material";
+import { Box, Typography, Avatar, Container } from "@mui/material";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
-import BookIcon from "@mui/icons-material/Book"; // Example icon for books
-import LocalMallIcon from "@mui/icons-material/LocalMall"; // Example icon for clothes
-import SportsKabaddiIcon from "@mui/icons-material/SportsKabaddi"; // Example icon for cosmetics
-import LocalShippingIcon from "@mui/icons-material/LocalShipping"; // Example icon for package boxes
+import PersonIcon from "@mui/icons-material/Person";
+import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import profile1 from "../assets/teamMember1.jpg"; // Path to your profile image
-import profile2 from "../assets/teamMember2.jpg"; // Another profile image
-import profile3 from "../assets/teamMember3.jpg"; // Another profile image
-import profile4 from "../assets/teamMember1.jpg"; // Another profile image
 
 const Testimony = () => {
   const testimonies = [
     {
-      text: "Carry Ethiopia has revolutionized the way I send packages. Amazing service!",
-      name: "Jane Doe",
-      role: "Sender",
-      icon: <LocalShippingIcon />, // Package icon for sender
-      profileImage: profile1, // Replace with real image URL
+      text: "Carry Ethiopia has transformed our international shipping experience. The platform's efficiency and reliability have made it an integral part of our business operations.",
+      name: "Sarah Johnson",
+      role: "Regular Sender",
+      icon: <PersonIcon />,
+      profileImage: "profile1",
+      category: "Business Owner",
     },
     {
-      text: "As a traveler, I find it fulfilling to help others while traveling. Great experience!",
-      name: "John Smith",
+      text: "As a frequent traveler, I've found a meaningful way to contribute while offsetting my travel costs. The platform's user interface and support team are exceptional.",
+      name: "David Chen",
       role: "Traveler",
-      icon: <BookIcon />, // Book icon for traveler
-      profileImage: profile2, // Replace with real image URL
+      icon: <FlightTakeoffIcon />,
+      profileImage: "profile2",
+      category: "Frequent Flyer",
     },
     {
-      text: "The platform is seamless, and the service is reliable. Highly recommend!",
-      name: "Emily Brown",
-      role: "Being Traveler and Sender",
-      icon: <LocalMallIcon />, // Clothes icon for both
-      profileImage: profile3, // Replace with real image URL
-    },
-    {
-      text: "Using Carry Ethiopia made my trip more meaningful and cost-effective.",
-      name: "Michael Green",
-      role: "Traveler",
-      icon: <SportsKabaddiIcon />, // Cosmetics icon for traveler
-      profileImage: profile1, // Replace with real image URL
+      text: "The dual perspective of being both a sender and carrier has shown me how well-designed this platform is. It's created a trusted community for international deliveries.",
+      name: "Maria Garcia",
+      role: "Sender & Carrier",
+      icon: <SupervisorAccountIcon />,
+      profileImage: "profile3",
+      category: "Community Member",
     },
   ];
 
-  const commonStyles = {
-    container: {
-      backgroundColor: "#FFF",
-      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-      borderRadius: "8px",
-      padding: "20px",
-      position: "relative",
-      margin: "20px",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
-    },
-    icon: {
-      position: "absolute",
-      top: "10px",
-      left: "10px",
-      color: "#F66F1E",
-      fontSize: "30px",
-    },
-    profileSection: {
-      display: "flex",
-      alignItems: "center",
-      marginTop: "10px",
-      justifyContent: "flex-start", // Align everything in a row
-      gap: "10px", // Space between items
-    },
-    profileImage: {
-      width: "50px",
-      height: "50px",
-      borderRadius: "50%",
-    },
-    nameRole: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
-    },
-    roleText: {
-      fontSize: "14px",
-      color: "#555",
-    },
-  };
-
   const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 1024 },
-      items: 2,
-    },
     desktop: {
-      breakpoint: { max: 1024, min: 768 },
-      items: 2,
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 1,
     },
     tablet: {
-      breakpoint: { max: 768, min: 464 },
-      items: 1,
+      breakpoint: { max: 1024, min: 640 },
+      items: 2,
+      slidesToSlide: 1,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 640, min: 0 },
       items: 1,
+      slidesToSlide: 1,
     },
   };
 
   return (
-    <Box
-      sx={{ textAlign: "center", padding: "40px", backgroundColor: "#F5F5F5" }}
-    >
-      {/* Header Section */}
-      <Typography variant="h4" gutterBottom>
-        <span style={{ color: "#F66F1E" }}>What Our </span>
-        <span style={{ color: "#2E2E2E" }}>Users Say</span>
-      </Typography>
-      <Box
-        sx={{
-          height: "3px",
-          width: "100px",
-          backgroundColor: "#2E2E2E",
-          margin: "0 auto 20px",
-        }}
-      ></Box>
+    <Box sx={{ py: 10, backgroundColor: "#FAFAFA" }}>
+      <Container maxWidth="xl">
+        {/* Header Section */}
+        <Box sx={{ textAlign: "center", mb: 8 }}>
+          <Typography
+            variant="h3"
+            component="h2"
+            sx={{
+              fontWeight: 700,
+              mb: 2,
+              background: "linear-gradient(45deg, #2B2B2B 30%, #F66F1E 90%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            Customer Testimonials
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            sx={{ color: "text.secondary", maxWidth: "600px", mx: "auto" }}
+          >
+            Discover how Carry Ethiopia is revolutionizing international shipping through trusted connections
+          </Typography>
+        </Box>
 
-      {/* Testimony Section */}
-      <Carousel
-        responsive={responsive}
-        infinite
-        autoPlay
-        autoPlaySpeed={3000}
-        arrows={false} // Disable manual navigation (arrows)
-      >
-        {testimonies.map((testimony, index) => (
-          <Box key={index} sx={commonStyles.container}>
-            {/* Quote Icon */}
-            <FormatQuoteIcon sx={commonStyles.icon} />
-
-            {/* Testimony Text */}
-            <Typography
-              variant="body1"
-              sx={{ margin: "20px 0", color: "#333" }}
+        {/* Testimonials Carousel */}
+        <Carousel
+          responsive={responsive}
+          infinite
+          autoPlay
+          autoPlaySpeed={5000}
+          keyBoardControl={true}
+          customTransition="transform 500ms ease-in-out"
+          transitionDuration={500}
+          containerClass="carousel-container"
+          removeArrowOnDeviceType={["tablet", "mobile"]}
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+        >
+          {testimonies.map((testimony, index) => (
+            <Box
+              key={index}
+              sx={{
+                mx: 2,
+                height: "100%",
+                transition: "transform 0.3s ease-in-out",
+                "&:hover": {
+                  transform: "translateY(-5px)",
+                },
+              }}
             >
-              {testimony.text}
-            </Typography>
-
-            {/* Profile Section */}
-            <Box sx={commonStyles.profileSection}>
-              <Avatar
-                src={testimony.profileImage}
-                sx={commonStyles.profileImage}
-              />
-              <Box sx={commonStyles.nameRole}>
-                <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                  {testimony.name}
-                </Typography>
-                <Typography sx={commonStyles.roleText}>
-                  {testimony.role}
-                </Typography>
-              </Box>
               <Box
                 sx={{
-                  marginLeft: "auto",
+                  backgroundColor: "white",
+                  borderRadius: "16px",
+                  p: 4,
+                  height: "100%",
                   display: "flex",
-                  alignItems: "center",
+                  flexDirection: "column",
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+                  position: "relative",
+                  overflow: "hidden",
                 }}
               >
-                {testimony.icon}
+                {/* Quote Icon */}
+                <FormatQuoteIcon
+                  sx={{
+                    position: "absolute",
+                    top: 20,
+                    right: 20,
+                    fontSize: 40,
+                    color: "rgba(246, 111, 30, 0.1)",
+                  }}
+                />
+
+                {/* Testimony Content */}
+                <Box sx={{ flex: 1 }}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      mb: 4,
+                      color: "text.secondary",
+                      lineHeight: 1.8,
+                      fontStyle: "italic",
+                    }}
+                  >
+                    "{testimony.text}"
+                  </Typography>
+                </Box>
+
+                {/* Profile Section */}
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    borderTop: "1px solid rgba(0,0,0,0.08)",
+                    pt: 3,
+                  }}
+                >
+                  <Avatar
+                    sx={{
+                      width: 56,
+                      height: 56,
+                      bgcolor: "primary.main",
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    {testimony.icon}
+                  </Avatar>
+                  <Box sx={{ ml: 2 }}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{ fontWeight: 600, color: "text.primary" }}
+                    >
+                      {testimony.name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "primary.main",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {testimony.role}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "text.secondary" }}
+                    >
+                      {testimony.category}
+                    </Typography>
+                  </Box>
+                </Box>
               </Box>
             </Box>
-          </Box>
-        ))}
-      </Carousel>
+          ))}
+        </Carousel>
+      </Container>
     </Box>
   );
 };

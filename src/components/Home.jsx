@@ -1,150 +1,143 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle"; // Import Material UI CheckCircle icon
+import React from "react";
+import Slider from "react-slick";
+import { motion } from "framer-motion";
+import { IoAirplaneOutline, IoGlobeOutline, IoWalletOutline, IoTimeOutline } from "react-icons/io5";
+import { FiUsers, FiNavigation, FiDollarSign, FiShield } from "react-icons/fi";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Home = () => {
-  const [carouselIndex, setCarouselIndex] = useState(0);
-
-  const carouselContent = [
+  const slides = [
     {
       title: "Send Items Worldwide Via Trusted Travelers",
-      description: "Discover a secure way to send your items globally.",
-      boxes: [
-        "Easy Item Pickup",
-        "Flexible Scheduling",
-        "Affordable Rates",
-        "Real-Time Tracking",
+      subtitle: "Discover a secure way to send your items globally.",
+      features: [
+        { icon: <IoAirplaneOutline />, text: "Easy Item Pickup" },
+        { icon: <IoTimeOutline />, text: "Flexible Scheduling" },
+        { icon: <IoWalletOutline />, text: "Affordable Rates" },
+        { icon: <IoGlobeOutline />, text: "Real-Time Tracking" }
       ],
-      button: "Start Sending ->",
+      cta: "Start Sending",
+      videoId: "H7kLcUM1ln0"
     },
     {
       title: "Travel and Help People Send Items Worldwide",
-      description: "Earn rewards and help others while traveling.",
-      boxes: [
-        "Earn Extra Income",
-        "Meet New People",
-        "Flexible Routes",
-        "Trusted by Millions",
+      subtitle: "Earn rewards and help others while traveling.",
+      features: [
+        { icon: <FiDollarSign />, text: "Earn Extra Income" },
+        { icon: <FiUsers />, text: "Meet New People" },
+        { icon: <FiNavigation />, text: "Flexible Routes" },
+        { icon: <FiShield />, text: "Trusted by Millions" }
       ],
-      button: "Become a Traveler ->",
-    },
+      cta: "Become a Traveler",
+      videoId: "H7kLcUM1ln0"
+    }
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCarouselIndex((prevIndex) => (prevIndex + 1) % carouselContent.length);
-    }, 5000); // Change every 5 seconds
-    return () => clearInterval(interval);
-  }, []);
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    fade: true,
+    cssEase: "cubic-bezier(0.87, 0.03, 0.41, 0.9)",
+    dotsClass: "slick-dots custom-dots",
+    customPaging: (i) => (
+      <div className="w-2 h-2 rounded-full bg-orange-500 opacity-50 hover:opacity-100 transition-opacity" />
+    )
+  };
 
-  const currentContent = carouselContent[carouselIndex];
+  const FeatureCard = ({ icon, text }) => (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.03 }}
+      className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4"
+    >
+      <div className="text-2xl text-orange-500 bg-orange-50 p-3 rounded-lg">
+        {icon}
+      </div>
+      <h3 className="font-medium text-gray-800">{text}</h3>
+    </motion.div>
+  );
 
   return (
-    <div
-      className="bg-gray-50 min-h-screen pt-20 px-6 md:px-16 lg:px-32"
-      style={{ backgroundColor: "#dbe4ee" }}
-    >
-      {/* Top Dots Section */}
-      <div className="flex items-center justify-center space-x-2 mb-10 shadow-sm shadow-gray-200 bg-white p-3 rounded-lg w-fit mx-auto">
-        <div className="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse"></div>
-        <p className="text-lg font-medium text-gray-800">Simple</p>
-        <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
-        <p className="text-lg font-medium text-gray-800">Secure</p>
-        <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
-        <p className="text-lg font-medium text-gray-800">Swift</p>
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-orange-50 pt-16 px-4 sm:px-6 lg:px-8">
+      {/* Trust Badges */}
+      <div className="max-w-lg mx-auto mb-12 bg-white rounded-full px-6 py-3 shadow-sm flex items-center justify-center gap-4">
+        <motion.span
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="h-2 w-2 bg-orange-500 rounded-full"
+        />
+        <span className="font-medium text-gray-700">Simple</span>
+        <span className="h-2 w-2 bg-orange-500 rounded-full" />
+        <span className="font-medium text-gray-700">Secure</span>
+        <span className="h-2 w-2 bg-orange-500 rounded-full" />
+        <span className="font-medium text-gray-700">Swift</span>
       </div>
 
-      {/* Hero Section */}
-      <section className="flex flex-col md:flex-row items-start justify-between space-y-8 md:space-y-0">
-        {/* Left Section */}
-        <div className="w-full md:w-1/2 space-y-6 pr-6">
-          {/* Title and Description */}
-          <div className="text-center md:text-left space-y-3">
-            <h1 className="text-3xl font-bold text-gray-800">
-              {currentContent.title}
-            </h1>
-            <p className="text-gray-600">{currentContent.description}</p>
-          </div>
+      <Slider {...sliderSettings}>
+        {slides.map((slide, index) => (
+          <div key={index} className="outline-none">
+            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-8">
+                <div className="space-y-4">
+                  <motion.h1 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-4xl font-bold text-gray-900 leading-tight"
+                  >
+                    {slide.title}
+                  </motion.h1>
+                  <motion.p 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-lg text-gray-600"
+                  >
+                    {slide.subtitle}
+                  </motion.p>
+                </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <AnimatePresence>
-              {currentContent.boxes.map((text, idx) => (
-                <motion.div
-                  key={idx}
-                  className="flex items-center p-4 bg-white shadow-sm rounded-lg space-x-4 transition-shadow hover:shadow-lg"
-                  initial={{ opacity: 0, scale: 0.9 }} // Start with low opacity and slightly scaled down
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    transition: {
-                      duration: 0.6, // Smooth transition duration
-                      ease: "easeOut", // Smoother easing
-                    },
-                  }} // Scale and fade in
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                    transition: {
-                      duration: 0.6, // Smooth exit transition
-                      ease: "easeInOut", // Ease in and out for smoother exit
-                    },
-                  }} // Fade out and scale down
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {slide.features.map((feature, idx) => (
+                    <FeatureCard 
+                      key={idx}
+                      icon={feature.icon}
+                      text={feature.text}
+                    />
+                  ))}
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-orange-500 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:bg-orange-600 transition-colors"
                 >
-                  <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white">
-                    <CheckCircleIcon className="text-white text-xl" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-800">
-                    {text}
-                  </h3>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
+                  {slide.cta} →
+                </motion.button>
+              </div>
 
-          {/* Action Button */}
-          <div className="flex flex-col items-center mt-8 space-y-2">
-            <motion.button
-              className="px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition"
-              whileHover={{
-                scale: 1.05,
-                transition: { duration: 0.3, ease: "easeOut" }, // Smooth hover transition
-              }}
-            >
-              {currentContent.button}
-            </motion.button>
-
-            {/* Horizontal Line and Dot */}
-            <div className="flex items-center space-x-3">
-              <div
-                className={`h-1 w-10 rounded-full ${
-                  carouselIndex === 0 ? "bg-orange-500" : "bg-gray-300"
-                } transition-all duration-300 ease-out`}
-              ></div>
-              <div
-                className={`w-3 h-3 rounded-full ${
-                  carouselIndex === 1 ? "bg-orange-500" : "bg-gray-300"
-                } transition-all duration-300 ease-out`}
-              ></div>
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl"
+              >
+                <iframe
+                  className="absolute w-full h-full"
+                  src={`https://www.youtube.com/embed/${slide.videoId}?autoplay=0&mute=1`}
+                  title="Promotional video"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </motion.div>
             </div>
           </div>
-        </div>
-
-        {/* Right Section (Video) */}
-        <div className="w-full md:w-1/2 flex justify-center">
-          <div className="relative w-full max-w-md lg:max-w-lg bg-gray-200 shadow-xl rounded-tl-3xl rounded-br-3xl overflow-hidden">
-            {/* Embed YouTube Video (No Carousel Effect) */}
-            <iframe
-              className="w-full h-56 md:h-72 lg:h-96"
-              src="https://www.youtube.com/embed/H7kLcUM1ln0?si=imE5POY8w9VnZaEB"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      </section>
+        ))}
+      </Slider>
     </div>
   );
 };
