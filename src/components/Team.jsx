@@ -31,6 +31,16 @@ const Team = () => {
     return () => clearInterval(interval);
   }, [teamMembers.length]);
 
+  const handleNext = () => {
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % teamMembers.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentSlide(
+      (prevSlide) => (prevSlide - 1 + teamMembers.length) % teamMembers.length
+    );
+  };
+
   return (
     <div className="py-12 px-6 bg-gray-100">
       <div className="max-w-7xl mx-auto text-center">
@@ -76,6 +86,24 @@ const Team = () => {
               {teamMembers[currentSlide].name}
             </h3>
             <p className="text-sm">{teamMembers[currentSlide].role}</p>
+          </div>
+          {/* Backward Button */}
+          <div className="absolute top-0 left-0 h-full w-16 bg-gradient-to-r from-black/60 to-transparent rounded-r-lg flex items-center justify-center">
+            <button
+              onClick={handlePrev}
+              className="bg-white text-gray-800 rounded-full p-2 shadow-md focus:outline-none"
+            >
+              &lt;
+            </button>
+          </div>
+          {/* Forward Button */}
+          <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-black/60 to-transparent rounded-l-lg flex items-center justify-center">
+            <button
+              onClick={handleNext}
+              className="bg-white text-gray-800 rounded-full p-2 shadow-md focus:outline-none"
+            >
+              &gt;
+            </button>
           </div>
         </div>
       </div>
