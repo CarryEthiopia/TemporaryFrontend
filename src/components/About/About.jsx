@@ -29,7 +29,7 @@ const About = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-20 text-center">
+        <div className="mt-5 text-center">
           <div className="inline-flex rounded-md shadow">
             <Link to="/get-in-touch">
               <button className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">

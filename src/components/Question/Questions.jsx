@@ -3,7 +3,10 @@ import Explanation from "./Explanation";
 
 const Question = () => {
   return (
-    <div  className="flex flex-col items-center justify-center py-8 px-4">
+    <div
+      id="faqs"
+      className="flex flex-col items-center justify-center py-8 px-4"
+    >
       {/* Frequently Asked and Questions */}
       <h1
         className="text-4xl  font-bold"
@@ -13,9 +16,8 @@ const Question = () => {
           WebkitTextFillColor: "transparent",
         }}
       >
-        Frequently Asked  Questions
+        Frequently Asked Questions
       </h1>
-
 
       {/* Subtitle */}
       <p className="text-gray-700 text-center mt-4">

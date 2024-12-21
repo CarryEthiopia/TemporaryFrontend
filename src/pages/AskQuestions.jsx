@@ -50,7 +50,6 @@ const AskQuestions = () => {
           onClick={() => navigate("/")}
         >
           <ArrowBack className="mr-2" />
-          <span>Back to Landing Page</span>
         </div>
 
         {/* Header */}

@@ -27,6 +27,7 @@ const HowItWorks = () => {
       animate={inView ? "visible" : "hidden"}
       variants={containerVariants}
       className="relative min-h-screen bg-gradient-to-b from-slate-50 to-white py-24 px-6 lg:px-16"
+      id="how-it-works"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
@@ -103,11 +104,12 @@ const StepCard = ({ icon, title, description, color, index }) => {
   return (
     <motion.div
       variants={cardVariants}
+    
       className="relative flex flex-col items-center"
     >
       {/* Connecting Line */}
       {index < 2 && (
-        <div id="how-it-works" className="hidden md:block absolute top-16 left-1/2 w-full h-0.5 bg-gray-200">
+        <div className="hidden md:block absolute top-16 left-1/2 w-full h-0.5 bg-gray-200">
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
@@ -122,7 +124,9 @@ const StepCard = ({ icon, title, description, color, index }) => {
         whileHover={{ y: -5 }}
         className="relative w-full bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
       >
-        <div className={`${color} text-white p-4 rounded-full inline-block mb-6`}>
+        <div
+          className={`${color} text-white p-4 rounded-full inline-block mb-6`}
+        >
           {icon}
         </div>
         <span className="absolute top-6 right-6 text-3xl font-bold text-gray-200">
