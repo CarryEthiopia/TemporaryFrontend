@@ -3,7 +3,7 @@ import Explanation from "./Explanation";
 
 const Question = () => {
   return (
-    <div className="flex flex-col items-center justify-center py-8 px-4">
+    <div  className="flex flex-col items-center justify-center py-8 px-4">
       {/* Frequently Asked and Questions */}
       <h1
         className="text-4xl  font-bold"

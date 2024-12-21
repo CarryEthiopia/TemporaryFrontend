@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FiShield, FiDollarSign, FiGlobe } from "react-icons/fi";
 
@@ -116,8 +116,32 @@ const WhatWeOffer = () => {
 
 const CountUpStat = ({ finalValue, label, suffix }) => {
   const [value, setValue] = useState(0);
+  const [hasCounted, setHasCounted] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasCounted) {
+          startCounting();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [hasCounted]);
+
+  const startCounting = () => {
+    setHasCounted(true);
     let currentValue = 0;
     const increment = Math.ceil(finalValue / 100); // Adjust for smoother counting
     const interval = setInterval(() => {
@@ -128,11 +152,10 @@ const CountUpStat = ({ finalValue, label, suffix }) => {
       }
       setValue(currentValue);
     }, 30); // Speed of counting (adjust as needed)
-    return () => clearInterval(interval);
-  }, [finalValue]);
+  };
 
   return (
-    <div className="text-center">
+    <div ref={sectionRef} className="text-center">
       <div className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 #F66F1E  mb-2">
         {value.toLocaleString()}
         {suffix}

@@ -107,7 +107,7 @@ const StepCard = ({ icon, title, description, color, index }) => {
     >
       {/* Connecting Line */}
       {index < 2 && (
-        <div className="hidden md:block absolute top-16 left-1/2 w-full h-0.5 bg-gray-200">
+        <div id="how-it-works" className="hidden md:block absolute top-16 left-1/2 w-full h-0.5 bg-gray-200">
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}

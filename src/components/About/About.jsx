@@ -1,10 +1,13 @@
-// src/components/About.jsx
 import React from "react";
 import Our from "./Our";
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 const About = () => {
   return (
-    <section className="min-h-screen bg-gradient-to-b from-white to-gray-50 py-20">
+    <section
+      id="about"
+      className="min-h-screen bg-gradient-to-b from-white to-gray-50 py-20"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -22,29 +25,29 @@ const About = () => {
 
         {/* Our Component */}
         <div className="mb-60 mt-60">
-          {" "}
-          {/* Add margin for spacing */}
           <Our />
         </div>
 
         {/* CTA Section */}
         <div className="mt-20 text-center">
           <div className="inline-flex rounded-md shadow">
-            <button className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
-              Get in Touch
-              <svg
-                className="ml-3 -mr-1 h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
+            <Link to="/get-in-touch">
+              <button className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+                Get in Touch
+                <svg
+                  className="ml-3 -mr-1 h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

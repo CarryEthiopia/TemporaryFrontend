@@ -25,6 +25,7 @@ import {
 const Footer = () => {
   return (
     <Box
+      id="faqs"
       sx={{
         backgroundColor: "#0f172a",
         py: 6,
@@ -51,9 +52,9 @@ const Footer = () => {
             Carry Ethiopia
           </Typography>
           <Typography variant="body2" color="white">
-            Connecting travelers and businesses in Ethiopia for seamless delivery
-            experiences. We are committed to providing efficient, safe, and
-            reliable services across the country.
+            Connecting travelers and businesses in Ethiopia for seamless
+            delivery experiences. We are committed to providing efficient, safe,
+            and reliable services across the country.
           </Typography>
         </Grid>
         <Grid item xs={12} md={4}>
@@ -68,10 +69,19 @@ const Footer = () => {
             Quick Links
           </Typography>
           <List dense sx={{ padding: 0 }}>
-            {["Home", "How it Works", "About Us", "Contact Us"].map((text, index) => (
-              <ListItem key={index} disablePadding>
-                <Link href="#" underline="hover" sx={{ color: "white" }}>
-                  <ListItemText primary={text} />
+            {[
+              { text: "Home", id: "home" },
+              { text: "How it Works", id: "how-it-works" },
+              { text: "About Us", id: "about" },
+              { text: "Contact Us", id: "contact" },
+            ].map((link, index) => (
+              <ListItem key={index} disablePadding id={link.id}>
+                <Link
+                  href={`#${link.id}`}
+                  underline="hover"
+                  sx={{ color: "white" }}
+                >
+                  <ListItemText primary={link.text} />
                 </Link>
               </ListItem>
             ))}
@@ -111,7 +121,10 @@ const Footer = () => {
               <ListItemIcon sx={{ color: "#fff" }}>
                 <FaPhoneAlt />
               </ListItemIcon>
-              <ListItemText primary="+251 911 234 567" sx={{ color: "white" }} />
+              <ListItemText
+                primary="+251 911 234 567"
+                sx={{ color: "white" }}
+              />
             </ListItem>
           </List>
         </Grid>
@@ -130,7 +143,10 @@ const Footer = () => {
             <IconButton aria-label="Facebook" href="https://www.facebook.com/">
               <FaFacebook color="#fff" fontSize="medium" />
             </IconButton>
-            <IconButton aria-label="Instagram" href="https://www.instagram.com/">
+            <IconButton
+              aria-label="Instagram"
+              href="https://www.instagram.com/"
+            >
               <FaInstagram color="#fff" fontSize="medium" />
             </IconButton>
             <IconButton aria-label="Tiktok" href="https://www.tiktok.com/">

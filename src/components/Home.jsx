@@ -65,7 +65,7 @@ const Home = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-orange-50 pt-16 px-4 sm:px-6 lg:px-8">
+    <div id="home" className="min-h-screen bg-gradient-to-b from-blue-50 to-orange-50 pt-16 px-4 sm:px-6 lg:px-8">
       {/* Trust Badges */}
       <div className="max-w-lg mx-auto mb-12 bg-white rounded-full px-6 py-3 shadow-sm flex items-center justify-center gap-4">
         <motion.span

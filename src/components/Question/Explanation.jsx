@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Message, ExpandMore, ExpandLess } from "@mui/icons-material";
+import { Link } from "react-router-dom";
+
 
 const Explanation = () => {
   const [openQuestion, setOpenQuestion] = useState(null);
@@ -92,7 +94,10 @@ const Explanation = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 px-4 max-w-5xl mx-auto">
+    <div
+      id="contact"
+      className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 px-4 max-w-5xl mx-auto"
+    >
       {sections.map((section, sectionIndex) => (
         <div
           key={sectionIndex}
@@ -140,10 +145,12 @@ const Explanation = () => {
         <p className="text-lg text-gray-800 mb-4">
           Still have questions? We're here to help.
         </p>
-        <button className="flex items-center justify-center mx-auto px-6 py-3 text-white bg-[#08094b] rounded-full shadow-md hover:bg-[#060741] transition-all duration-300">
-          <Message className="mr-3" />
-          Contact Support
-        </button>
+        <Link to="/ask-questions">
+          <button className="flex items-center justify-center mx-auto px-6 py-3 text-white bg-[#08094b] rounded-full shadow-md hover:bg-[#060741] transition-all duration-300">
+            <Message className="mr-3" />
+            Contact Support
+          </button>
+        </Link>
       </div>
     </div>
   );

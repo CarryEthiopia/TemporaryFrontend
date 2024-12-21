@@ -2,14 +2,21 @@ import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
+
 
 const Navbar = ({ activeSection, setActiveSection }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+    const navigate = useNavigate();
+
 
   const handleNavigation = (section) => {
     setActiveSection(section);
-    document.getElementById(section).scrollIntoView({ behavior: "smooth" });
-    setMenuOpen(false);
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setMenuOpen(false); // Close the menu on navigation
   };
 
   return (
@@ -43,7 +50,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
               <span
                 className={`absolute bottom-[-2px] left-0 w-full h-[2px] bg-blue-600 transform origin-left transition-transform duration-300 ${
                   activeSection === section ? "scale-x-100" : "scale-x-0"
-                } group-hover:scale-x-100`}
+                }`}
               ></span>
             </button>
           ))}
@@ -51,42 +58,50 @@ const Navbar = ({ activeSection, setActiveSection }) => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button
-            className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? (
-              <CloseIcon fontSize="medium" />
-            ) : (
+          {!menuOpen && (
+            <button
+              className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+              onClick={() => setMenuOpen(true)}
+            >
               <MenuIcon fontSize="medium" />
-            )}
-          </button>
+            </button>
+          )}
         </div>
 
         {/* Get Started Button */}
-        <button className="hidden md:flex items-center px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transform hover:translate-y-[-2px] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+        <button
+          onClick={() => navigate("/signin")}
+          className="hidden md:flex items-center px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transform hover:translate-y-[-2px] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
           Get Started
         </button>
       </div>
 
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Full-Screen Overlay */}
       {menuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg">
-          <div className="flex flex-col space-y-3 p-6">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-40">
+          <div className="absolute top-6 right-6">
+            <button
+              className="text-white hover:text-orange-500 transition-colors duration-300"
+              onClick={() => setMenuOpen(false)}
+            >
+              <CloseIcon fontSize="large" />
+            </button>
+          </div>
+          <div className="flex flex-col items-center space-y-6">
             {["home", "about", "how-it-works", "faqs"].map((section) => (
               <button
                 key={section}
                 onClick={() => handleNavigation(section)}
-                className={`text-sm font-medium ${
-                  activeSection === section
-                    ? "text-blue-600"
-                    : "text-gray-600 hover:text-blue-600"
-                } transition-colors duration-300 text-left`}
+                className="text-lg font-semibold text-white hover:text-orange-500 transition-colors duration-300"
               >
                 {section.replace("-", " ").toUpperCase()}
               </button>
             ))}
-            <button className="mt-4 w-full px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transform hover:translate-y-[-2px] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            <button
+              onClick={() => navigate("/signin")}
+              className="mt-6 px-6 py-3 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transform hover:translate-y-[-2px] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
               Get Started
             </button>
           </div>
