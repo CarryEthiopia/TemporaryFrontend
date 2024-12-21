@@ -5,6 +5,8 @@ import { IoAirplaneOutline, IoGlobeOutline, IoWalletOutline, IoTimeOutline } fro
 import { FiUsers, FiNavigation, FiDollarSign, FiShield } from "react-icons/fi";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom"; // Import Link for navigation
+
 
 const Home = () => {
   const slides = [
@@ -65,7 +67,10 @@ const Home = () => {
   );
 
   return (
-    <div id="home" className="min-h-screen bg-gradient-to-b from-blue-50 to-orange-50 pt-16 px-4 sm:px-6 lg:px-8">
+    <div
+      id="home"
+      className="min-h-screen bg-gradient-to-b from-blue-50 to-orange-50 pt-16 px-4 sm:px-6 lg:px-8"
+    >
       {/* Trust Badges */}
       <div className="max-w-lg mx-auto mb-12 bg-white rounded-full px-6 py-3 shadow-sm flex items-center justify-center gap-4">
         <motion.span
@@ -86,14 +91,14 @@ const Home = () => {
             <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
                 <div className="space-y-4">
-                  <motion.h1 
+                  <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="text-4xl font-bold text-gray-900 leading-tight"
                   >
                     {slide.title}
                   </motion.h1>
-                  <motion.p 
+                  <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="text-lg text-gray-600"
@@ -104,36 +109,38 @@ const Home = () => {
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   {slide.features.map((feature, idx) => (
-                    <FeatureCard 
+                    <FeatureCard
                       key={idx}
                       icon={feature.icon}
                       text={feature.text}
                     />
                   ))}
                 </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-orange-500 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:bg-orange-600 transition-colors"
-                >
-                  {slide.cta} →
-                </motion.button>
+                <Link to="/get-in-touch">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="mt-10 bg-orange-500 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:bg-orange-600 transition-colors"
+                  >
+                    {slide.cta} →
+                  </motion.button>
+                </Link>
               </div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl"
-              >
-                <iframe
-                  className="absolute w-full h-full"
-                  src={`https://www.youtube.com/embed/${slide.videoId}?autoplay=0&mute=1`}
-                  title="Promotional video"
-                  allowFullScreen
-                  loading="lazy"
-                />
-              </motion.div>
+              <Link to="/get-in-touch">
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className=" relative aspect-video rounded-2xl overflow-hidden shadow-2xl"
+                >
+                  <iframe
+                    className="absolute w-full h-full"
+                    src={`https://www.youtube.com/embed/${slide.videoId}?autoplay=0&mute=1`}
+                    title="Promotional video"
+                    allowFullScreen
+                    loading="lazy"
+                  />
+                </motion.div>
+              </Link>
             </div>
           </div>
         ))}

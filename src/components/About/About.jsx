@@ -24,12 +24,12 @@ const About = () => {
         </div>
 
         {/* Our Component */}
-        <div className="mb-60 mt-60">
+        <div className="mb-5 mt-20">
           <Our />
         </div>
 
         {/* CTA Section */}
-        <div className="mt-5 text-center">
+        <div className="mt-6 text-center">
           <div className="inline-flex rounded-md shadow">
             <Link to="/get-in-touch">
               <button className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">

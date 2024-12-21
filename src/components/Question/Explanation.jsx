@@ -95,7 +95,7 @@ const Explanation = () => {
 
   return (
     <div
-      id="contact"
+      id="faqs"
       className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 px-4 max-w-5xl mx-auto"
     >
       {sections.map((section, sectionIndex) => (

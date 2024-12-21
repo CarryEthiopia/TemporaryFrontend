@@ -22,14 +22,14 @@ const LandingPage = () => {
         setActiveSection={setActiveSection}
       />
       <Home /> {/* Use the Home component here */}
-      <Howitworks />
       <About /> {/* Use the About component here */}
+      <Howitworks />
       <WhatWeOffer />
       <Testimony />
       <Question />
       <Team />
       {/* <Ready /> */}
-      <Footer /> 
+      <Footer />
     </div>
   );
 };

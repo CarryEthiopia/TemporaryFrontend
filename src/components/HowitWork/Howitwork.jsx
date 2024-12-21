@@ -125,7 +125,7 @@ const StepCard = ({ icon, title, description, color, index }) => {
         className="relative w-full bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
       >
         <div
-          className={`${color} text-white p-4 rounded-full inline-block mb-6`}
+          className={`${color} text-white p-4 rounded-full inline-block mb-1`}
         >
           {icon}
         </div>

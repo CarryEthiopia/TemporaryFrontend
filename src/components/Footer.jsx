@@ -73,7 +73,7 @@ const Footer = () => {
               { text: "Home", id: "home" },
               { text: "How it Works", id: "how-it-works" },
               { text: "About Us", id: "about" },
-              { text: "Contact Us", id: "contact" },
+              { text: "Contact Us", id: "faqs" },
             ].map((link, index) => (
               <ListItem key={index} disablePadding id={link.id}>
                 <Link
