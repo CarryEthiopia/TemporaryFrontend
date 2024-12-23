@@ -9,23 +9,24 @@ const Team = () => {
   const teamMembers = [
     {
       img: teamMember1,
-      name: "John Doe",
-      role: "CEO & Founder",
-      bio: "Visionary leader with 15+ years of experience in sustainable development"
+      name: "Baslael Workineh",
+      role: "CEO & Co-Founder",
+      bio: "Machine Learning Engineer and Computer Scientist, with 4+ years experience in development"
     },
     {
       img: teamMember2,
-      name: "Jane Smith",
-      role: "Marketing Director",
-      bio: "Strategic marketing expert specializing in global outreach campaigns"
+      name: "Samuel Michu",
+      role: "COO & Co-Founder",
+      bio: "Exceptional freelancer and Computer Scientist, known for smart, strategic thinking and effective solutions."
     },
     {
       img: teamMember3,
-      name: "Samuel Green",
-      role: "Lead Developer",
-      bio: "Tech innovator with a passion for creating impactful solutions"
+      name: "Hojiwak Yohanis",
+      role: "CTO & Co-Founder",
+      bio: "FullStack Developer with experience collaborating with Kenyan companies, creating user-centric solutions."
     },
   ];
+  
 
   useEffect(() => {
     const interval = setInterval(() => {

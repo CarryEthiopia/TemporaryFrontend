@@ -4,6 +4,7 @@ import LandingPage from "./pages/Landingpage";
 import Signin from "./pages/Registration/Signin";
 import GetInTouch from "./pages/Contactus";
 import AskQuestions from "./pages/AskQuestions";
+import SignUp from "./pages/Registration/Signup";
 
 
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         {/* <Route path="*" element={<ErrorPage />} /> */}
         <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/get-in-touch" element={<GetInTouch />} />
         <Route path="/ask-questions" element={<AskQuestions />} />
       </Routes>
