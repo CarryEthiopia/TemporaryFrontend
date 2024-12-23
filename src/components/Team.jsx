@@ -23,7 +23,7 @@ const Team = () => {
       img: teamMember3,
       name: "Hojiwak Yohanis",
       role: "CTO & Co-Founder",
-      bio: "FullStack Developer with experience collaborating with Kenyan companies, creating user-centric solutions."
+      bio: "FullStack Developer with experience collaborating with Rwanda companies, creating user-centric solutions."
     },
   ];
   
