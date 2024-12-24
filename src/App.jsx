@@ -6,6 +6,7 @@ import GetInTouch from "./pages/Contactus";
 import AskQuestions from "./pages/AskQuestions";
 import SignUp from "./pages/Registration/Signup";
 import Home from "./pages/Home/Home";
+import Request from "./pages/Request/Request"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/get-in-touch" element={<GetInTouch />} />
         <Route path="/ask-questions" element={<AskQuestions />} />
         <Route path="/home" element={<Home />} /> {/* Fixed this line */}
+        <Route path="/request" element={<Request />} />
       </Routes>
     </Router>
   );

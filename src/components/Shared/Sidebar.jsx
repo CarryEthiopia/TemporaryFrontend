@@ -28,7 +28,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className=" h-full shadow-lg flex flex-col justify-between py-6 px-4 fixed mt-10"
+      className=" h-full shadow-lg flex flex-col justify-between py-6 px-4 fixed mt-20"
       style={{
         width: "64px", // Default for small screens (icon-only view)
         transition: "width 0.3s",

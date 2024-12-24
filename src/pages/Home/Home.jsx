@@ -49,7 +49,7 @@ const Home = () => {
             {/* Box 1 */}
             <div
               className="bg-white rounded-lg shadow-lg p-6 text-center cursor-pointer hover:shadow-xl transition-shadow"
-              onClick={() => navigate("/deliver")}
+              onClick={() => navigate("/request")}
             >
               <AddIcon className="text-orange-500" style={{ fontSize: 50 }} />
               <p className="mt-4 font-semibold text-gray-700">
