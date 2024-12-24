@@ -1,10 +1,15 @@
 import React from "react";
 import logo from "../../assets/logo.png";
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+
 
 const SignIn = () => {
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
   const handleSignIn = (e) => {
     e.preventDefault();
     console.log("Sign-in functionality to be implemented.");
+    navigate("/home"); // Navigate to the Home page
   };
 
   return (

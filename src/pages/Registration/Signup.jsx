@@ -1,10 +1,15 @@
 import React from "react";
 import logo from "../../assets/logo.png";
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+
 
 const SignUp = () => {
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
   const handleSignUp = (e) => {
     e.preventDefault();
     console.log("Sign-up functionality to be implemented.");
+    navigate("/home"); // Navigate to the Home page
   };
 
   return (

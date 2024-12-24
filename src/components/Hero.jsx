@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
-import { IoAirplaneOutline, IoGlobeOutline, IoWalletOutline, IoTimeOutline } from "react-icons/io5";
+import {
+  IoAirplaneOutline,
+  IoGlobeOutline,
+  IoWalletOutline,
+  IoTimeOutline,
+} from "react-icons/io5";
 import { FiUsers, FiNavigation, FiDollarSign, FiShield } from "react-icons/fi";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,7 +17,7 @@ import sendAnimation2 from "../assets/send.json";
 import travelAnimation from "../assets/plane.json";
 import moneyAnimation from "../assets/money.json";
 
-const Home = () => {
+const Hero = () => {
   const [currentAnimation, setCurrentAnimation] = useState(0);
   const lottieAnimations = [
     sendAnimation,
@@ -37,7 +42,7 @@ const Home = () => {
         { icon: <IoAirplaneOutline />, text: "Easy Item Pickup" },
         { icon: <IoTimeOutline />, text: "Flexible Scheduling" },
         { icon: <IoWalletOutline />, text: "Affordable Rates" },
-        { icon: <IoGlobeOutline />, text: "Real-Time Tracking" }
+        { icon: <IoGlobeOutline />, text: "Real-Time Tracking" },
       ],
       cta: "Start Sending",
     },
@@ -48,10 +53,10 @@ const Home = () => {
         { icon: <FiDollarSign />, text: "Earn Extra Income" },
         { icon: <FiUsers />, text: "Meet New People" },
         { icon: <FiNavigation />, text: "Flexible Routes" },
-        { icon: <FiShield />, text: "Trusted by Millions" }
+        { icon: <FiShield />, text: "Trusted by Millions" },
       ],
       cta: "Become a Traveler",
-    }
+    },
   ];
 
   const sliderSettings = {
@@ -73,9 +78,9 @@ const Home = () => {
         breakpoint: 1024,
         settings: {
           arrows: false,
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
   const FeatureCard = ({ icon, text }) => (
@@ -94,7 +99,7 @@ const Home = () => {
 
   return (
     <div
-      id="home"
+      id="hero"
       className="min-h-screen bg-gradient-to-b from-blue-50 to-orange-50 pt-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       {/* Trust Badges */}
@@ -104,11 +109,17 @@ const Home = () => {
           transition={{ duration: 2, repeat: Infinity }}
           className="h-1.5 sm:h-2 w-1.5 sm:w-2 bg-orange-500 rounded-full"
         />
-        <span className="font-medium text-gray-700 text-sm sm:text-base">Simple</span>
+        <span className="font-medium text-gray-700 text-sm sm:text-base">
+          Simple
+        </span>
         <span className="h-1.5 sm:h-2 w-1.5 sm:w-2 bg-orange-500 rounded-full" />
-        <span className="font-medium text-gray-700 text-sm sm:text-base">Secure</span>
+        <span className="font-medium text-gray-700 text-sm sm:text-base">
+          Secure
+        </span>
         <span className="h-1.5 sm:h-2 w-1.5 sm:w-2 bg-orange-500 rounded-full" />
-        <span className="font-medium text-gray-700 text-sm sm:text-base">Swift</span>
+        <span className="font-medium text-gray-700 text-sm sm:text-base">
+          Swift
+        </span>
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -170,7 +181,7 @@ const Home = () => {
               animationData={lottieAnimations[currentAnimation]}
               loop={false}
               autoplay={true}
-              style={{ width: '100%', height: '100%' }}
+              style={{ width: "100%", height: "100%" }}
             />
           </div>
         </motion.div>
@@ -179,4 +190,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Hero;

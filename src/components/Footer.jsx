@@ -70,7 +70,7 @@ const Footer = () => {
           </Typography>
           <List dense sx={{ padding: 0 }}>
             {[
-              { text: "Home", id: "home" },
+              { text: "Hero", id: "hero" },
               { text: "How it Works", id: "how-it-works" },
               { text: "About Us", id: "about" },
               { text: "Contact Us", id: "faqs" },
