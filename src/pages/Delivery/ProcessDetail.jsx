@@ -28,12 +28,13 @@ const ProcessDetail = () => {
   };
 
   return (
-    <div>
+    <div className="bg-gray-100">
       {/* Sidebar and Navbar */}
       <Sidebar />
-      <div className="flex-1 ml-16 mt-20 p-6">
+      <div className="flex-1 ml-16 lg:ml-44 mt-20 p-6">
+        {" "}
+        {/* Increased margin-left for large screens */}
         <Navbar />
-
         {/* Processing Detail Header */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Processing Detail</h2>
@@ -46,7 +47,6 @@ const ProcessDetail = () => {
             <span className="mr-2">✉️</span> Message the Traveler
           </button>
         </div>
-
         {/* Back Arrow */}
         <div className="mb-4">
           <button
@@ -56,7 +56,6 @@ const ProcessDetail = () => {
             <span className="mr-2">←</span> Back to Delivery
           </button>
         </div>
-
         {/* Delivery Tracking and Details Section */}
         <div className="bg-white shadow-lg rounded-lg p-6 mb-6">
           <h3 className="font-semibold text-lg mb-2">Delivery Tracking</h3>
@@ -103,7 +102,6 @@ const ProcessDetail = () => {
             <p>{processDetailData.deliveryDate}</p>
           </div>
         </div>
-
         {/* Shipping Details Box */}
         <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
           <h3 className="font-semibold text-lg mb-4">Shipping Details</h3>

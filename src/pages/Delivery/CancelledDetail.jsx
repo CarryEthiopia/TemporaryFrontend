@@ -43,12 +43,13 @@ const CancelledDetail = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex bg-gray-100">
       {/* Sidebar and Navbar */}
       <Sidebar />
-      <div className="flex-1 ml-16 mt-20 p-6">
+      <div className="flex-1 ml-16 lg:ml-44 mt-20 p-6">
+        {" "}
+        {/* Increased margin-left for large screens */}
         <Navbar />
-
         {/* Main Content */}
         <div className="p-6">
           {/* Back Arrow */}
@@ -61,7 +62,10 @@ const CancelledDetail = () => {
 
           {/* Cancelled Delivery Details Section */}
           {cancelledData.map((delivery, index) => (
-            <div key={index} className="bg-white shadow-lg rounded-lg p-6 mb-6">
+            <div
+              key={index}
+              className="bg-white shadow-lg rounded-lg p-6 mb-6 "
+            >
               <h3 className="font-semibold text-lg mb-2">Cancelled Delivery</h3>
 
               <div className="flex flex-col md:flex-row md:space-x-4 mb-4">

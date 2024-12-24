@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Importing useNavigate
 import HomeIcon from "@mui/icons-material/Home";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import MailIcon from "@mui/icons-material/Mail";
@@ -6,29 +7,36 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 const Sidebar = () => {
+  const navigate = useNavigate(); // Hook for navigation
+
   const menuItems = [
-    { text: "Home", icon: <HomeIcon fontSize="medium" />, style: "" },
+    { text: "Home", icon: <HomeIcon fontSize="medium" />, path: "/home" },
     {
       text: "Delivery",
       icon: <LocalShippingIcon fontSize="medium" />,
-      style: "",
+      path: "/delivery", // This path will navigate to the Delivery page
     },
-    { text: "Messages", icon: <MailIcon fontSize="medium" />, style: "" },
+    {
+      text: "Messages",
+      icon: <MailIcon fontSize="medium" />,
+      path: "/messages",
+    },
     {
       text: "Profile",
       icon: <AccountCircleIcon fontSize="medium" />,
-      style: "",
+      path: "/profile",
     },
     {
       text: "Logout",
       icon: <ExitToAppIcon fontSize="medium" />,
       style: "text-red-500",
+      path: "/logout", // You may implement logout functionality here
     },
   ];
 
   return (
     <div
-      className=" h-full shadow-lg flex flex-col justify-between py-6 px-4 fixed mt-20"
+      className="h-full shadow-lg flex flex-col justify-between py-6 px-4 fixed mt-20"
       style={{
         width: "64px", // Default for small screens (icon-only view)
         transition: "width 0.3s",
@@ -42,6 +50,7 @@ const Sidebar = () => {
             className={`flex items-center justify-center lg:justify-start p-2 cursor-pointer hover:bg-gray-100 transition rounded-lg ${
               item.style || ""
             }`}
+            onClick={() => navigate(item.path)} // Navigate to the respective path
           >
             {/* Icon */}
             <span className="text-gray-700">{item.icon}</span>

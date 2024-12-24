@@ -10,7 +10,7 @@ const Delivery = () => {
   const [activeTab, setActiveTab] = useState("Processing");
 
   return (
-    <div className="flex">
+    <div className="flex bg-gray-100">
       {/* Sidebar */}
       <Sidebar />
 
@@ -18,7 +18,7 @@ const Delivery = () => {
         {/* Navbar */}
         <Navbar />
 
-        <div className="mt-6">
+        <div className="mt-6 ml-20">
           {/* Status Section */}
           <div className="flex space-x-6 mb-4">
             <button

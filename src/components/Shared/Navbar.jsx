@@ -16,7 +16,7 @@ const Navbar = () => {
       setActiveText((prev) =>
         prev === "Hi, Joshua 👋" ? "Welcome here to be Sender" : "Hi, Joshua 👋"
       );
-    }, 3000); // Change text every 3 seconds
+    }, 4000); // Change text every 3 seconds
 
     return () => clearInterval(toggleText);
   }, []);

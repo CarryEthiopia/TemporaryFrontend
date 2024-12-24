@@ -107,6 +107,7 @@ const Request = () => {
       {/* File Input moved to the left and resized */}
       <div className="flex flex-col items-start space-y-2 w-full">
         <div className="w-1/2 border-dashed border-2 border-gray-300 p-4 flex flex-col items-start space-y-2">
+        
           <span className="text-center">Drag and drop file here</span>
           <span>or</span>
           <button className="text-blue-500">

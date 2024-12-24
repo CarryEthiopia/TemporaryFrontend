@@ -44,17 +44,17 @@ const DeliveredDetail = () => {
   };
 
   return (
-    <div>
+    <div className="bg-gray-100">
       {/* Sidebar and Navbar */}
       <Sidebar />
-      <div className="flex-1 ml-16 mt-20 p-6">
+      <div className="flex-1 ml-16 lg:ml-44 mt-20 p-6">
+        {" "}
+        {/* Increased margin-left for large screens */}
         <Navbar />
-
         {/* Delivered Detail Header */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Delivered Detail</h2>
         </div>
-
         {/* Back Arrow */}
         <div className="mb-4">
           <button
@@ -64,7 +64,6 @@ const DeliveredDetail = () => {
             <span className="mr-2">←</span> Back to Delivery
           </button>
         </div>
-
         {/* Delivery Tracking and Details Section */}
         {deliveredData.map((delivery, index) => (
           <div key={index} className="bg-white shadow-lg rounded-lg p-6 mb-6">
