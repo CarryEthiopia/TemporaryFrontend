@@ -12,7 +12,7 @@ import {
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
-// Placeholder Data for now
+// Placeholder Data
 const defaultData = [
   {
     id: 1,
@@ -21,8 +21,8 @@ const defaultData = [
     amount: 1,
     price: 1000,
     status: "Completed",
-    statusColor: "green-500", // Tailwind color
-    profileImg: "https://via.placeholder.com/40", // Placeholder profile image
+    statusColor: "green-500",
+    profileImg: "https://via.placeholder.com/40",
   },
   {
     id: 2,
@@ -31,8 +31,8 @@ const defaultData = [
     amount: 2,
     price: 1500,
     status: "Cancelled",
-    statusColor: "red-500", // Tailwind color
-    profileImg: "https://via.placeholder.com/40", // Placeholder profile image
+    statusColor: "red-500",
+    profileImg: "https://via.placeholder.com/40",
   },
   {
     id: 3,
@@ -41,8 +41,8 @@ const defaultData = [
     amount: 3,
     price: 1800,
     status: "In Process",
-    statusColor: "yellow-500", // Tailwind color
-    profileImg: "https://via.placeholder.com/40", // Placeholder profile image
+    statusColor: "yellow-500",
+    profileImg: "https://via.placeholder.com/40",
   },
 ];
 
@@ -57,12 +57,9 @@ const ReportTable = ({ data = defaultData }) => {
   };
 
   const createSortHandler = (property) => {
-    return (event) => {
-      handleRequestSort(property);
-    };
+    return () => handleRequestSort(property);
   };
 
-  // Sort data based on the selected column
   const sortedData = [...data].sort((a, b) => {
     if (orderBy === "travelerName") {
       return orderDirection === "asc"
@@ -77,7 +74,7 @@ const ReportTable = ({ data = defaultData }) => {
   });
 
   return (
-    <TableContainer className="mt-6 bg-white shadow-lg rounded-lg p-4">
+    <TableContainer className="mt-6 bg-white shadow-lg rounded-lg p-4 overflow-x-auto">
       <Table className="min-w-full">
         {/* Table Header */}
         <TableHead>
@@ -104,12 +101,6 @@ const ReportTable = ({ data = defaultData }) => {
                 onClick={createSortHandler("product")}
               >
                 Product
-                {orderBy === "product" &&
-                  (orderDirection === "asc" ? (
-                    <ArrowUpwardIcon fontSize="small" />
-                  ) : (
-                    <ArrowDownwardIcon fontSize="small" />
-                  ))}
               </TableSortLabel>
             </TableCell>
             <TableCell className="px-2 py-3 hidden sm:table-cell">
@@ -119,12 +110,6 @@ const ReportTable = ({ data = defaultData }) => {
                 onClick={createSortHandler("amount")}
               >
                 Amount
-                {orderBy === "amount" &&
-                  (orderDirection === "asc" ? (
-                    <ArrowUpwardIcon fontSize="small" />
-                  ) : (
-                    <ArrowDownwardIcon fontSize="small" />
-                  ))}
               </TableSortLabel>
             </TableCell>
             <TableCell className="px-2 py-3 hidden sm:table-cell">
@@ -134,31 +119,13 @@ const ReportTable = ({ data = defaultData }) => {
                 onClick={createSortHandler("price")}
               >
                 Price ($)
-                {orderBy === "price" &&
-                  (orderDirection === "asc" ? (
-                    <ArrowUpwardIcon fontSize="small" />
-                  ) : (
-                    <ArrowDownwardIcon fontSize="small" />
-                  ))}
               </TableSortLabel>
             </TableCell>
             <TableCell className="px-2 py-3 hidden sm:table-cell">
-              <TableSortLabel
-                active={orderBy === "status"}
-                direction={orderBy === "status" ? orderDirection : "asc"}
-                onClick={createSortHandler("status")}
-              >
-                Status
-                {orderBy === "status" &&
-                  (orderDirection === "asc" ? (
-                    <ArrowUpwardIcon fontSize="small" />
-                  ) : (
-                    <ArrowDownwardIcon fontSize="small" />
-                  ))}
-              </TableSortLabel>
+              Status
             </TableCell>
             <TableCell className="px-2 py-3 hidden sm:table-cell">
-              <span className="font-semibold">Detail</span>
+              Detail
             </TableCell>
           </TableRow>
         </TableHead>
@@ -166,7 +133,7 @@ const ReportTable = ({ data = defaultData }) => {
         {/* Table Body */}
         <TableBody>
           {sortedData.map((row) => (
-            <TableRow key={row.id}>
+            <TableRow key={row.id} className="flex flex-wrap sm:table-row">
               <TableCell className="border-r px-2 py-3 flex items-center">
                 <img
                   src={row.profileImg}
@@ -192,7 +159,7 @@ const ReportTable = ({ data = defaultData }) => {
                   {row.status}
                 </span>
               </TableCell>
-              <TableCell className="px-2 py-3">
+              <TableCell className="px-2 py-3 hidden sm:table-cell">
                 <Button
                   variant="outlined"
                   color="primary"

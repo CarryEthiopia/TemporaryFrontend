@@ -1,17 +1,32 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
+import { Button, Menu, MenuItem } from "@mui/material";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import EditIcon from "@mui/icons-material/Edit";
+import MenuBookEditIcon from "@mui/icons-material/MenuBookOutlined"; // Replace with a writing book icon if available
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Dropdown icon
 import ReportBox from "./ReportBox";
-import ReportTable from "./ReportTable"; // Import the ReportTable component
+import ReportTable from "./ReportTable";
 
 const Report = () => {
   const [contentKey, setContentKey] = useState(0); // Key to force re-render content
+  const [anchorEl, setAnchorEl] = useState(null); // Anchor element for dropdown menu
+  const [selectedTime, setSelectedTime] = useState("All Time"); // Selected time option
 
   const handleRefresh = () => {
     setContentKey((prevKey) => prevKey + 1); // Increment key to refresh content
+  };
+
+  const handleDropdownClick = (event) => {
+    setAnchorEl(event.currentTarget); // Open dropdown menu
+  };
+
+  const handleMenuItemClick = (option) => {
+    setSelectedTime(option); // Update selected time
+    setAnchorEl(null); // Close dropdown menu
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null); // Close dropdown menu
   };
 
   return (
@@ -22,13 +37,13 @@ const Report = () => {
       {/* Sidebar and Content Section */}
       <div
         className="grid 
-          grid-cols-[10px_minmax(auto,_1fr)] 
-          lg:grid-cols-[220px_minmax(auto,_1fr)] 
-          gap-8 
+          grid-cols-1 
+          lg:grid-cols-[220px_1fr] 
+          gap-8
           lg:gap-16"
       >
         {/* Sidebar */}
-        <div className="h-screen">{/* Sidebar space left empty */}</div>
+        <div className="hidden lg:block h-screen">{/* Sidebar content */}</div>
 
         {/* Main Content */}
         <div>
@@ -55,12 +70,8 @@ const Report = () => {
 
           {/* Dashboard Overview Section */}
           <div className="bg-white shadow-md rounded-lg p-6 space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="flex items-center">
-                <MenuBookIcon className="text-gray-500" />
-                <EditIcon className="text-gray-500 ml-2" />{" "}
-                {/* Adjusted margin for spacing */}
-              </div>
+            <div className="flex items-center space-x-3">
+              <MenuBookEditIcon className="text-gray-500" />
               <h2 className="text-xl font-semibold text-gray-800">
                 Dashboard Overview
               </h2>
@@ -75,12 +86,42 @@ const Report = () => {
 
           {/* Recent Activity Section */}
           <div className="flex items-center justify-between mt-6">
-            <h3 className="text-xl font-semibold text-gray-800">
-              Recent Activity
-            </h3>
+            <div className="flex items-center space-x-3">
+              <MenuBookEditIcon className="text-gray-500" />
+              <h3 className="text-xl font-semibold text-gray-800">
+                Recent Activity
+              </h3>
+            </div>
             <div className="flex items-center space-x-2">
-              <MenuBookIcon className="text-gray-500" />
-              <EditIcon className="text-gray-500" />
+              <span className="text-gray-700">Date time:</span>
+              <Button
+                variant="text"
+                className="text-blue-500 flex items-center"
+                onClick={handleDropdownClick}
+              >
+                {selectedTime}
+                <ArrowDropDownIcon />
+              </Button>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                {[
+                  "Today",
+                  "Yesterday",
+                  "Last 7 Days",
+                  "Last 30 Days",
+                  "All Time",
+                ].map((option) => (
+                  <MenuItem
+                    key={option}
+                    onClick={() => handleMenuItemClick(option)}
+                  >
+                    {option}
+                  </MenuItem>
+                ))}
+              </Menu>
             </div>
           </div>
 

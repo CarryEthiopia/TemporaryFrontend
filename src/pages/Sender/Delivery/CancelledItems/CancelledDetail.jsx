@@ -1,7 +1,9 @@
-const CancelledDetail = ({onBackToList}) => {
+import React from "react";
+import DetailCards from "../DetailCards";
 
+const CancelledDetail = ({ onBackToList }) => {
   // Placeholder cancelled delivery data for now
-  const cancelledData = [
+  const cancelledDataList = [
     {
       travelerName: "John Doe",
       travelDestination: "Paris",
@@ -10,6 +12,8 @@ const CancelledDetail = ({onBackToList}) => {
       items: ["iPhone XR", "HP Laptop", "Hand Fan"],
       cancellationReason: "Customer request",
       expectedDeliveryDate: "26/06/2023",
+      status: "Cancelled",
+      statusColor: "text-red-500", // Customizable status color
     },
     {
       travelerName: "Jane Smith",
@@ -19,6 +23,8 @@ const CancelledDetail = ({onBackToList}) => {
       items: ["MacBook Pro", "Wireless Headphones", "Smartwatch"],
       cancellationReason: "Insufficient address details",
       expectedDeliveryDate: "27/06/2023",
+      status: "Cancelled",
+      statusColor: "text-red-500", // Customizable status color
     },
     {
       travelerName: "Alice Johnson",
@@ -28,76 +34,49 @@ const CancelledDetail = ({onBackToList}) => {
       items: ["Nintendo Switch", "Camera", "Travel Adapter"],
       cancellationReason: "Out of stock",
       expectedDeliveryDate: "28/06/2023",
+      status: "Cancelled",
+      statusColor: "text-red-500", // Customizable status color
     },
   ];
 
-
   return (
-    <div className="flex bg-gray-100">
+    <div className="bg-gray-100">
       <div className="flex-1 ml-16 lg:ml-44 mt-20 p-6">
-        {/* Main Content */}
-        <div className="p-6">
-          {/* Back Arrow */}
+        {/* Header Section */}
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold">Cancelled Details</h2>
+        </div>
+
+        {/* Back to List */}
+        <div className="mb-4">
           <button
-            onClick={onBackToList} // Use handleBackClick to navigate back
-            className="flex items-center text-blue-500 mb-4"
+            onClick={onBackToList}
+            className="flex items-center text-blue-500"
           >
             <span className="mr-2">←</span> Back to Delivery
           </button>
-
-          {/* Cancelled Delivery Details Section */}
-          {cancelledData.map((delivery, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-lg rounded-lg p-6 mb-6 "
-            >
-              <h3 className="font-semibold text-lg mb-2">Cancelled Delivery</h3>
-
-              <div className="flex flex-col md:flex-row md:space-x-4 mb-4">
-                <div className="flex-1">
-                  <p className="font-medium">Delivery ID:</p>
-                  <p>{delivery.deliveryId}</p>
-                </div>
-                <div className="flex-1">
-                  <p className="font-medium">Traveler Name:</p>
-                  <p>{delivery.travelerName}</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col md:flex-row md:space-x-4 mb-4">
-                <div className="flex-1">
-                  <p className="font-medium">Travel Destination:</p>
-                  <p>{delivery.travelDestination}</p>
-                </div>
-                <div className="flex-1">
-                  <p className="font-medium">Cancelled On:</p>
-                  <p className="text-red-500">{delivery.cancelledOn}</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col md:flex-row md:space-x-4 mb-4">
-                <div className="flex-1">
-                  <p className="font-medium">Items:</p>
-                  {delivery.items.map((item, index) => (
-                    <p key={index} className="text-sm text-gray-700">
-                      {item}
-                    </p>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <p className="font-medium">Cancellation Reason:</p>
-                <p>{delivery.cancellationReason}</p>
-              </div>
-
-              <div className="mt-4">
-                <p className="font-medium">Expected Delivery Date:</p>
-                <p>{delivery.expectedDeliveryDate}</p>
-              </div>
-            </div>
-          ))}
         </div>
+
+        {/* Render Detail Cards for Each Cancelled Data */}
+        {cancelledDataList.map((delivery, index) => (
+          <DetailCards
+            key={index}
+            deliveryData={{
+              ...delivery,
+              additionalDetails: [
+                { label: "Cancelled On", value: delivery.cancelledOn },
+                {
+                  label: "Cancellation Reason",
+                  value: delivery.cancellationReason,
+                },
+                {
+                  label: "Expected Delivery Date",
+                  value: delivery.expectedDeliveryDate,
+                },
+              ],
+            }}
+          />
+        ))}
       </div>
     </div>
   );

@@ -49,13 +49,13 @@ const ReportBox = () => {
         >
           {/* Top Section with Icon and Settings */}
           <div className="flex justify-between items-start mb-4">
-            <div>{report.icon}</div>
+            <div className="text-3xl">{report.icon}</div>
             <IconButton
               size="small"
-              className={`text-gray-400 ${
+              className={`${
                 report.backgroundColor === "bg-black text-white"
                   ? "text-white"
-                  : ""
+                  : "text-gray-400"
               }`}
             >
               <MoreVertIcon />
@@ -64,8 +64,8 @@ const ReportBox = () => {
 
           {/* Middle Section with Title and Amount */}
           <div className="mb-4">
-            <h3 className="text-sm">{report.title}</h3>
-            <h2 className="text-2xl font-bold">
+            <h3 className="text-sm md:text-base">{report.title}</h3>
+            <h2 className="text-xl md:text-2xl font-bold">
               <CountUp
                 end={report.amount}
                 duration={2}
@@ -79,11 +79,11 @@ const ReportBox = () => {
           {/* Bottom Section with Percentage and Text */}
           <div className="flex justify-between items-center">
             <div
-              className={`p-2 rounded-full text-xs font-semibold ${report.percentageBg}`}
+              className={`p-2 rounded-full text-xs font-semibold md:text-sm ${report.percentageBg}`}
             >
               +{report.percentage}%
             </div>
-            <p className="text-xs">{report.increaseText}</p>
+            <p className="text-xs md:text-sm">{report.increaseText}</p>
           </div>
         </div>
       ))}
