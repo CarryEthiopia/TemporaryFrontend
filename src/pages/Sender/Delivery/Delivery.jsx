@@ -9,10 +9,9 @@ import classNames from "classnames";
 import { LocalShipping, Check, Cancel } from "@mui/icons-material";
 
 const Delivery = () => {
-  const [activeTab, setActiveTab] = useState("Processing"); // Track current tab
-  const [viewDetail, setViewDetail] = useState(false); // Toggle between list and detail view
+  const [activeTab, setActiveTab] = useState("Processing");
+  const [viewDetail, setViewDetail] = useState(false);
 
-  // Handle transitions between list and detail views
   const handleViewDetail = () => {
     setViewDetail(true);
   };
@@ -21,7 +20,6 @@ const Delivery = () => {
     setViewDetail(false);
   };
 
-  // Render detail view dynamically based on activeTab
   const renderDetailView = () => {
     switch (activeTab) {
       case "Processing":
@@ -36,31 +34,35 @@ const Delivery = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-white pt-14 ml-10">
+    <div className="flex min-h-screen bg-white pt-10 px-3 sm:px-4">
       <div className="flex-1">
-        <div className="p-6 max-w-7xl mx-auto">
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">Delivery Management</h1>
-          <p className="text-gray-600 mb-8">Track and manage all your deliveries</p>
+        <div className="ml-6 sm:p-4 max-w-full mx-auto">
+          <h1 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">
+            Delivery Management
+          </h1>
+          <p className="text-xs sm:text-sm text-gray-600 mb-5">
+            Track and manage your deliveries
+          </p>
 
           {/* Tab Navigation */}
           {!viewDetail && (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4 mb-6">
               {tabs.map((tab) => (
                 <div
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={classNames(
-                    "cursor-pointer rounded-xl p-4 shadow-sm",
+                    "cursor-pointer rounded-lg p-3 shadow-sm",
                     {
-                      "bg-gray-100 border-2 border-gray-200": activeTab !== tab.id,
+                      "bg-gray-100 border border-gray-200": activeTab !== tab.id,
                       [`bg-${tab.color}-50 border-${tab.color}-500`]: activeTab === tab.id,
                     }
                   )}
                 >
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2">
                     <div
                       className={classNames(
-                        "p-3 rounded-lg",
+                        "p-2 rounded",
                         {
                           "bg-gray-200 text-gray-600": activeTab !== tab.id,
                           [`bg-${tab.color}-100 text-${tab.color}-600`]: activeTab === tab.id,
@@ -71,14 +73,14 @@ const Delivery = () => {
                     </div>
                     <div>
                       <h3
-                        className={classNames("font-semibold", {
+                        className={classNames("font-semibold text-sm", {
                           "text-gray-800": activeTab !== tab.id,
                           [`text-${tab.color}-600`]: activeTab === tab.id,
                         })}
                       >
                         {tab.label}
                       </h3>
-                      <p className="text-sm text-gray-500">23 shipments</p>
+                      <p className="text-xs text-gray-500">23 shipments</p>
                     </div>
                   </div>
                 </div>
@@ -87,7 +89,7 @@ const Delivery = () => {
           )}
 
           {/* Main Content Area */}
-          <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-3 sm:p-4">
             {!viewDetail ? (
               <>
                 {activeTab === "Processing" && <Process onViewDetail={handleViewDetail} />}
