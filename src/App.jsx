@@ -5,10 +5,10 @@ import Signin from "./pages/Landing/Registration/Signin";
 import GetInTouch from "./pages/Landing/Contactus";
 import AskQuestions from "./pages/Landing/AskQuestions";
 import SignUp from "./pages/Landing/Registration/Signup";
-import Sidebar from "./pages/Shared/Sidebar";
-import Delivery from "./pages/Delivery/Delivery";
-import Home from "./pages/Dashboard/Home/Home";
-import  Message from "./pages/Sender/Message/Left";
+import Sidebar from "./pages/Sender/Shared/Sidebar";
+import Delivery from "./pages/Sender/Delivery/Delivery";
+import Home from "./pages/Sender/Dashboard/Home/Home";
+import Message from "./pages/Sender/Message/Left";
 import Profile from "./pages/Sender/Profile/Profile";
 
 const Team = () => <div>Team Component</div>;
@@ -24,7 +24,7 @@ function App() {
       case "Dashboard":
         return <Home />;
       case "Delivery":
-         return <Delivery />;
+        return <Delivery />;
       case "Messages":
         return <Message />;
       case "Team":
