@@ -1,10 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
-import Navbar from "../../components/Shared/Navbar"; // Assuming Navbar is already created
-import Sidebar from "../../components/Shared/Sidebar"; // Assuming Sidebar is already created
+import Navbar from "../../../components/Shared/Navbar"; // Assuming Navbar is already created
+import Sidebar from "../../../components/Shared/Sidebar"; // Assuming Sidebar is already created
 
-const ProcessDetail = () => {
-  const navigate = useNavigate(); // Initialize navigate function
+const ProcessDetail = ({onBackToList}) => {
 
   // Placeholder delivery data for now
   const processDetailData = {
@@ -17,11 +15,6 @@ const ProcessDetail = () => {
     status: "In-Process",
   };
 
-  // Navigate back to Delivery page
-  const handleBackClick = () => {
-    navigate("/delivery"); // Use navigate instead of history.push
-  };
-
   // Placeholder function to simulate sending a message
   const handleMessageClick = () => {
     alert(`Message sent to ${processDetailData.travelerName}`);
@@ -29,12 +22,8 @@ const ProcessDetail = () => {
 
   return (
     <div className="bg-gray-100">
-      {/* Sidebar and Navbar */}
-      <Sidebar />
       <div className="flex-1 ml-16 lg:ml-44 mt-20 p-6">
-        {" "}
-        {/* Increased margin-left for large screens */}
-        <Navbar />
+
         {/* Processing Detail Header */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Processing Detail</h2>
@@ -50,7 +39,7 @@ const ProcessDetail = () => {
         {/* Back Arrow */}
         <div className="mb-4">
           <button
-            onClick={handleBackClick} // Use handleBackClick to navigate back
+            onClick={onBackToList} // Use handleBackClick to navigate back
             className="flex items-center text-blue-500"
           >
             <span className="mr-2">←</span> Back to Delivery

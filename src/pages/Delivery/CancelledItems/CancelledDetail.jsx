@@ -1,10 +1,4 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
-import Navbar from "../../components/Shared/Navbar"; // Adjust path as necessary
-import Sidebar from "../../components/Shared/Sidebar"; // Adjust path as necessary
-
-const CancelledDetail = () => {
-  const navigate = useNavigate(); // Initialize navigate function
+const CancelledDetail = ({onBackToList}) => {
 
   // Placeholder cancelled delivery data for now
   const cancelledData = [
@@ -37,24 +31,15 @@ const CancelledDetail = () => {
     },
   ];
 
-  // Navigate back to Delivery page
-  const handleBackClick = () => {
-    navigate("/delivery"); // Use navigate instead of history.push
-  };
 
   return (
     <div className="flex bg-gray-100">
-      {/* Sidebar and Navbar */}
-      <Sidebar />
       <div className="flex-1 ml-16 lg:ml-44 mt-20 p-6">
-        {" "}
-        {/* Increased margin-left for large screens */}
-        <Navbar />
         {/* Main Content */}
         <div className="p-6">
           {/* Back Arrow */}
           <button
-            onClick={handleBackClick} // Use handleBackClick to navigate back
+            onClick={onBackToList} // Use handleBackClick to navigate back
             className="flex items-center text-blue-500 mb-4"
           >
             <span className="mr-2">←</span> Back to Delivery

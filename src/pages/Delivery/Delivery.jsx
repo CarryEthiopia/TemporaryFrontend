@@ -1,66 +1,113 @@
-// components/Delivery.jsx
 import React, { useState } from "react";
-import Navbar from "../../components/Shared/Navbar";
-import Sidebar from "../../components/Shared/Sidebar";
-import Process from "./Process"; // Importing the Process component
-import Delivered from "./Delivered"; // Importing the Delivered component
-import Cancelled from "./Cancelled"; // Importing the Cancelled component
+import Delivered from "./DeliveredItems/Delivered";
+import DeliveredDetail from "./DeliveredItems/DeliveredDetail";
+import Process from "./ProcessingItems/Process";
+import ProcessDetail from "./ProcessingItems/ProcessDetail";
+import Cancelled from "./CancelledItems/Cancelled";
+import CancelledDetail from "./CancelledItems/CancelledDetail";
+import classNames from "classnames";
+import { LocalShipping, Check, Cancel } from "@mui/icons-material";
 
 const Delivery = () => {
-  const [activeTab, setActiveTab] = useState("Processing");
+  const [activeTab, setActiveTab] = useState("Processing"); // Track current tab
+  const [viewDetail, setViewDetail] = useState(false); // Toggle between list and detail view
+
+  // Handle transitions between list and detail views
+  const handleViewDetail = () => {
+    setViewDetail(true);
+  };
+
+  const handleBackToList = () => {
+    setViewDetail(false);
+  };
+
+  // Render detail view dynamically based on activeTab
+  const renderDetailView = () => {
+    switch (activeTab) {
+      case "Processing":
+        return <ProcessDetail onBackToList={handleBackToList} />;
+      case "Delivered":
+        return <DeliveredDetail onBackToList={handleBackToList} />;
+      case "Cancelled":
+        return <CancelledDetail onBackToList={handleBackToList} />;
+      default:
+        return null;
+    }
+  };
 
   return (
-    <div className="flex bg-gray-100">
-      {/* Sidebar */}
-      <Sidebar />
+    <div className="flex min-h-screen bg-white pt-14">
+      <div className="flex-1">
+        <div className="p-6 max-w-7xl mx-auto">
+          <h1 className="text-2xl font-bold text-gray-800 mb-4">Delivery Management</h1>
+          <p className="text-gray-600 mb-8">Track and manage all your deliveries</p>
 
-      <div className="flex-1 ml-16 mt-20 p-6">
-        {/* Navbar */}
-        <Navbar />
+          {/* Tab Navigation */}
+          {!viewDetail && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              {tabs.map((tab) => (
+                <div
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={classNames(
+                    "cursor-pointer rounded-xl p-4 shadow-sm",
+                    {
+                      "bg-gray-100 border-2 border-gray-200": activeTab !== tab.id,
+                      [`bg-${tab.color}-50 border-${tab.color}-500`]: activeTab === tab.id,
+                    }
+                  )}
+                >
+                  <div className="flex items-center space-x-3">
+                    <div
+                      className={classNames(
+                        "p-3 rounded-lg",
+                        {
+                          "bg-gray-200 text-gray-600": activeTab !== tab.id,
+                          [`bg-${tab.color}-100 text-${tab.color}-600`]: activeTab === tab.id,
+                        }
+                      )}
+                    >
+                      {tab.icon}
+                    </div>
+                    <div>
+                      <h3
+                        className={classNames("font-semibold", {
+                          "text-gray-800": activeTab !== tab.id,
+                          [`text-${tab.color}-600`]: activeTab === tab.id,
+                        })}
+                      >
+                        {tab.label}
+                      </h3>
+                      <p className="text-sm text-gray-500">23 shipments</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
-        <div className="mt-6 ml-20">
-          {/* Status Section */}
-          <div className="flex space-x-6 mb-4">
-            <button
-              className={`px-4 py-2 font-semibold ${
-                activeTab === "Processing"
-                  ? "bg-orange-500 text-white"
-                  : "bg-white text-black"
-              }`}
-              onClick={() => setActiveTab("Processing")}
-            >
-              Processing
-            </button>
-            <button
-              className={`px-4 py-2 font-semibold ${
-                activeTab === "Delivered"
-                  ? "bg-orange-500 text-white"
-                  : "bg-white text-black"
-              }`}
-              onClick={() => setActiveTab("Delivered")}
-            >
-              Delivered
-            </button>
-            <button
-              className={`px-4 py-2 font-semibold ${
-                activeTab === "Cancelled"
-                  ? "bg-orange-500 text-white"
-                  : "bg-white text-black"
-              }`}
-              onClick={() => setActiveTab("Cancelled")}
-            >
-              Cancelled
-            </button>
+          {/* Main Content Area */}
+          <div className="bg-white rounded-xl shadow-md p-6">
+            {!viewDetail ? (
+              <>
+                {activeTab === "Processing" && <Process onViewDetail={handleViewDetail} />}
+                {activeTab === "Delivered" && <Delivered onViewDetail={handleViewDetail} />}
+                {activeTab === "Cancelled" && <Cancelled onViewDetail={handleViewDetail} />}
+              </>
+            ) : (
+              renderDetailView()
+            )}
           </div>
-
-          {/* Content Based on Active Tab */}
-          {activeTab === "Processing" && <Process />}
-          {activeTab === "Delivered" && <Delivered />}
-          {activeTab === "Cancelled" && <Cancelled />}
         </div>
       </div>
     </div>
   );
 };
+
+const tabs = [
+  { id: "Processing", label: "Processing", icon: <LocalShipping />, color: "blue" },
+  { id: "Delivered", label: "Delivered", icon: <Check />, color: "green" },
+  { id: "Cancelled", label: "Cancelled", icon: <Cancel />, color: "red" },
+];
 
 export default Delivery;

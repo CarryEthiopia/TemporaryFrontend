@@ -1,18 +1,48 @@
-import React from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/Landingpage";
 import Signin from "./pages/Registration/Signin";
 import GetInTouch from "./pages/Contactus";
 import AskQuestions from "./pages/AskQuestions";
 import SignUp from "./pages/Registration/Signup";
-import Home from "./pages/Home/Home";
-import Request from "./pages/Request/Request";
+import Sidebar from "./components/Shared/Sidebar";
 import Delivery from "./pages/Delivery/Delivery";
-import ProcessDetail from "./pages/Delivery/ProcessDetail";
-import DeliveredDetail from "./pages/Delivery/DeliveredDetail"; // Import the DeliveredDetail component
-import CancelledDetail from "./pages/Delivery/CancelledDetail"; // Import the CancelledDetail component
+
+
+const Dashboard = () => <div>Dashboard Component</div>;
+const Messages = () => <div>Messages Component</div>;
+const Team = () => <div>Team Component</div>;
+const Reports = () => <div>Reports Component</div>;
+const Statistics = () => <div>Statistics Component</div>;
+const Profile = () => <div>Profile Component</div>;
+const Settings = () => <div>Settings Component</div>;
 
 function App() {
+  const [activeComponent, setActiveComponent] = useState("Dashboard");
+
+  const renderActiveComponent = () => {
+    switch (activeComponent) {
+      case "Dashboard":
+        return <Dashboard />;
+      case "Delivery":
+        return <Delivery />;
+      case "Messages":
+        return <Messages />;
+      case "Team":
+        return <Team />;
+      case "Reports":
+        return <Reports />;
+      case "Statistics":
+        return <Statistics />;
+      case "Profile":
+        return <Profile />;
+      case "Settings":
+        return <Settings />;
+      default:
+        return <div>Select an option from the sidebar</div>;
+    }
+  };
+
   return (
     <Router>
       <Routes>
@@ -21,14 +51,18 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/get-in-touch" element={<GetInTouch />} />
         <Route path="/ask-questions" element={<AskQuestions />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/request" element={<Request />} />
-        <Route path="/delivery" element={<Delivery />} />
-        <Route path="/process-detail" element={<ProcessDetail />} />
-        <Route path="/delivered-detail" element={<DeliveredDetail />} />{" "}
-        {/* Route for DeliveredDetail */}
-        <Route path="/cancelled-detail" element={<CancelledDetail />} />{" "}
-        {/* Route for CancelledDetail */}
+        {/* Route for Home */}
+        <Route
+          path="/home"
+          element={
+            <div className="flex h-screen">
+              <Sidebar setActiveComponent={setActiveComponent} />
+              <main className="flex-1 p-6 bg-gray-100">
+                {renderActiveComponent()}
+              </main>
+            </div>
+          }
+        />
       </Routes>
     </Router>
   );
