@@ -1,9 +1,8 @@
 import React from "react";
-import Navbar from "../../../components/Shared/Navbar"; // Assuming Navbar is already created
-import Sidebar from "../../../components/Shared/Sidebar"; // Assuming Sidebar is already created
+import Navbar from "../../Shared/Navbar"; // Assuming Navbar is already created
+import Sidebar from "../../Shared/Sidebar"; // Assuming Sidebar is already created
 
-const ProcessDetail = ({onBackToList}) => {
-
+const ProcessDetail = ({ onBackToList }) => {
   // Placeholder delivery data for now
   const processDetailData = {
     travelerName: "John Doe",
@@ -23,7 +22,6 @@ const ProcessDetail = ({onBackToList}) => {
   return (
     <div className="bg-gray-100">
       <div className="flex-1 ml-16 lg:ml-44 mt-20 p-6">
-
         {/* Processing Detail Header */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Processing Detail</h2>

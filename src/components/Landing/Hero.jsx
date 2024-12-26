@@ -12,10 +12,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
-import sendAnimation from "../assets/send.json";
-import sendAnimation2 from "../assets/send.json";
-import travelAnimation from "../assets/plane.json";
-import moneyAnimation from "../assets/money.json";
+import sendAnimation from "../../assets/send.json";
+import sendAnimation2 from "../../assets/send.json";
+import travelAnimation from "../../assets/plane.json";
+import moneyAnimation from "../../assets/money.json";
 
 const Hero = () => {
   const [currentAnimation, setCurrentAnimation] = useState(0);

@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from "./pages/Landingpage";
-import Signin from "./pages/Registration/Signin";
-import GetInTouch from "./pages/Contactus";
-import AskQuestions from "./pages/AskQuestions";
-import SignUp from "./pages/Registration/Signup";
-import Sidebar from "./components/Shared/Sidebar";
+import LandingPage from "./pages/Landing/Landingpage";
+import Signin from "./pages/Landing/Registration/Signin";
+import GetInTouch from "./pages/Landing/Contactus";
+import AskQuestions from "./pages/Landing/AskQuestions";
+import SignUp from "./pages/Landing/Registration/Signup";
+import Sidebar from "./pages/Shared/Sidebar";
 import Delivery from "./pages/Delivery/Delivery";
+import Home from "./pages/Dashboard/Home/Home";
+import  Message from "./pages/Sender/Message/Left";
+import Profile from "./pages/Sender/Profile/Profile";
 
-
-const Dashboard = () => <div>Dashboard Component</div>;
-const Messages = () => <div>Messages Component</div>;
 const Team = () => <div>Team Component</div>;
 const Reports = () => <div>Reports Component</div>;
 const Statistics = () => <div>Statistics Component</div>;
-const Profile = () => <div>Profile Component</div>;
 const Settings = () => <div>Settings Component</div>;
 
 function App() {
@@ -23,11 +22,11 @@ function App() {
   const renderActiveComponent = () => {
     switch (activeComponent) {
       case "Dashboard":
-        return <Dashboard />;
+        return <Home />;
       case "Delivery":
-        return <Delivery />;
+         return <Delivery />;
       case "Messages":
-        return <Messages />;
+        return <Message />;
       case "Team":
         return <Team />;
       case "Reports":
@@ -51,6 +50,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/get-in-touch" element={<GetInTouch />} />
         <Route path="/ask-questions" element={<AskQuestions />} />
+
         {/* Route for Home */}
         <Route
           path="/home"

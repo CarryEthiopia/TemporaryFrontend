@@ -36,7 +36,7 @@ const Delivery = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-white pt-14">
+    <div className="flex min-h-screen bg-white pt-14 ml-10">
       <div className="flex-1">
         <div className="p-6 max-w-7xl mx-auto">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Delivery Management</h1>

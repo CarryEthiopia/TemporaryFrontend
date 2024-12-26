@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../components/Shared/Navbar";
-import Sidebar from "../../components/Shared/Sidebar";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import Status from "./Status";
@@ -37,11 +35,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* Navbar */}
-      <Navbar />
-      <div className="flex flex-1">
-        {/* Sidebar */}
-        <Sidebar />
+   
         {/* Main Content */}
         <div className="flex-1 bg-gray-100 p-6 lg:ml-64">
           {/* Boxes Section */}
@@ -79,7 +73,7 @@ const Home = () => {
           <Status travelers={travelers} />
         </div>
       </div>
-    </div>
+  
   );
 };
 

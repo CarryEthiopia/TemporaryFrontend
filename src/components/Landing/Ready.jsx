@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import first from "../assets/first.png";
-import middle from "../assets/middle.png";
-import last from "../assets/last.png";
+import first from "../../assets/first.png";
+import middle from "../../assets/middle.png";
+import last from "../../assets/last.png";
 
 
 
