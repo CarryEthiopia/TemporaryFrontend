@@ -10,9 +10,9 @@ import Delivery from "./pages/Sender/Delivery/Delivery";
 import Home from "./pages/Sender/Dashboard/Home/Home";
 import Message from "./pages/Sender/Message/Left";
 import Profile from "./pages/Sender/Profile/Profile";
+import Report from "./pages/Sender/Report/Report";
 
 const Team = () => <div>Team Component</div>;
-const Reports = () => <div>Reports Component</div>;
 const Statistics = () => <div>Statistics Component</div>;
 const Settings = () => <div>Settings Component</div>;
 
@@ -30,7 +30,7 @@ function App() {
       case "Team":
         return <Team />;
       case "Reports":
-        return <Reports />;
+        return <Report />;
       case "Statistics":
         return <Statistics />;
       case "Profile":
