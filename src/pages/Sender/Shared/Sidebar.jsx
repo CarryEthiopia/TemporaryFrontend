@@ -5,8 +5,6 @@ import {
   Mail as MailIcon,
   AccountCircle as AccountCircleIcon,
   ExitToApp as ExitToAppIcon,
-  ChevronLeft as ChevronLeftIcon,
-  ChevronRight as ChevronRightIcon,
   Dashboard as DashboardIcon,
   People as PeopleIcon,
   Assessment as AssessmentIcon,
@@ -16,7 +14,6 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Navbar from "./Navbar";
 
 const Sidebar = ({ setActiveComponent }) => {
-  const [isExpanded, setIsExpanded] = useState(true);
   const navigate = useNavigate(); // Initialize navigate
 
   const handleLogout = () => {
@@ -69,29 +66,15 @@ const Sidebar = ({ setActiveComponent }) => {
     <div>
       <Navbar />
       <div
-        className={`fixed left-0 top-16 h-[calc(100vh-64px)] bg-white shadow-lg transition-all duration-300 ease-in-out flex flex-col ${
-          isExpanded ? "w-64" : "w-20"
-        }`}
+        className="fixed left-0 top-16 h-full bg-white shadow-lg transition-all duration-300 ease-in-out flex flex-col sm:w-20 md:w-64" // Sidebar width based on screen size
       >
-        <button
-          className="absolute -right-3 top-8 bg-white rounded-full p-1 shadow-md hover:shadow-lg transition-all duration-300"
-          onClick={() => setIsExpanded(!isExpanded)}
-        >
-          {isExpanded ? (
-            <ChevronLeftIcon className="text-gray-600" fontSize="small" />
-          ) : (
-            <ChevronRightIcon className="text-gray-600" fontSize="small" />
-          )}
-        </button>
-
         <div className="flex-1 overflow-y-auto overflow-x-hidden px-4 py-6">
           {menuItems.map((section, sectionIndex) => (
             <div key={sectionIndex} className="mb-6">
-              {isExpanded && (
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4">
-                  {section.section}
-                </h3>
-              )}
+              {/* Render section title only if expanded */}
+              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4 hidden sm:block">
+                {section.section}
+              </h3>
               {section.items.map((item, index) => (
                 <div
                   key={index}
@@ -100,12 +83,11 @@ const Sidebar = ({ setActiveComponent }) => {
                       ? handleLogout() // Call handleLogout for Logout
                       : setActiveComponent(item.component)
                   }
-                  className={`flex items-center cursor-pointer ${
-                    isExpanded ? "px-4" : "px-2"
-                  } py-3 mb-1 rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900`}
+                  className={`flex items-center cursor-pointer py-3 mb-1 rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900`}
                 >
                   <div>{item.icon}</div>
-                  {isExpanded && <span className="ml-3">{item.text}</span>}
+                  {/* Show text if screen is medium or larger */}
+                  <span className={`ml-3 hidden sm:block`}>{item.text}</span>
                 </div>
               ))}
             </div>

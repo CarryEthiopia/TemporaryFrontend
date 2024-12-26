@@ -1,4 +1,3 @@
-// components/Navbar.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -30,7 +29,9 @@ const Navbar = () => {
   useEffect(() => {
     const toggleText = setInterval(() => {
       setActiveText((prev) =>
-        prev === "Hi, Joshua 👋" ? "Welcome to Organization Portal" : "Hi, Joshua 👋"
+        prev === "Hi, Joshua 👋"
+          ? "Welcome to Organization Portal"
+          : "Hi, Joshua 👋"
       );
     }, 4000);
 
@@ -53,7 +54,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 w-full h-16 z-50 bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
         {/* Logo */}
-        <div 
+        <div
           className="flex items-center space-x-3 cursor-pointer"
           onClick={() => navigate("/")}
         >
@@ -68,7 +69,7 @@ const Navbar = () => {
         </div>
 
         {/* Center Text */}
-        <div className="hidden md:block text-center text-gray-700 font-medium transition-all duration-500">
+        <div className="text-center text-gray-700 font-medium transition-all duration-500 text-sm sm:text-base">
           {activeText}
         </div>
 
@@ -80,7 +81,7 @@ const Navbar = () => {
               className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-300"
               onClick={() => setShowNotifications(!showNotifications)}
             >
-              {notifications.some(n => n.unread) ? (
+              {notifications.some((n) => n.unread) ? (
                 <NotificationsActive className="text-blue-600" />
               ) : (
                 <NotificationsOutlined className="text-gray-600" />
@@ -102,7 +103,9 @@ const Navbar = () => {
                       }`}
                     >
                       <div className="flex justify-between">
-                        <p className="text-sm text-gray-800">{notification.text}</p>
+                        <p className="text-sm text-gray-800">
+                          {notification.text}
+                        </p>
                         <span className="text-xs text-gray-500">
                           {notification.time}
                         </span>
