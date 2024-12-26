@@ -13,7 +13,7 @@ import {
   ExitToApp,
   NotificationsActive,
 } from "@mui/icons-material";
-import logo from "../../assets/logo.png";
+import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
