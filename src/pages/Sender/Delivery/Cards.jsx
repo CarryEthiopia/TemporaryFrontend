@@ -42,7 +42,7 @@ const Card = ({
   type,
 }) => {
   return (
-    <div className="bg-white shadow-lg rounded-xl p-6 mb-6 transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+    <div className="bg-white rounded-xl p-6 mb-6 transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
       {/* Header Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Profile Section */}
