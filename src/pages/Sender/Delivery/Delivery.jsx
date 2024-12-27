@@ -1,16 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  LocalShipping,
+  Check,
+  Cancel,
+  Dashboard,
+  Archive,
+  Refresh,
+  Search,
+} from "@mui/icons-material";
 import Delivered from "./DeliveredItems/Delivered";
 import DeliveredDetail from "./DeliveredItems/DeliveredDetail";
 import Process from "./ProcessingItems/Process";
 import ProcessDetail from "./ProcessingItems/ProcessDetail";
 import Cancelled from "./CancelledItems/Cancelled";
 import CancelledDetail from "./CancelledItems/CancelledDetail";
-import classNames from "classnames";
-import { LocalShipping, Check, Cancel } from "@mui/icons-material";
+
+const TabButton = ({ tab, isActive, onClick, count }) => (
+  <motion.div
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
+    onClick={onClick}
+    className={`
+      cursor-pointer rounded-xl p-4 transition-all duration-300
+      ${
+        isActive
+          ? `bg-${tab.color}-50 border-2 border-${tab.color}-500 shadow-lg shadow-${tab.color}-100/50`
+          : "bg-white border-2 border-gray-100 hover:border-gray-200"
+      }
+    `}
+  >
+    <div className="flex items-center space-x-3">
+      <div
+        className={`
+        p-3 rounded-lg transition-colors duration-300
+        ${
+          isActive
+            ? `bg-${tab.color}-100 text-${tab.color}-600`
+            : "bg-gray-50 text-gray-400 group-hover:bg-gray-100"
+        }
+      `}
+      >
+        {tab.icon}
+      </div>
+      <div className="flex-1">
+        <div className="flex items-center justify-between">
+          <h3
+            className={`
+            font-semibold transition-colors duration-300
+            ${isActive ? `text-${tab.color}-600` : "text-gray-700"}
+          `}
+          >
+            {tab.label}
+          </h3>
+          <span
+            className={`
+            px-2 py-1 rounded-full text-xs font-medium
+            ${
+              isActive
+                ? `bg-${tab.color}-100 text-${tab.color}-600`
+                : "bg-gray-100 text-gray-600"
+            }
+          `}
+          >
+            {count}
+          </span>
+        </div>
+        <p className="text-sm text-gray-500 mt-1">{tab.description}</p>
+      </div>
+    </div>
+  </motion.div>
+);
 
 const Delivery = () => {
   const [activeTab, setActiveTab] = useState("Processing");
   const [viewDetail, setViewDetail] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleViewDetail = () => {
     setViewDetail(true);
@@ -18,6 +84,11 @@ const Delivery = () => {
 
   const handleBackToList = () => {
     setViewDetail(false);
+  };
+
+  const handleRefresh = () => {
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 1000);
   };
 
   const renderDetailView = () => {
@@ -34,82 +105,122 @@ const Delivery = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-white pt-10 px-3 sm:px-4">
-      <div className="flex-1">
-        <div className="ml-6 sm:p-4 max-w-full mx-auto">
-          <h1 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">
-            Delivery Management
-          </h1>
-          <p className="text-xs sm:text-sm text-gray-600 mb-5">
-            Track and manage your deliveries
-          </p>
-
-          {/* Tab Navigation */}
-          {!viewDetail && (
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4 mb-6">
-              {tabs.map((tab) => (
-                <div
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={classNames(
-                    "cursor-pointer rounded-lg p-3 shadow-sm",
-                    {
-                      "bg-gray-100 border border-gray-200": activeTab !== tab.id,
-                      [`bg-${tab.color}-50 border-${tab.color}-500`]: activeTab === tab.id,
-                    }
-                  )}
-                >
-                  <div className="flex items-center space-x-2">
-                    <div
-                      className={classNames(
-                        "p-2 rounded",
-                        {
-                          "bg-gray-200 text-gray-600": activeTab !== tab.id,
-                          [`bg-${tab.color}-100 text-${tab.color}-600`]: activeTab === tab.id,
-                        }
-                      )}
-                    >
-                      {tab.icon}
-                    </div>
-                    <div>
-                      <h3
-                        className={classNames("font-semibold text-sm", {
-                          "text-gray-800": activeTab !== tab.id,
-                          [`text-${tab.color}-600`]: activeTab === tab.id,
-                        })}
-                      >
-                        {tab.label}
-                      </h3>
-                      <p className="text-xs text-gray-500">23 shipments</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+    <div className="min-h-screen bg-gray-50 mt-10">
+      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <Dashboard className="text-orange-500" />
+                Delivery Management
+              </h1>
+              <p className="mt-2 text-sm text-gray-600">
+                Track and manage your deliveries efficiently
+              </p>
             </div>
-          )}
 
-          {/* Main Content Area */}
-          <div className="bg-white rounded-lg shadow-md p-3 sm:p-4">
+            {!viewDetail && (
+              <div className="flex items-center gap-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search deliveries..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  />
+                </div>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleRefresh}
+                  className="p-2 rounded-lg bg-white border border-gray-200 hover:bg-gray-50 transition-colors duration-300"
+                >
+                  <Refresh
+                    className={`text-gray-600 ${
+                      isLoading ? "animate-spin" : ""
+                    }`}
+                  />
+                </motion.button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Tab Navigation */}
+        {!viewDetail && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            {tabs.map((tab) => (
+              <TabButton
+                key={tab.id}
+                tab={tab}
+                isActive={activeTab === tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                count={tab.count}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Main Content Area */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={viewDetail ? "detail" : "list"}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white rounded-xl shadow-lg p-6"
+          >
             {!viewDetail ? (
               <>
-                {activeTab === "Processing" && <Process onViewDetail={handleViewDetail} />}
-                {activeTab === "Delivered" && <Delivered onViewDetail={handleViewDetail} />}
-                {activeTab === "Cancelled" && <Cancelled onViewDetail={handleViewDetail} />}
+                {activeTab === "Processing" && (
+                  <Process onViewDetail={handleViewDetail} />
+                )}
+                {activeTab === "Delivered" && (
+                  <Delivered onViewDetail={handleViewDetail} />
+                )}
+                {activeTab === "Cancelled" && (
+                  <Cancelled onViewDetail={handleViewDetail} />
+                )}
               </>
             ) : (
               renderDetailView()
             )}
-          </div>
-        </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );
 };
 
 const tabs = [
-  { id: "Processing", label: "Processing", icon: <LocalShipping />, color: "blue" },
-  { id: "Delivered", label: "Delivered", icon: <Check />, color: "green" },
-  { id: "Cancelled", label: "Cancelled", icon: <Cancel />, color: "red" },
+  {
+    id: "Processing",
+    label: "Processing",
+    icon: <LocalShipping />,
+    color: "blue",
+    count: 12,
+    description: "Shipments in transit",
+  },
+  {
+    id: "Delivered",
+    label: "Delivered",
+    icon: <Check />,
+    color: "green",
+    count: 45,
+    description: "Successfully completed",
+  },
+  {
+    id: "Cancelled",
+    label: "Cancelled",
+    icon: <Cancel />,
+    color: "red",
+    count: 3,
+    description: "Cancelled shipments",
+  },
 ];
 
 export default Delivery;

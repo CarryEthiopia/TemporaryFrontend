@@ -20,7 +20,7 @@ const ProcessDetail = ({ onBackToList }) => {
   };
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-white">
       <div className="flex-1 ml-16 lg:ml-44 mt-20 p-6">
         {/* Header Section */}
         <div className="flex justify-between items-center mb-4">

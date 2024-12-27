@@ -8,11 +8,19 @@ import {
   TableRow,
   TableSortLabel,
   Button,
+  Tooltip,
+  IconButton,
 } from "@mui/material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import PersonIcon from "@mui/icons-material/Person";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import InfoIcon from "@mui/icons-material/Info";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CancelIcon from "@mui/icons-material/Cancel";
+import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
 
-// Placeholder Data
 const defaultData = [
   {
     id: 1,
@@ -21,7 +29,7 @@ const defaultData = [
     amount: 1,
     price: 1000,
     status: "Completed",
-    statusColor: "green-500",
+    statusColor: "success",
     profileImg: "https://via.placeholder.com/40",
   },
   {
@@ -31,7 +39,7 @@ const defaultData = [
     amount: 2,
     price: 1500,
     status: "Cancelled",
-    statusColor: "red-500",
+    statusColor: "error",
     profileImg: "https://via.placeholder.com/40",
   },
   {
@@ -41,7 +49,7 @@ const defaultData = [
     amount: 3,
     price: 1800,
     status: "In Process",
-    statusColor: "yellow-500",
+    statusColor: "warning",
     profileImg: "https://via.placeholder.com/40",
   },
 ];
@@ -49,6 +57,7 @@ const defaultData = [
 const ReportTable = ({ data = defaultData }) => {
   const [orderDirection, setOrderDirection] = useState("asc");
   const [orderBy, setOrderBy] = useState("travelerName");
+  const [hoveredRow, setHoveredRow] = useState(null);
 
   const handleRequestSort = (property) => {
     const isAsc = orderBy === property && orderDirection === "asc";
@@ -58,6 +67,19 @@ const ReportTable = ({ data = defaultData }) => {
 
   const createSortHandler = (property) => {
     return () => handleRequestSort(property);
+  };
+
+  const getStatusIcon = (status) => {
+    switch (status) {
+      case "Completed":
+        return <CheckCircleIcon sx={{ color: "success.main" }} />;
+      case "Cancelled":
+        return <CancelIcon sx={{ color: "error.main" }} />;
+      case "In Process":
+        return <HourglassEmptyIcon sx={{ color: "warning.main" }} />;
+      default:
+        return null;
+    }
   };
 
   const sortedData = [...data].sort((a, b) => {
@@ -74,98 +96,222 @@ const ReportTable = ({ data = defaultData }) => {
   });
 
   return (
-    <TableContainer className="mt-6 bg-white shadow-lg rounded-lg p-4 overflow-x-auto">
-      <Table className="min-w-full">
-        {/* Table Header */}
+    <TableContainer
+      sx={{
+        mt: 3,
+        bgcolor: "background.paper",
+        borderRadius: 2,
+        boxShadow: 3,
+        overflow: "hidden",
+        "& .MuiTableCell-root": {
+          borderColor: "divider",
+        },
+        marginRight: { xs: 1, sm: 3, md: 4 },
+      }}
+    >
+      <Table>
         <TableHead>
-          <TableRow>
-            <TableCell className="px-2 py-3">
+          <TableRow sx={{ bgcolor: "primary.main" }}>
+            <TableCell
+              sx={{
+                color: "common.white",
+                width: { xs: "60px", sm: "auto" },
+              }}
+            >
               <TableSortLabel
                 active={orderBy === "travelerName"}
                 direction={orderBy === "travelerName" ? orderDirection : "asc"}
                 onClick={createSortHandler("travelerName")}
+                sx={{
+                  color: "common.white",
+                  "&.Mui-active": {
+                    color: "common.white",
+                  },
+                  "& .MuiTableSortLabel-icon": {
+                    color: "common.white !important",
+                  },
+                }}
               >
-                Traveler Name
-                {orderBy === "travelerName" &&
-                  (orderDirection === "asc" ? (
-                    <ArrowUpwardIcon fontSize="small" />
-                  ) : (
-                    <ArrowDownwardIcon fontSize="small" />
-                  ))}
+                <span className="hidden sm:inline">Traveler</span>
+                <PersonIcon sx={{ display: { xs: "block", sm: "none" } }} />
               </TableSortLabel>
             </TableCell>
-            <TableCell className="px-2 py-3">
+
+            <TableCell
+              sx={{
+                color: "common.white",
+                display: { xs: "none", sm: "table-cell" },
+              }}
+            >
               <TableSortLabel
                 active={orderBy === "product"}
                 direction={orderBy === "product" ? orderDirection : "asc"}
                 onClick={createSortHandler("product")}
+                sx={{
+                  color: "common.white",
+                  "&.Mui-active": {
+                    color: "common.white",
+                  },
+                  "& .MuiTableSortLabel-icon": {
+                    color: "common.white !important",
+                  },
+                }}
               >
                 Product
+                <ShoppingCartIcon sx={{ ml: 1, fontSize: "0.9rem" }} />
               </TableSortLabel>
             </TableCell>
-            <TableCell className="px-2 py-3 hidden sm:table-cell">
+
+            <TableCell
+              sx={{
+                color: "common.white",
+                display: { xs: "none", md: "table-cell" },
+              }}
+            >
               <TableSortLabel
                 active={orderBy === "amount"}
                 direction={orderBy === "amount" ? orderDirection : "asc"}
                 onClick={createSortHandler("amount")}
+                sx={{
+                  color: "common.white",
+                  "&.Mui-active": {
+                    color: "common.white",
+                  },
+                  "& .MuiTableSortLabel-icon": {
+                    color: "common.white !important",
+                  },
+                }}
               >
                 Amount
               </TableSortLabel>
             </TableCell>
-            <TableCell className="px-2 py-3 hidden sm:table-cell">
+
+            <TableCell
+              sx={{
+                color: "common.white",
+                display: { xs: "none", sm: "table-cell" },
+              }}
+            >
               <TableSortLabel
                 active={orderBy === "price"}
                 direction={orderBy === "price" ? orderDirection : "asc"}
                 onClick={createSortHandler("price")}
+                sx={{
+                  color: "common.white",
+                  "&.Mui-active": {
+                    color: "common.white",
+                  },
+                  "& .MuiTableSortLabel-icon": {
+                    color: "common.white !important",
+                  },
+                }}
               >
-                Price ($)
+                Price
+                <AttachMoneyIcon sx={{ ml: 1, fontSize: "0.9rem" }} />
               </TableSortLabel>
             </TableCell>
-            <TableCell className="px-2 py-3 hidden sm:table-cell">
-              Status
+
+            <TableCell
+              sx={{
+                color: "common.white",
+                width: { xs: "60px", sm: "auto" },
+              }}
+            >
+              <span className="hidden sm:inline">Status</span>
+              <InfoIcon sx={{ display: { xs: "block", sm: "none" } }} />
             </TableCell>
-            <TableCell className="px-2 py-3 hidden sm:table-cell">
-              Detail
+
+            <TableCell
+              sx={{
+                color: "common.white",
+                display: { xs: "none", sm: "table-cell" },
+              }}
+            >
+              Actions
             </TableCell>
           </TableRow>
         </TableHead>
 
-        {/* Table Body */}
         <TableBody>
           {sortedData.map((row) => (
-            <TableRow key={row.id} className="flex flex-wrap sm:table-row">
-              <TableCell className="border-r px-2 py-3 flex items-center">
+            <TableRow
+              key={row.id}
+              onMouseEnter={() => setHoveredRow(row.id)}
+              onMouseLeave={() => setHoveredRow(null)}
+              sx={{
+                transition: "all 0.2s",
+                "&:hover": {
+                  bgcolor: "action.hover",
+                  transform: "scale(1.01)",
+                  boxShadow: 1,
+                },
+                cursor: "pointer",
+              }}
+            >
+              <TableCell
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+              >
                 <img
                   src={row.profileImg}
-                  alt="Profile"
-                  className="w-10 h-10 rounded-full mr-2"
+                  alt={row.travelerName}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
                 />
-                <span
-                  className={`w-2.5 h-2.5 rounded-full inline-block mr-2 bg-${row.statusColor}`}
-                ></span>
-                {row.travelerName}
+                <span className="hidden sm:inline">{row.travelerName}</span>
               </TableCell>
-              <TableCell className="border-r px-2 py-3">
-                {row.product}
+
+              <TableCell sx={{ display: { xs: "none", sm: "table-cell" } }}>
+                <Tooltip title={row.product}>
+                  <span className="flex items-center gap-2">
+                    <ShoppingCartIcon fontSize="small" />
+                    {row.product}
+                  </span>
+                </Tooltip>
               </TableCell>
-              <TableCell className="border-r px-2 py-3 hidden sm:table-cell">
+
+              <TableCell sx={{ display: { xs: "none", md: "table-cell" } }}>
                 {row.amount}
               </TableCell>
-              <TableCell className="border-r px-2 py-3 hidden sm:table-cell">
-                {row.price}
-              </TableCell>
-              <TableCell className="border-r px-2 py-3 hidden sm:table-cell">
-                <span className={`text-${row.statusColor} font-semibold`}>
-                  {row.status}
+
+              <TableCell sx={{ display: { xs: "none", sm: "table-cell" } }}>
+                <span className="flex items-center gap-1">
+                  <AttachMoneyIcon fontSize="small" />
+                  {row.price.toLocaleString()}
                 </span>
               </TableCell>
-              <TableCell className="px-2 py-3 hidden sm:table-cell">
+
+              <TableCell>
+                <Tooltip title={row.status}>
+                  <span className="flex items-center gap-1">
+                    {getStatusIcon(row.status)}
+                    <span className="hidden sm:inline">{row.status}</span>
+                  </span>
+                </Tooltip>
+              </TableCell>
+
+              <TableCell sx={{ display: { xs: "none", sm: "table-cell" } }}>
                 <Button
-                  variant="outlined"
+                  variant="contained"
+                  size="small"
                   color="primary"
-                  className="text-xs py-1 px-3"
+                  sx={{
+                    textTransform: "none",
+                    minWidth: 0,
+                    px: 2,
+                    "&:hover": {
+                      transform: "translateY(-2px)",
+                    },
+                  }}
                 >
-                  More...
+                  Details
                 </Button>
               </TableCell>
             </TableRow>
