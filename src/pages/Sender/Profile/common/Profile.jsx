@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Snackbar, Alert } from "@mui/material";
-import { ProfileContainer } from "./common/StyledComponents";
+import { ProfileContainer } from "./StyledComponents";
 import ProfileAvatar from "./Avatar/ProfileAvatar";
 import ProfileInformation from "./Information/ProfileInformation";
 import ProfileSettings from "./Settings/ProfileSettings";

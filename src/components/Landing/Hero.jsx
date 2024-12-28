@@ -155,7 +155,7 @@ const Hero = () => {
                       />
                     ))}
                   </div>
-                  <Link to="/get-in-touch">
+                  <Link to="/home">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
