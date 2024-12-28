@@ -47,13 +47,37 @@ const ProfileInformation = ({
       <Grid container spacing={3}>
         {/* Basic Information */}
         <Grid item xs={12}>
-          <Paper elevation={0} sx={{ p: 2, bgcolor: "background.default" }}>
+          <Paper
+            elevation={0}
+            sx={{
+              p: 3,
+              bgcolor: "#f8f9fc",
+              borderRadius: "16px",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: "#f3f6fc",
+                transform: "translateY(-2px)",
+              },
+            }}
+          >
             <Typography variant="subtitle1" gutterBottom fontWeight="bold">
               Basic Information
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "12px",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        backgroundColor: "#f8f9fc",
+                      },
+                      "&.Mui-focused": {
+                        boxShadow: "0 0 0 4px rgba(79,172,254,0.15)",
+                      },
+                    },
+                  }}
                   label="Full Name"
                   value={profileData.fullName || ""}
                   onChange={(e) =>
@@ -65,6 +89,18 @@ const ProfileInformation = ({
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "12px",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        backgroundColor: "#f8f9fc",
+                      },
+                      "&.Mui-focused": {
+                        boxShadow: "0 0 0 4px rgba(79,172,254,0.15)",
+                      },
+                    },
+                  }}
                   label="Display Name"
                   value={profileData.displayName || ""}
                   onChange={(e) =>
@@ -80,13 +116,37 @@ const ProfileInformation = ({
 
         {/* Contact Information */}
         <Grid item xs={12}>
-          <Paper elevation={0} sx={{ p: 2, bgcolor: "background.default" }}>
+          <Paper
+            elevation={0}
+            sx={{
+              p: 3,
+              bgcolor: "#f8f9fc",
+              borderRadius: "16px",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: "#f3f6fc",
+                transform: "translateY(-2px)",
+              },
+            }}
+          >
             <Typography variant="subtitle1" gutterBottom fontWeight="bold">
               Contact Information
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "12px",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        backgroundColor: "#f8f9fc",
+                      },
+                      "&.Mui-focused": {
+                        boxShadow: "0 0 0 4px rgba(79,172,254,0.15)",
+                      },
+                    },
+                  }}
                   label="Email"
                   value={profileData.email || ""}
                   onChange={(e) => handleInputChange("email", e.target.value)}
@@ -99,6 +159,18 @@ const ProfileInformation = ({
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "12px",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        backgroundColor: "#f8f9fc",
+                      },
+                      "&.Mui-focused": {
+                        boxShadow: "0 0 0 4px rgba(79,172,254,0.15)",
+                      },
+                    },
+                  }}
                   label="Phone"
                   value={profileData.phone || ""}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
@@ -115,7 +187,19 @@ const ProfileInformation = ({
 
         {/* Location Information */}
         <Grid item xs={12}>
-          <Paper elevation={0} sx={{ p: 2, bgcolor: "background.default" }}>
+          <Paper
+            elevation={0}
+            sx={{
+              p: 3,
+              bgcolor: "#f8f9fc",
+              borderRadius: "16px",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: "#f3f6fc",
+                transform: "translateY(-2px)",
+              },
+            }}
+          >
             <Typography variant="subtitle1" gutterBottom fontWeight="bold">
               Location Information
             </Typography>
@@ -144,7 +228,19 @@ const ProfileInformation = ({
 
         {/* Professional Information */}
         <Grid item xs={12}>
-          <Paper elevation={0} sx={{ p: 2, bgcolor: "background.default" }}>
+          <Paper
+            elevation={0}
+            sx={{
+              p: 3,
+              bgcolor: "#f8f9fc",
+              borderRadius: "16px",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: "#f3f6fc",
+                transform: "translateY(-2px)",
+              },
+            }}
+          >
             <Typography variant="subtitle1" gutterBottom fontWeight="bold">
               Professional Information
             </Typography>
@@ -162,6 +258,18 @@ const ProfileInformation = ({
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "12px",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        backgroundColor: "#f8f9fc",
+                      },
+                      "&.Mui-focused": {
+                        boxShadow: "0 0 0 4px rgba(79,172,254,0.15)",
+                      },
+                    },
+                  }}
                   label="Occupation"
                   value={profileData.occupation || ""}
                   onChange={(e) =>
@@ -173,6 +281,18 @@ const ProfileInformation = ({
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "12px",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        backgroundColor: "#f8f9fc",
+                      },
+                      "&.Mui-focused": {
+                        boxShadow: "0 0 0 4px rgba(79,172,254,0.15)",
+                      },
+                    },
+                  }}
                   label="Company"
                   value={profileData.company || ""}
                   onChange={(e) => handleInputChange("company", e.target.value)}
@@ -186,13 +306,39 @@ const ProfileInformation = ({
 
         {/* Account Statistics */}
         <Grid item xs={12}>
-          <Paper elevation={0} sx={{ p: 2, bgcolor: "background.default" }}>
+          <Paper
+            elevation={0}
+            sx={{
+              p: 3,
+              bgcolor: "#f8f9fc",
+              borderRadius: "16px",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: "#f3f6fc",
+                transform: "translateY(-2px)",
+              },
+            }}
+          >
             <Typography variant="subtitle1" gutterBottom fontWeight="bold">
               Account Statistics
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={4}>
-                <Box textAlign="center">
+                <Box
+                  textAlign="center"
+                  sx={{
+                    textAlign: "center",
+                    p: 2,
+                    borderRadius: "16px",
+                    background:
+                      "linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%)",
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                      transform: "translateY(-3px)",
+                      boxShadow: "0 10px 20px rgba(0,64,128,0.1)",
+                    },
+                  }}
+                >
                   <Typography variant="h6">
                     {profileData.totalDeliveries || 0}
                   </Typography>
@@ -223,7 +369,19 @@ const ProfileInformation = ({
 
         {/* Verification Status */}
         <Grid item xs={12}>
-          <Paper elevation={0} sx={{ p: 2, bgcolor: "background.default" }}>
+          <Paper
+            elevation={0}
+            sx={{
+              p: 3,
+              bgcolor: "#f8f9fc",
+              borderRadius: "16px",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: "#f3f6fc",
+                transform: "translateY(-2px)",
+              },
+            }}
+          >
             <Typography variant="subtitle1" gutterBottom fontWeight="bold">
               Verification Status
             </Typography>

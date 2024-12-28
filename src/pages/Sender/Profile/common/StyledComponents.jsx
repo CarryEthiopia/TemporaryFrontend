@@ -2,12 +2,12 @@ import React from "react";
 import { styled } from "@mui/system";
 import { Paper, Avatar, Input } from "@mui/material";
 
+// StyledComponents.js updates
 export const ProfileContainer = styled("div")(({ theme }) => ({
   padding: theme.spacing(3),
   transition: "all 0.3s ease",
   minHeight: "calc(100vh - 64px)",
-  backgroundColor: "#f8f9fa",
-  backgroundImage: "linear-gradient(to bottom right, #f8f9fa, #e9ecef)",
+  background: "linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%)",
   "@media (max-width: 600px)": {
     padding: theme.spacing(2),
   },
@@ -15,14 +15,15 @@ export const ProfileContainer = styled("div")(({ theme }) => ({
 
 export const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
-  borderRadius: "16px",
-  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
-  transition: "transform 0.2s ease, box-shadow 0.2s ease",
-  backgroundColor: "rgba(255, 255, 255, 0.95)",
-  backdropFilter: "blur(10px)",
+  borderRadius: "24px",
+  boxShadow: "0 10px 40px -10px rgba(0,64,128,0.1)",
+  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  background: "rgba(255, 255, 255, 0.9)",
+  backdropFilter: "blur(20px)",
+  border: "1px solid rgba(255,255,255,0.2)",
   "&:hover": {
-    transform: "translateY(-2px)",
-    boxShadow: "0 6px 25px rgba(0, 0, 0, 0.1)",
+    transform: "translateY(-5px)",
+    boxShadow: "0 20px 40px -15px rgba(0,64,128,0.15)",
   },
   "@media (max-width: 600px)": {
     padding: theme.spacing(2),
@@ -30,29 +31,31 @@ export const StyledPaper = styled(Paper)(({ theme }) => ({
 }));
 
 export const StyledAvatar = styled(Avatar)(({ theme }) => ({
-  width: 120,
-  height: 120,
+  width: 150,
+  height: 150,
   border: "4px solid #fff",
-  boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-  transition: "all 0.3s ease",
+  boxShadow: "0 10px 25px rgba(0,64,128,0.15)",
+  transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
   cursor: "pointer",
   "&:hover": {
-    transform: "scale(1.05)",
-    boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
+    transform: "scale(1.08) rotate(5deg)",
+    boxShadow: "0 15px 35px rgba(0,64,128,0.2)",
   },
 }));
 
 export const StyledInput = styled(Input)(({ theme }) => ({
-  backgroundColor: "#f8f9fa",
-  padding: "8px 12px",
-  borderRadius: "8px",
+  backgroundColor: "#f8f9fc",
+  padding: "12px 16px",
+  borderRadius: "12px",
   transition: "all 0.3s ease",
+  border: "2px solid transparent",
   "&:hover": {
-    backgroundColor: "#eaecef",
+    backgroundColor: "#eef2f7",
   },
   "&.Mui-focused": {
     backgroundColor: "#fff",
-    boxShadow: "0 0 0 2px #bbdefb",
+    borderColor: theme.palette.primary.main,
+    boxShadow: "0 0 0 4px rgba(33,150,243,0.15)",
   },
 }));
 

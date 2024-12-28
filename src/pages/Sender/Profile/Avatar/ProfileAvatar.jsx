@@ -2,10 +2,27 @@ import React from "react";
 import { Typography, Button, Tooltip, Divider } from "@mui/material";
 import Settings from "@mui/icons-material/Settings"; // Fixed import
 import { StyledPaper, StyledAvatar } from "../common/StyledComponents";
+import team1 from "../../../../assets/Member1.jpg"
 
 const ProfileAvatar = ({ profileData, handleImageUpload, openSettings }) => {
   return (
-    <StyledPaper>
+    <StyledPaper
+      sx={{
+        background: "linear-gradient(145deg, #ffffff, #f5f8ff)",
+        position: "relative",
+        overflow: "hidden",
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "120px",
+          background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+          borderRadius: "24px 24px 0 0",
+        },
+      }}
+    >
       <div style={{ textAlign: "center" }}>
         {/* Profile Image Upload */}
         <input
@@ -19,7 +36,7 @@ const ProfileAvatar = ({ profileData, handleImageUpload, openSettings }) => {
           <Tooltip title="Change Profile Picture" arrow>
             <StyledAvatar
               src={
-                profileData?.profileImage || "https://via.placeholder.com/150"
+               team1
               }
               alt={profileData?.profileName || "User Profile"}
             />
@@ -31,11 +48,12 @@ const ProfileAvatar = ({ profileData, handleImageUpload, openSettings }) => {
           variant="h5"
           sx={{
             mt: 2,
-            fontWeight: 600,
-            background: "linear-gradient(45deg, #2196F3, #21CBF3)",
+            fontWeight: 700,
+            background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
             backgroundClip: "text",
             WebkitBackgroundClip: "text",
             color: "transparent",
+            letterSpacing: "0.5px",
           }}
         >
           {profileData?.profileName || "Your Name"}
@@ -52,10 +70,15 @@ const ProfileAvatar = ({ profileData, handleImageUpload, openSettings }) => {
           startIcon={<Settings />}
           onClick={openSettings}
           sx={{
-            background: "linear-gradient(45deg, #2196F3, #21CBF3)",
-            transition: "transform 0.2s ease",
+            background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+            borderRadius: "12px",
+            padding: "10px 24px",
+            textTransform: "none",
+            fontWeight: 600,
+            transition: "all 0.3s ease",
             "&:hover": {
-              transform: "translateY(-2px)",
+              transform: "translateY(-3px)",
+              boxShadow: "0 10px 20px rgba(79,172,254,0.3)",
             },
           }}
         >

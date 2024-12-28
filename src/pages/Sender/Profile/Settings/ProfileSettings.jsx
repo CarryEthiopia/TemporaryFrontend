@@ -55,16 +55,18 @@ const ProfileSettings = ({ open, onClose, settings, handleSettingsChange }) => {
       fullWidth
       PaperProps={{
         sx: {
-          borderRadius: "16px",
-          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
-          minHeight: "80vh",
+          borderRadius: "24px",
+          boxShadow: "0 25px 50px -12px rgba(0,64,128,0.25)",
+          overflow: "hidden",
         },
       }}
     >
       <DialogTitle
         sx={{
-          background: "linear-gradient(45deg, #2196F3, #21CBF3)",
+          background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
           color: "white",
+          fontSize: "1.5rem",
+          fontWeight: 600,
         }}
       >
         Settings
@@ -76,7 +78,24 @@ const ProfileSettings = ({ open, onClose, settings, handleSettingsChange }) => {
               orientation="vertical"
               value={activeTab}
               onChange={handleTabChange}
-              sx={{ borderRight: 1, borderColor: "divider" }}
+              sx={{
+                "& .MuiTab-root": {
+                  minHeight: "64px",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    backgroundColor: "rgba(79,172,254,0.1)",
+                  },
+                  "&.Mui-selected": {
+                    color: "#4facfe",
+                    fontWeight: 600,
+                  },
+                },
+                "& .MuiTabs-indicator": {
+                  background:
+                    "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+                  borderRadius: "4px",
+                },
+              }}
             >
               <Tab icon={<Notifications />} label="Notifications" />
               <Tab icon={<Security />} label="Security" />
