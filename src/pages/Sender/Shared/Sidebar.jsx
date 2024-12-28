@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Home as HomeIcon,
   LocalShipping as LocalShippingIcon,
-  Mail as MailIcon,
   AccountCircle as AccountCircleIcon,
   ExitToApp as ExitToAppIcon,
   Dashboard as DashboardIcon,
@@ -47,23 +46,6 @@ const Sidebar = ({ setActiveComponent }) => {
       ],
     },
     {
-      section: "Communication",
-      items: [
-        {
-          text: "Messages",
-          icon: <MailIcon />,
-          component: "Messages",
-          color: "text-purple-600",
-        },
-        {
-          text: "Team",
-          icon: <PeopleIcon />,
-          component: "Team",
-          color: "text-indigo-600",
-        },
-      ],
-    },
-    {
       section: "Analytics",
       items: [
         {
@@ -71,12 +53,6 @@ const Sidebar = ({ setActiveComponent }) => {
           icon: <AssessmentIcon />,
           component: "Reports",
           color: "text-orange-600",
-        },
-        {
-          text: "Statistics",
-          icon: <HomeIcon />,
-          component: "Statistics",
-          color: "text-yellow-600",
         },
       ],
     },
@@ -88,12 +64,6 @@ const Sidebar = ({ setActiveComponent }) => {
           icon: <AccountCircleIcon />,
           component: "Profile",
           color: "text-cyan-600",
-        },
-        {
-          text: "Settings",
-          icon: <SettingsIcon />,
-          component: "Settings",
-          color: "text-gray-600",
         },
         {
           text: "Logout",
@@ -157,9 +127,9 @@ const Sidebar = ({ setActiveComponent }) => {
                   `}
                 >
                   <div
-                    className={`
-                    ${!isCollapsed ? "mr-3" : "mx-auto"}
-                    transition-transform duration-200 ease-in-out
+                    className={`${
+                      !isCollapsed ? "mr-3" : "mx-auto"
+                    } transition-transform duration-200 ease-in-out
                     group-hover:scale-110
                     ${
                       activeItem === item.component ? "transform scale-110" : ""
