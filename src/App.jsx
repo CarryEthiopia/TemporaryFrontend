@@ -11,6 +11,7 @@ import Home from "./pages/Sender/Dashboard/Home/Home";
 import Message from "./pages/Sender/Message/Left";
 import Profile from "./pages/Sender/Profile/Profile";
 import Report from "./pages/Sender/Report/Report";
+import ItemRequest from "./pages/Sender/Request/ItemRequest"; // Corrected import
 
 const Team = () => <div>Team Component</div>;
 const Statistics = () => <div>Statistics Component</div>;
@@ -50,7 +51,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/get-in-touch" element={<GetInTouch />} />
         <Route path="/ask-questions" element={<AskQuestions />} />
-
+        <Route path="/request" element={<ItemRequest />} />{" "}
+        {/* Corrected route */}
         {/* Route for Home */}
         <Route
           path="/home"

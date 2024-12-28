@@ -40,14 +40,14 @@ const Navbar = () => {
 
   const handleLogout = () => {
     // Add logout logic here
-    navigate("/login");
+    navigate("/signin");
   };
 
   const menuItems = [
-    { icon: <Dashboard />, text: "Dashboard", path: "/dashboard" },
-    { icon: <People />, text: "Team", path: "/team" },
-    { icon: <BusinessCenter />, text: "Projects", path: "/projects" },
-    { icon: <Settings />, text: "Settings", path: "/settings" },
+    { icon: <Dashboard />, text: "Dashboard", path: "/home" },
+    { icon: <People />, text: "Profile", path: "/home" },
+    { icon: <BusinessCenter />, text: "Delivery", path: "/home" },
+    { icon: <Settings />, text: "Report", path: "/home" },
   ];
 
   return (
