@@ -74,7 +74,7 @@ const Sidebar = ({ setActiveComponent }) => {
         onClick={handleClick}
         className={`
           flex items-center cursor-pointer rounded-lg transition-all duration-200
-          ${isActive ? "bg-gray-100 shadow-sm" : "hover:bg-gray-50"}
+          ${isActive ? "bg-white shadow-sm" : "hover:bg-gray-50"}
           ${isMobile ? "flex-col p-2" : "p-3 mb-2"}
           group
         `}
@@ -84,7 +84,7 @@ const Sidebar = ({ setActiveComponent }) => {
             ${!isMobile && "mr-3"} 
             transition-transform duration-200
             group-hover:scale-110
-            ${isActive ? "text-orange-500 scale-110" : "text-gray-600"}
+            ${isActive ? "text-black scale-110" : "text-white"}
           `}
         >
           {item.icon}
@@ -93,7 +93,7 @@ const Sidebar = ({ setActiveComponent }) => {
           className={`
             ${isMobile ? "text-xs mt-1" : "text-sm"}
             font-medium
-            ${isActive ? "text-orange-500 font-semibold" : "text-gray-600"}
+            ${isActive ? "text-black font-semibold" : "text-white"}
           `}
         >
           {item.text}
@@ -108,7 +108,7 @@ const Sidebar = ({ setActiveComponent }) => {
 
       {/* Desktop Sidebar */}
       {!isMobile && (
-        <div className="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-white shadow-lg border-r border-gray-200">
+        <div className="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#0f172a] shadow-lg border-r border-gray-200">
           <div className="flex flex-col p-4 space-y-2">
             {menuItems.map((item) => (
               <MenuItem key={item.id} item={item} />
@@ -119,7 +119,7 @@ const Sidebar = ({ setActiveComponent }) => {
 
       {/* Mobile Bottom Navigation */}
       {isMobile && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 z-40">
+        <div className="fixed bottom-0 left-0 right-0 bg-[#0f172a] shadow-lg border-t border-gray-200 z-40">
           <div className="grid grid-cols-5 py-2 px-4">
             {menuItems.map((item) => (
               <MenuItem key={item.id} item={item} />
@@ -129,7 +129,7 @@ const Sidebar = ({ setActiveComponent }) => {
       )}
 
       {/* Main Content Area */}
-      <div 
+      <div
         className={`
           transition-all duration-300 
           ${!isMobile ? "ml-64" : "ml-0"}

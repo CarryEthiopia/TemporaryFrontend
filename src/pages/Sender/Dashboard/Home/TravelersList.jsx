@@ -277,8 +277,8 @@ const TravelersList = ({ travelers }) => {
 
               {/* Actions */}
               <div className="flex flex-col sm:flex-row gap-2">
-                <button className="px-4 py-2 text-sm bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
-                  View Details
+                <button className="p-2 rounded-full hover:bg-gray-100">
+                  <span className="material-icons">more_vert</span>
                 </button>
                 <button className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                   Contact

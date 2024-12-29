@@ -5,11 +5,11 @@ import ProfileAvatar from "./Avatar/ProfileAvatar";
 import ProfileInformation from "./Information/ProfileInformation";
 import ProfileSettings from "./Settings/ProfileSettings";
 import LoadingSpinner from "./common/LoadingSpinner";
+import { profileData as initialProfileData } from "../FetchedData";
 
 const Profile = () => {
-  // State
-  const [profileData, setProfileData] = useState({});
-  const [settings, setSettings] = useState({});
+  const [profile, setProfile] = useState(null);
+  const [settings, setSettings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hasChanges, setHasChanges] = useState(false);
   const [openSettingsDialog, setOpenSettingsDialog] = useState(false);
@@ -19,76 +19,139 @@ const Profile = () => {
     severity: "info",
   });
 
-  // Handlers
-  const handleImageUpload = (imageFile) => {
-    // Handle image upload logic
+  useEffect(() => {
+    fetchProfileData();
+  }, []);
+
+  // Function to fetch profile data - will be replaced with actual API call
+  const fetchProfileData = async () => {
+    try {
+      // Simulate API call
+      // Replace this with actual API call when backend is ready
+      // const response = await axios.get('/api/profile');
+      // const data = response.data;
+
+      setProfile(initialProfileData);
+      setSettings(initialProfileData.settings);
+      setLoading(false);
+    } catch (error) {
+      setNotification({
+        open: true,
+        message: "Error loading profile data",
+        severity: "error",
+      });
+      setLoading(false);
+    }
+  };
+
+  const handleImageUpload = async (imageFile) => {
+    try {
+      setLoading(true);
+      // Replace with actual API call when backend is ready
+      // const formData = new FormData();
+      // formData.append('image', imageFile);
+      // await axios.post('/api/profile/image', formData);
+
+      setNotification({
+        open: true,
+        message: "Profile image updated successfully",
+        severity: "success",
+      });
+    } catch (error) {
+      setNotification({
+        open: true,
+        message: "Error uploading image",
+        severity: "error",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleInputChange = (field, value) => {
-    setProfileData((prevData) => ({
-      ...prevData,
+    setProfile((prevProfile) => ({
+      ...prevProfile,
       [field]: value,
     }));
     setHasChanges(true);
   };
 
-  const handleSaveChanges = () => {
-    // Save changes logic
-  };
+  const handleSaveChanges = async () => {
+    try {
+      setLoading(true);
+      // Replace with actual API call when backend is ready
+      // await axios.put('/api/profile', profile);
 
-  const handleSettingsChange = (newSettings) => {
-    setSettings(newSettings);
-  };
-
-  useEffect(() => {
-    // Simulate loading and fetch profile data
-    setTimeout(() => {
+      setHasChanges(false);
+      setNotification({
+        open: true,
+        message: "Profile updated successfully",
+        severity: "success",
+      });
+    } catch (error) {
+      setNotification({
+        open: true,
+        message: "Error updating profile",
+        severity: "error",
+      });
+    } finally {
       setLoading(false);
-      setProfileData({
-        name: "John Doe",
-        email: "john.doe@example.com",
-      });
-      setSettings({
-        notifications: true,
-        theme: "light",
-      });
-    }, 1000);
-  }, []);
+    }
+  };
 
-  // Notification Close
+  const handleSettingsChange = async (newSettings) => {
+    try {
+      setLoading(true);
+      // Replace with actual API call when backend is ready
+      // await axios.put('/api/profile/settings', newSettings);
+
+      setSettings(newSettings);
+      setNotification({
+        open: true,
+        message: "Settings updated successfully",
+        severity: "success",
+      });
+    } catch (error) {
+      setNotification({
+        open: true,
+        message: "Error updating settings",
+        severity: "error",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleNotificationClose = () => {
     setNotification((prev) => ({ ...prev, open: false }));
   };
 
+  if (loading || !profile) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <ProfileContainer>
-      {loading ? (
-        <LoadingSpinner />
-      ) : (
-        <Grid container spacing={3}>
-          {/* Avatar Section */}
-          <Grid item xs={12} md={4}>
-            <ProfileAvatar
-              profileData={profileData}
-              handleImageUpload={handleImageUpload}
-              openSettings={() => setOpenSettingsDialog(true)}
-            />
-          </Grid>
-
-          {/* Information Section */}
-          <Grid item xs={12} md={8}>
-            <ProfileInformation
-              profileData={profileData}
-              handleInputChange={handleInputChange}
-              handleSaveChanges={handleSaveChanges}
-              loading={loading}
-              hasChanges={hasChanges}
-            />
-          </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={4}>
+          <ProfileAvatar
+            profileData={profile}
+            handleImageUpload={handleImageUpload}
+            openSettings={() => setOpenSettingsDialog(true)}
+          />
         </Grid>
-      )}
 
-      {/* Settings Dialog */}
+        <Grid item xs={12} md={8}>
+          <ProfileInformation
+            profileData={profile}
+            handleInputChange={handleInputChange}
+            handleSaveChanges={handleSaveChanges}
+            loading={loading}
+            hasChanges={hasChanges}
+          />
+        </Grid>
+      </Grid>
+
       <ProfileSettings
         open={openSettingsDialog}
         onClose={() => setOpenSettingsDialog(false)}
@@ -96,7 +159,6 @@ const Profile = () => {
         handleSettingsChange={handleSettingsChange}
       />
 
-      {/* Notification Snackbar */}
       <Snackbar
         open={notification.open}
         autoHideDuration={6000}

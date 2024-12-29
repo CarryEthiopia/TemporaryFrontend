@@ -12,6 +12,8 @@ import {
   AccessTime,
 } from "@mui/icons-material";
 import TravelersList from "./TravelersList";
+import { dashboardStats, travelers } from "../../../Sender/FetchedData";
+
 
 const StatCard = ({ icon: Icon, title, value, color }) => (
   <div className={`bg-white rounded-lg p-4 shadow-sm border-l-4 ${color}`}>
@@ -55,56 +57,7 @@ const ActionCard = ({ icon: Icon, title, description, onClick, color }) => (
 );
 
 const Home = () => {
-  const [stats, setStats] = useState({
-    deliveries: 50000,
-    active: 247,
-    success: 98,
-    earnings: 125000,
-  });
-  const navigate = useNavigate();
-
-  const travelers = [
-    {
-      name: 'John Doe',
-      departure: 'Adama',
-      destination: 'Addis Ababa',
-      rating: 4.5,
-      flightTime: '2024-12-30T10:00:00Z',
-      profileImage: 'https://www.perfocal.com/blog/content/images/size/w960/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg',
-    },
-    {
-      name: 'John Doe',
-      departure: 'Adama',
-      destination: 'Addis Ababa',
-      rating: 4.5,
-      flightTime: '2024-12-30T10:00:00Z',
-      profileImage: 'https://www.perfocal.com/blog/content/images/size/w960/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg',
-    },
-    {
-      name: 'John Doe',
-      departure: 'Adama',
-      destination: 'Addis Ababa',
-      rating: 4.5,
-      flightTime: '2024-12-30T10:00:00Z',
-      profileImage: 'https://www.perfocal.com/blog/content/images/size/w960/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg',
-    },
-    {
-      name: 'John Doe',
-      departure: 'Adama',
-      destination: 'Addis Ababa',
-      rating: 4.5,
-      flightTime: '2024-12-30T10:00:00Z',
-      profileImage: 'https://www.perfocal.com/blog/content/images/size/w960/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg',
-    },
-    {
-      name: 'John Doe',
-      departure: 'Adama',
-      destination: 'Addis Ababa',
-      rating: 4.5,
-      flightTime: '2024-12-30T10:00:00Z',
-      profileImage: 'https://www.perfocal.com/blog/content/images/size/w960/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg',
-    },
-  ];
+  const [stats, setStats] = useState(dashboardStats);
 
   return (
     <div className="min-h-screen bg-gray-50 w-full pt-10 px-4">
