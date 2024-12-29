@@ -1,7 +1,6 @@
-import React from "react";
 import Card from "../Cards"; // Import the new Card component
 
-const Delivered = ({ onViewDetail }) => {
+const Delivered = () => {
   const deliveredData = [
     {
       travelerName: "John Doe",
@@ -62,8 +61,7 @@ const Delivered = ({ onViewDetail }) => {
           route={delivery.route}
           isVerified={delivery.isVerified}
           status={delivery.status}
-          type="delivered" // Set type to 'delivered'
-          onViewDetail={onViewDetail}
+          type="delivered"
         />
       ))}
     </div>

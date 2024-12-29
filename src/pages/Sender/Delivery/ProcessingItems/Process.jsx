@@ -1,7 +1,6 @@
-import React from "react";
 import Card from "../Cards"; // Import the new Card component
 
-const Process = ({ onViewDetail }) => {
+const Process = () => {
   const processData = [
     {
       travelerName: "John Doe",
@@ -33,8 +32,7 @@ const Process = ({ onViewDetail }) => {
           travelDestination={process.travelDestination}
           deliveryId={process.deliveryId}
           items={process.items}
-          type="process" // Set type to 'process'
-          onViewDetail={onViewDetail}
+          type="process"
         />
       ))}
     </div>

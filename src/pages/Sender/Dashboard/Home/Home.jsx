@@ -55,7 +55,6 @@ const ActionCard = ({ icon: Icon, title, description, onClick, color }) => (
 );
 
 const Home = () => {
-  const [searchTerm, setSearchTerm] = useState("");
   const [stats, setStats] = useState({
     deliveries: 50000,
     active: 247,

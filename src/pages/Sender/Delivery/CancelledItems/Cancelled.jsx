@@ -1,7 +1,6 @@
-import React from "react";
 import Card from "../Cards"; // Import the new Card component
 
-const Cancelled = ({ onViewDetail }) => {
+const Cancelled = () => {
   const cancelledData = [
     {
       travelerName: "John Doe",
@@ -37,8 +36,7 @@ const Cancelled = ({ onViewDetail }) => {
           deliveryId={delivery.deliveryId}
           items={delivery.items}
           cancelledOn={delivery.cancelledOn}
-          type="cancelled" // Set type to 'cancelled'
-          onViewDetail={onViewDetail}
+          type="cancelled"
         />
       ))}
     </div>

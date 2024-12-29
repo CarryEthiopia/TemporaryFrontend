@@ -8,6 +8,7 @@ import {
   Info,
   LocationOn,
   Inventory,
+  KeyboardArrowDown,
 } from "@mui/icons-material";
 
 const StatusBadge = ({ status }) => (
@@ -38,121 +39,259 @@ const Card = ({
   isVerified,
   status,
   cancelledOn,
-  onViewDetail,
   type,
 }) => {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+
   return (
-    <div className="bg-white rounded-xl p-6 mb-6 transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-      {/* Header Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Profile Section */}
-        <div className="flex items-center space-x-4">
-          <div className="relative group">
-            <div className="w-14 h-14 bg-gray-200 rounded-full overflow-hidden ring-2 ring-offset-2 ring-orange-500">
-              <img
-                src="https://via.placeholder.com/56"
-                alt="Traveler"
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+    <div className="bg-white rounded-xl p-4 mb-4 transform transition-all duration-300 hover:shadow-lg">
+      {/* Mobile View */}
+      <div className="block md:hidden">
+        <div className="flex items-center justify-between mb-4">
+          {/* Profile Section */}
+          <div className="flex items-center space-x-3">
+            <div className="relative">
+              <div className="w-12 h-12 bg-gray-200 rounded-full overflow-hidden ring-2 ring-offset-2 ring-orange-500">
+                <img
+                  src="https://via.placeholder.com/48"
+                  alt="Traveler"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div
+                className={`
+                absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white
+                ${status === "active" ? "bg-green-500" : "bg-red-500"}
+              `}
               />
             </div>
-            <div
-              className={`
-              absolute bottom-0 right-0 w-4 h-4 rounded-full border-2 border-white
-              transition-colors duration-300
-              ${status === "active" ? "bg-green-500" : "bg-red-500"}
-            `}
+
+            <div>
+              <div className="flex items-center space-x-1">
+                <span className="font-bold text-gray-800">{travelerName}</span>
+                {isVerified && <Verified className="text-blue-500 w-4 h-4" />}
+              </div>
+              <StatusBadge status={type} />
+            </div>
+          </div>
+
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="text-gray-500 p-1 hover:bg-gray-100 rounded-full"
+          >
+            <KeyboardArrowDown
+              className={`transform transition-transform duration-300 ${
+                isExpanded ? "rotate-180" : ""
+              }`}
             />
-          </div>
+          </button>
+        </div>
 
-          <div className="flex flex-col">
-            <div className="flex items-center space-x-2 mb-1">
-              <span className="font-bold text-gray-800 hover:text-orange-500 cursor-pointer transition-colors">
-                {travelerName}
-              </span>
-              {isVerified && (
-                <Verified className="text-blue-500 transition-transform hover:scale-110" />
-              )}
+        {/* Expandable Content */}
+        <div
+          className={`
+          overflow-hidden transition-all duration-300
+          ${isExpanded ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}
+        `}
+        >
+          <div className="space-y-4 pt-2 border-t">
+            {/* Delivery Info */}
+            <div className="flex items-center space-x-2">
+              <LocalShipping className="text-orange-500" fontSize="small" />
+              <span className="text-sm text-gray-700">ID: {deliveryId}</span>
             </div>
-            <div className="flex items-center text-gray-600 text-sm space-x-2">
+
+            <div className="flex items-center space-x-2">
               <LocationOn className="text-orange-500" fontSize="small" />
-              <span>{route}</span>
+              <span className="text-sm text-gray-600">{route}</span>
             </div>
-            <div className="flex items-center text-gray-600 text-sm space-x-2">
+
+            <div className="flex items-center space-x-2">
               <Schedule className="text-orange-500" fontSize="small" />
-              <span>{date}</span>
+              <span className="text-sm text-gray-600">{date}</span>
             </div>
-          </div>
-        </div>
 
-        {/* Delivery Info */}
-        <div className="flex flex-col justify-center">
-          <div className="flex items-center space-x-2 mb-2">
-            <LocalShipping className="text-orange-500" />
-            <span className="font-medium text-gray-700">ID: {deliveryId}</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Inventory className="text-orange-500" />
-            <div className="flex flex-wrap gap-2">
-              {items.map((item, index) => (
-                <span
-                  key={index}
-                  className="px-2 py-1 bg-gray-100 rounded-full text-sm text-gray-600 hover:bg-orange-100 transition-colors"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Stats Section */}
-        <div className="flex flex-col justify-center">
-          <StatusBadge status={type} />
-
-          {type === "delivered" && (
-            <div className="mt-3 grid grid-cols-2 gap-4">
-              <div className="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg">
-                <LocalShipping className="text-orange-500" />
-                <div className="flex flex-col">
-                  <span className="text-xs text-gray-500">Delivered</span>
-                  <span className="font-semibold">{stats.delivered}</span>
-                </div>
-              </div>
-              <div className="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg">
-                <ThumbUp className="text-orange-500" />
-                <div className="flex flex-col">
-                  <span className="text-xs text-gray-500">Rating</span>
-                  <span className="font-semibold">{stats.rating}%</span>
-                </div>
+            {/* Items */}
+            <div className="flex items-center space-x-2">
+              <Inventory className="text-orange-500" fontSize="small" />
+              <div className="flex flex-wrap gap-2">
+                {items.map((item, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600"
+                  >
+                    {item}
+                  </span>
+                ))}
               </div>
             </div>
-          )}
 
-          {type === "cancelled" && (
-            <div className="mt-2 text-red-500 font-medium flex items-center space-x-2">
-              <Info fontSize="small" />
-              <span>Cancelled on: {cancelledOn}</span>
+            {/* Stats for Delivered Items */}
+            {type === "delivered" && (
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg">
+                  <LocalShipping className="text-orange-500" fontSize="small" />
+                  <div className="flex flex-col">
+                    <span className="text-xs text-gray-500">Delivered</span>
+                    <span className="font-semibold">{stats.delivered}</span>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg">
+                  <ThumbUp className="text-orange-500" fontSize="small" />
+                  <div className="flex flex-col">
+                    <span className="text-xs text-gray-500">Rating</span>
+                    <span className="font-semibold">{stats.rating}%</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Cancelled Info */}
+            {type === "cancelled" && (
+              <div className="text-red-500 text-sm font-medium flex items-center space-x-2">
+                <Info fontSize="small" />
+                <span>Cancelled on: {cancelledOn}</span>
+              </div>
+            )}
+
+            {/* Contact Button */}
+            <div className="flex items-center space-x-2">
+              <Chat className="text-orange-500" fontSize="small" />
+              <span className="text-sm text-gray-600">Contact Traveler</span>
             </div>
-          )}
+          </div>
         </div>
-      </div>
 
-      {/* Footer Section */}
-      <div className="mt-6 flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <Chat className="text-orange-500 cursor-pointer hover:scale-110 transition-transform" />
-          <span className="text-sm text-gray-600">Contact Traveler</span>
-        </div>
+        {/* View Details Button - Always Visible */}
         <button
-          onClick={onViewDetail}
-          className="px-6 py-2 bg-orange-500 text-white rounded-lg font-medium
+          className="w-full mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg font-medium
             hover:bg-orange-600 active:bg-orange-700 
             transform transition-all duration-300
-            hover:shadow-lg hover:-translate-y-0.5
+            hover:shadow-lg
             focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
         >
-          View Details
+          <Chat className="text-white" fontSize="small" />
+          Contact Traveler
         </button>
+      </div>
+
+      {/* Desktop View - Original Card Layout */}
+      <div className="hidden md:block">
+        <div className="flex items-center justify-between mb-4">
+          {/* Profile Section */}
+          <div className="flex items-center space-x-3">
+            <div className="relative">
+              <div className="w-16 h-16 bg-gray-200 rounded-full overflow-hidden ring-2 ring-offset-2 ring-orange-500">
+                <img
+                  src="https://via.placeholder.com/48"
+                  alt="Traveler"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div
+                className={`
+            absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white
+            ${status === "active" ? "bg-green-500" : "bg-red-500"}
+          `}
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center space-x-1">
+                <span className="font-bold text-gray-800">{travelerName}</span>
+                {isVerified && <Verified className="text-blue-500 w-4 h-4" />}
+              </div>
+              <StatusBadge status={type} />
+            </div>
+          </div>
+
+          {/* Expand Button */}
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="text-gray-500 p-1 hover:bg-gray-100 rounded-full"
+          >
+            <KeyboardArrowDown
+              className={`transform transition-transform duration-300 ${
+                isExpanded ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* Expandable Content */}
+        <div
+          className={`
+      overflow-hidden transition-all duration-300
+      ${isExpanded ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}
+    `}
+        >
+          <div className="space-y-4 pt-2 border-t">
+            {/* Delivery Info */}
+            <div className="flex items-center space-x-2">
+              <LocalShipping className="text-orange-500" fontSize="small" />
+              <span className="text-sm text-gray-700">ID: {deliveryId}</span>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <LocationOn className="text-orange-500" fontSize="small" />
+              <span className="text-sm text-gray-600">{route}</span>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <Schedule className="text-orange-500" fontSize="small" />
+              <span className="text-sm text-gray-600">{date}</span>
+            </div>
+
+            {/* Items */}
+            <div className="flex items-center space-x-2">
+              <Inventory className="text-orange-500" fontSize="small" />
+              <div className="flex flex-wrap gap-2">
+                {items.map((item, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Stats for Delivered Items */}
+            {type === "delivered" && (
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg">
+                  <LocalShipping className="text-orange-500" fontSize="small" />
+                  <div className="flex flex-col">
+                    <span className="text-xs text-gray-500">Delivered</span>
+                    <span className="font-semibold">{stats.delivered}</span>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg">
+                  <ThumbUp className="text-orange-500" fontSize="small" />
+                  <div className="flex flex-col">
+                    <span className="text-xs text-gray-500">Rating</span>
+                    <span className="font-semibold">{stats.rating}%</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Cancelled Info */}
+            {type === "cancelled" && (
+              <div className="text-red-500 text-sm font-medium flex items-center space-x-2">
+                <Info fontSize="small" />
+                <span>Cancelled on: {cancelledOn}</span>
+              </div>
+            )}
+
+            {/* Contact Button */}
+            <div className="flex items-center space-x-2">
+              <Chat className="text-orange-500" fontSize="small" />
+              <span className="text-sm text-gray-600">Contact Traveler</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
