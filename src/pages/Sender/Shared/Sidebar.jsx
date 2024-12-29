@@ -152,7 +152,7 @@ const Sidebar = ({ setActiveComponent }) => {
 
       {/* Tab bar for mobile */}
       <div
-        className={`lg:hidden fixed bottom-0 left-0 right-0 w-full bg-white shadow-lg border-t border-gray-200 z-50 transition-all duration-300 ease-in-out`}
+        className={`lg:hidden fixed bottom-0 left-0 right-0 w-full bg-white shadow-lg border-t border-gray-200 z-40 transition-all duration-300 ease-in-out`}
       >
         <div className="flex justify-between items-center py-2 px-4">
           {menuItems.map((section, sectionIndex) => (

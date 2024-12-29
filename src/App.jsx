@@ -59,7 +59,7 @@ function App() {
           element={
             <div className="flex h-screen">
               <Sidebar setActiveComponent={setActiveComponent} />
-              <main className="flex-1 p-6 bg-gray-100">
+              <main className="flex-1 bg-gray-100">
                 {renderActiveComponent()}
               </main>
             </div>

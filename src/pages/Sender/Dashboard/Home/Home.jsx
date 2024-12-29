@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import {
   Add as AddIcon,
@@ -8,196 +7,172 @@ import {
   Timeline,
   TrendingUp,
   Stars,
-  EmojiEvents,
+  Search,
+  LocationOn,
+  AccessTime,
 } from "@mui/icons-material";
-import Status from "./Status";
+import TravelersList from "./TravelersList";
 
-const StatCard = ({ icon: Icon, title, value, description, color }) => (
-  <motion.div
-    whileHover={{ y: -5, scale: 1.02 }}
-    whileTap={{ scale: 0.98 }}
-    className={`bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300
-      border-b-4 ${color}`}
-  >
-    <div className="flex items-center justify-between mb-4">
-      <div
-        className={`p-3 rounded-lg bg-opacity-20 ${color.replace(
-          "border",
-          "bg"
-        )}`}
-      >
-        <Icon
-          className={color.replace("border", "text").replace("-500", "-600")}
-        />
+const StatCard = ({ icon: Icon, title, value, color }) => (
+  <div className={`bg-white rounded-lg p-4 shadow-sm border-l-4 ${color}`}>
+    <div className="flex flex-col">
+      <div className="flex items-center justify-between mb-2">
+        <div
+          className={`p-2 rounded-lg ${color
+            .replace("border", "bg")
+            .replace("-500", "-50")}`}
+        >
+          <Icon className={color.replace("border", "text")} />
+        </div>
       </div>
-      <Stars className="text-yellow-400" />
+      <div className="mt-2">
+        <h3 className="text-xl font-bold text-gray-800">{value}</h3>
+        <p className="text-sm text-gray-600">{title}</p>
+      </div>
     </div>
-    <h3 className="text-2xl font-bold text-gray-800">{value}</h3>
-    <p className="text-sm font-medium text-gray-600 mt-1">{title}</p>
-    {description && <p className="text-xs text-gray-500 mt-2">{description}</p>}
-  </motion.div>
+  </div>
 );
 
 const ActionCard = ({ icon: Icon, title, description, onClick, color }) => (
-  <motion.div
-    whileHover={{ y: -5, scale: 1.02 }}
-    whileTap={{ scale: 0.98 }}
+  <div
     onClick={onClick}
-    className={`bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300
-      cursor-pointer border-b-4 ${color}`}
+    className={`bg-white rounded-lg p-4 shadow-sm border-l-4 ${color}`}
   >
-    <div
-      className={`p-4 rounded-lg bg-opacity-20 ${color.replace(
-        "border",
-        "bg"
-      )} mb-4`}
-    >
-      <Icon
-        className={`${color
-          .replace("border", "text")
-          .replace("-500", "-600")} text-4xl`}
-      />
+    <div className="flex items-center space-x-3">
+      <div
+        className={`p-3 rounded-lg ${color
+          .replace("border", "bg")
+          .replace("-500", "-50")}`}
+      >
+        <Icon className={color.replace("border", "text")} />
+      </div>
+      <div>
+        <h3 className="font-semibold text-gray-800">{title}</h3>
+        <p className="text-sm text-gray-600">{description}</p>
+      </div>
     </div>
-    <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
-    <p className="text-sm text-gray-600 mt-2">{description}</p>
-  </motion.div>
+  </div>
 );
 
 const Home = () => {
-  const [count, setCount] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
   const [stats, setStats] = useState({
-    activeDeliveries: 0,
-    successRate: 0,
-    totalEarnings: 0,
+    deliveries: 50000,
+    active: 247,
+    success: 98,
+    earnings: 125000,
   });
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const target = 50000;
-    if (count < target) {
-      const interval = setInterval(() => {
-        setCount((prev) => Math.min(prev + 500, target));
-      }, 50);
-      return () => clearInterval(interval);
-    }
-  }, [count]);
-
-  useEffect(() => {
-    // Animate other stats
-    const animateStats = () => {
-      setStats({
-        activeDeliveries: 247,
-        successRate: 98,
-        totalEarnings: 125000,
-      });
-    };
-
-    const timeout = setTimeout(animateStats, 500);
-    return () => clearTimeout(timeout);
-  }, []);
-
   const travelers = [
     {
-      profileImage: "https://via.placeholder.com/40",
-      name: "Baslael Workineh",
-      destination: "Addis Ababa to Mekele",
-      flightTime: "12/24/2024, 3:45 PM",
-      rating: 4.8,
-      deliveries: 156,
+      name: 'John Doe',
+      departure: 'Adama',
+      destination: 'Addis Ababa',
+      rating: 4.5,
+      flightTime: '2024-12-30T10:00:00Z',
+      profileImage: 'https://www.perfocal.com/blog/content/images/size/w960/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg',
     },
     {
-      profileImage: "https://via.placeholder.com/40",
-      name: "Jane Doe",
-      destination: "Addis Ababa to Bahir Dar",
-      flightTime: "12/25/2024, 1:30 PM",
-      rating: 4.9,
-      deliveries: 234,
+      name: 'John Doe',
+      departure: 'Adama',
+      destination: 'Addis Ababa',
+      rating: 4.5,
+      flightTime: '2024-12-30T10:00:00Z',
+      profileImage: 'https://www.perfocal.com/blog/content/images/size/w960/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg',
+    },
+    {
+      name: 'John Doe',
+      departure: 'Adama',
+      destination: 'Addis Ababa',
+      rating: 4.5,
+      flightTime: '2024-12-30T10:00:00Z',
+      profileImage: 'https://www.perfocal.com/blog/content/images/size/w960/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg',
+    },
+    {
+      name: 'John Doe',
+      departure: 'Adama',
+      destination: 'Addis Ababa',
+      rating: 4.5,
+      flightTime: '2024-12-30T10:00:00Z',
+      profileImage: 'https://www.perfocal.com/blog/content/images/size/w960/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg',
+    },
+    {
+      name: 'John Doe',
+      departure: 'Adama',
+      destination: 'Addis Ababa',
+      rating: 4.5,
+      flightTime: '2024-12-30T10:00:00Z',
+      profileImage: 'https://www.perfocal.com/blog/content/images/size/w960/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg',
     },
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="min-h-screen bg-gray-50 p-6 lg:p-8 mt-10"
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">
-            Dashboard Overview
-          </h1>
-          <p className="text-gray-600 mt-2">
-            Welcome back! Here's what's happening today.
-          </p>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <ActionCard
-            icon={AddIcon}
-            title="Send a Package"
-            description="Create a new delivery request"
-            onClick={() => navigate("/request")}
-            color="border-blue-500"
-          />
-          <ActionCard
-            icon={History}
-            title="View History"
-            description="Check past deliveries and analytics"
-            onClick={() => navigate("/history")}
-            color="border-purple-500"
-          />
-          <ActionCard
-            icon={Timeline}
-            title="Track Deliveries"
-            description="Monitor active shipments"
-            onClick={() => navigate("/tracking")}
-            color="border-green-500"
-          />
-        </div>
-
-        {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <StatCard
-            icon={LocalShipping}
-            title="Total Deliveries"
-            value={count.toLocaleString()}
-            description="Successfully completed deliveries"
-            color="border-orange-500"
-          />
-          <StatCard
-            icon={TrendingUp}
-            title="Active Deliveries"
-            value={stats.activeDeliveries}
-            description="Currently in transit"
-            color="border-blue-500"
-          />
-          <StatCard
-            icon={Stars}
-            title="Success Rate"
-            value={`${stats.successRate}%`}
-            description="Average completion rate"
-            color="border-green-500"
-          />
-          <StatCard
-            icon={EmojiEvents}
-            title="Total Earnings"
-            value={`$${stats.totalEarnings.toLocaleString()}`}
-            description="Platform-wide earnings"
-            color="border-purple-500"
-          />
-        </div>
-
-        {/* Status Section */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-6">
-            Active Travelers
-          </h2>
-          <Status travelers={travelers} />
-        </div>
+    <div className="min-h-screen bg-gray-50 w-full pt-10 px-4">
+      {/* Header */}
+      <div className="mt-10 mb-10">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
+          Dashboard Overview
+        </h1>
+        <p className="text-gray-600 mt-2 text-sm md:text-base">
+          Welcome back! Here's what's happening today.
+        </p>
       </div>
-    </motion.div>
+
+      {/* Quick Actions */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <ActionCard
+          icon={AddIcon}
+          title="Send Package"
+          description="Create new delivery"
+          onClick={() => navigate("/request")}
+          color="border-blue-500"
+        />
+        <ActionCard
+          icon={History}
+          title="View History"
+          description="Check past deliveries"
+          onClick={() => navigate("/history")}
+          color="border-purple-500"
+        />
+        <ActionCard
+          icon={Timeline}
+          title="Track Deliveries"
+          description="Monitor shipments"
+          onClick={() => navigate("/tracking")}
+          color="border-green-500"
+        />
+      </div>
+
+      {/* Statistics */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <StatCard
+          icon={LocalShipping}
+          title="Total Deliveries"
+          value={stats.deliveries.toLocaleString()}
+          color="border-orange-500"
+        />
+        <StatCard
+          icon={TrendingUp}
+          title="Active Deliveries"
+          value={stats.active}
+          color="border-blue-500"
+        />
+        <StatCard
+          icon={Stars}
+          title="Success Rate"
+          value={`${stats.success}%`}
+          color="border-green-500"
+        />
+        <StatCard
+          icon={Stars}
+          title="Total Earnings"
+          value={`$${stats.earnings.toLocaleString()}`}
+          color="border-purple-500"
+        />
+      </div>
+      <TravelersList travelers={travelers} />
+    </div>
   );
 };
 
