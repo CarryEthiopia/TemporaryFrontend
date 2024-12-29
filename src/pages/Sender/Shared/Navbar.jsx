@@ -1,21 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Menu as MenuIcon,
-  Close as CloseIcon,
   NotificationsOutlined,
-  Dashboard,
-  People,
-  Settings,
   AccountCircle,
-  BusinessCenter,
-  ExitToApp,
   NotificationsActive,
 } from "@mui/icons-material";
 import logo from "../../../assets/CLogo.jpeg";
 
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [activeText, setActiveText] = useState("Hi, Joshua 👋");
   const [showNotifications, setShowNotifications] = useState(false);
   const [notifications] = useState([
@@ -37,18 +29,6 @@ const Navbar = () => {
 
     return () => clearInterval(toggleText);
   }, []);
-
-  const handleLogout = () => {
-    // Add logout logic here
-    navigate("/signin");
-  };
-
-  const menuItems = [
-    { icon: <Dashboard />, text: "Dashboard", path: "/home" },
-    { icon: <People />, text: "Profile", path: "/home" },
-    { icon: <BusinessCenter />, text: "Delivery", path: "/home" },
-    { icon: <Settings />, text: "Report", path: "/home" },
-  ];
 
   return (
     <nav className="fixed top-0 left-0 w-full h-16 z-50 bg-white shadow-md">
