@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Our from "./Our";
-import { Link } from "react-router-dom"; // Import Link for navigation
+import { Link, useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate(); // For programmatic navigation
+  const [isSignedIn, setIsSignedIn] = useState(false); // Simulated signed-in state
+
+  const handleGetInTouchClick = () => {
+    if (isSignedIn) {
+      // Proceed to the "Get in Touch" page
+      navigate("/get-in-touch");
+    } else {
+      // Redirect to the Sign-in page
+      navigate("/signin");
+    }
+  };
+
   return (
     <section
       id="about"
@@ -31,23 +44,24 @@ const About = () => {
         {/* CTA Section */}
         <div className="mt-6 text-center">
           <div className="inline-flex rounded-md shadow">
-            <Link to="/get-in-touch">
-              <button className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
-                Get in Touch
-                <svg
-                  className="ml-3 -mr-1 h-5 w-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-            </Link>
+            <button
+              className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
+              onClick={handleGetInTouchClick}
+            >
+              Get in Touch
+              <svg
+                className="ml-3 -mr-1 h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

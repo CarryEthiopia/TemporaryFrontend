@@ -6,15 +6,12 @@ import {
   NotificationsActive,
 } from "@mui/icons-material";
 import logo from "../../../assets/CLogo.jpeg";
+import { notificationsData } from "../../Sender/FetchedData";
 
 const Navbar = () => {
   const [activeText, setActiveText] = useState("Hi, Joshua 👋");
   const [showNotifications, setShowNotifications] = useState(false);
-  const [notifications] = useState([
-    { id: 1, text: "New message from Team", time: "5m ago", unread: true },
-    { id: 2, text: "Meeting at 3 PM", time: "1h ago", unread: true },
-    { id: 3, text: "Task completed", time: "2h ago", unread: false },
-  ]);
+  const [notifications] = useState(notificationsData);
 
   const navigate = useNavigate();
 

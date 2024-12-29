@@ -1,4 +1,5 @@
 // FetchedData.jsx
+
 export const dashboardStats = {
   deliveries: 50000,
   active: 247,
@@ -67,4 +68,8 @@ export const profileData = {
   },
 };
 
-// Add any other data that needs to be centralized
+export const notificationsData = [
+  { id: 1, text: "New message from Team", time: "5m ago", unread: true },
+  { id: 2, text: "Meeting at 3 PM", time: "1h ago", unread: true },
+  { id: 3, text: "Task completed", time: "2h ago", unread: false },
+];

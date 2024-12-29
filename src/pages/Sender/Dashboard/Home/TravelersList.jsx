@@ -6,6 +6,8 @@ import {
   Close,
   Star,
   Search,
+  KeyboardArrowDown,
+  Badge,
 } from "@mui/icons-material";
 
 const FilterModal = ({ isOpen, onClose, filters, setFilters }) => {
@@ -140,6 +142,7 @@ const TravelersList = ({ travelers }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [sortBy, setSortBy] = useState("name");
+  const [expandedTraveler, setExpandedTraveler] = useState(null);
   const [filters, setFilters] = useState({
     startDate: "",
     endDate: "",
@@ -188,6 +191,9 @@ const TravelersList = ({ travelers }) => {
           return 0;
       }
     });
+  const toggleExpand = (travelerId) => {
+    setExpandedTraveler(expandedTraveler === travelerId ? null : travelerId);
+  };
 
   return (
     <div className="bg-white shadow-sm rounded-lg overflow-hidden pb-16">
@@ -227,7 +233,7 @@ const TravelersList = ({ travelers }) => {
         </div>
       </div>
 
-      {/* Travelers List */}
+      {/* Modified Travelers List */}
       <div className="divide-y divide-gray-100">
         {filteredAndSortedTravelers.map((traveler, index) => (
           <div
@@ -275,14 +281,60 @@ const TravelersList = ({ travelers }) => {
                 </div>
               </div>
 
-              {/* Actions */}
-              <div className="flex flex-col sm:flex-row gap-2">
-                <button className="p-2 rounded-full hover:bg-gray-100">
-                  <span className="material-icons">more_vert</span>
+              {/* Modified Actions with Dropdown */}
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => toggleExpand(traveler.id)}
+                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                  <KeyboardArrowDown
+                    className={`transform transition-transform duration-300 ${
+                      expandedTraveler === traveler.id ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
                 <button className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                   Contact
                 </button>
+              </div>
+            </div>
+
+            {/* Expandable Content */}
+            <div
+              className={`
+                overflow-hidden transition-all duration-300 mt-4
+                ${
+                  expandedTraveler === traveler.id
+                    ? "max-h-[500px] opacity-100"
+                    : "max-h-0 opacity-0"
+                }
+              `}
+            >
+              <div className="space-y-4 pl-16">
+                <div className="flex items-center space-x-2">
+                  <Badge className="text-gray-600" />
+                  <span className="text-sm text-gray-700">
+                    ID: {traveler.id}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <AccessTime className="text-orange-500" />
+                  <span className="text-sm text-gray-600">
+                    {new Date(traveler.flightTime).toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <LocationOn className="text-orange-500" />
+                  <span className="text-sm text-gray-600">
+                    From: {traveler.departure}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <LocationOn className="text-orange-500" />
+                  <span className="text-sm text-gray-600">
+                    To: {traveler.destination}
+                  </span>
+                </div>
               </div>
             </div>
           </div>

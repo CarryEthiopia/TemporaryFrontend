@@ -72,10 +72,10 @@ const Delivery = () => {
           <div className="flex items-center justify-between flex-col sm:flex-row">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                <Dashboard className="text-orange-500" />
+                <Dashboard className="text-#0f172a" />
                 Delivery Management
               </h1>
-              <p className="mt-2 text-sm text-gray-600">
+              <p className="mt-2 text-sm text-#0f172a">
                 Track and manage your deliveries efficiently
               </p>
             </div>

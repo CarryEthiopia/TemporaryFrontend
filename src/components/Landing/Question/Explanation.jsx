@@ -1,13 +1,27 @@
 import React, { useState } from "react";
 import { Message, ExpandMore, ExpandLess } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Explanation = () => {
   const [openQuestion, setOpenQuestion] = useState(null);
+  const navigate = useNavigate();
 
-  const handleToggle = (id) => {
-    setOpenQuestion(openQuestion === id ? null : id);
+  // Simulated user authentication check
+  const isUserSignedIn = () => {
+    // Replace this with real authentication logic in the future
+    const userSignedIn = false; // Simulate user not signed in
+    return userSignedIn;
+  };
+
+  const handleContactSupport = () => {
+    if (isUserSignedIn()) {
+      console.log("User is signed in, navigating to Contact Support page.");
+      navigate("/ask-questions");
+    } else {
+      console.log("User not signed in, redirecting to Sign In page.");
+      navigate("/signin");
+    }
   };
 
   const sections = [
@@ -145,12 +159,13 @@ const Explanation = () => {
         <p className="text-lg text-gray-800 mb-4">
           Still have questions? We're here to help.
         </p>
-        <Link to="/ask-questions">
-          <button className="flex items-center justify-center mx-auto px-6 py-3 text-white bg-[#08094b] rounded-full shadow-md hover:bg-[#060741] transition-all duration-300">
-            <Message className="mr-3" />
-            Contact Support
-          </button>
-        </Link>
+        <button
+          onClick={handleContactSupport}
+          className="flex items-center justify-center mx-auto px-6 py-3 text-white bg-[#08094b] rounded-full shadow-md hover:bg-[#060741] transition-all duration-300"
+        >
+          <Message className="mr-3" />
+          Contact Support
+        </button>
       </div>
     </div>
   );

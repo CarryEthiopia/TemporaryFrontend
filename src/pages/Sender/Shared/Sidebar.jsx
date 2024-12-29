@@ -84,7 +84,7 @@ const Sidebar = ({ setActiveComponent }) => {
             ${!isMobile && "mr-3"} 
             transition-transform duration-200
             group-hover:scale-110
-            ${isActive ? "text-black scale-110" : "text-white"}
+            ${isActive ? "text-black scale-110" : "text-gray-500"}
           `}
         >
           {item.icon}
@@ -93,7 +93,7 @@ const Sidebar = ({ setActiveComponent }) => {
           className={`
             ${isMobile ? "text-xs mt-1" : "text-sm"}
             font-medium
-            ${isActive ? "text-black font-semibold" : "text-white"}
+            ${isActive ? "text-black font-semibold" : "text-gray-500"}
           `}
         >
           {item.text}
@@ -108,7 +108,7 @@ const Sidebar = ({ setActiveComponent }) => {
 
       {/* Desktop Sidebar */}
       {!isMobile && (
-        <div className="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#0f172a] shadow-lg border-r border-gray-200">
+        <div className="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-white shadow-lg border-r border-gray-200">
           <div className="flex flex-col p-4 space-y-2">
             {menuItems.map((item) => (
               <MenuItem key={item.id} item={item} />
@@ -119,7 +119,7 @@ const Sidebar = ({ setActiveComponent }) => {
 
       {/* Mobile Bottom Navigation */}
       {isMobile && (
-        <div className="fixed bottom-0 left-0 right-0 bg-[#0f172a] shadow-lg border-t border-gray-200 z-40">
+        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 z-40">
           <div className="grid grid-cols-5 py-2 px-4">
             {menuItems.map((item) => (
               <MenuItem key={item.id} item={item} />

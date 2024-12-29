@@ -51,7 +51,7 @@ const Card = ({
           {/* Profile Section */}
           <div className="flex items-center space-x-3">
             <div className="relative">
-              <div className="w-12 h-12 bg-gray-200 rounded-full overflow-hidden ring-2 ring-offset-2 ring-orange-500">
+              <div className="w-12 h-12 bg-gray-200 rounded-full overflow-hidden ring-2 ring-offset-2 ring-#0f172a">
                 <img
                   src="https://via.placeholder.com/48"
                   alt="Traveler"
@@ -97,23 +97,23 @@ const Card = ({
           <div className="space-y-4 pt-2 border-t">
             {/* Delivery Info */}
             <div className="flex items-center space-x-2">
-              <LocalShipping className="text-orange-500" fontSize="small" />
+              <LocalShipping className="text-#0f172a" fontSize="small" />
               <span className="text-sm text-gray-700">ID: {deliveryId}</span>
             </div>
 
             <div className="flex items-center space-x-2">
-              <LocationOn className="text-orange-500" fontSize="small" />
+              <LocationOn className="text-red-500" fontSize="small" />
               <span className="text-sm text-gray-600">{route}</span>
             </div>
 
             <div className="flex items-center space-x-2">
-              <Schedule className="text-orange-500" fontSize="small" />
+              <Schedule className="text-red-500" fontSize="small" />
               <span className="text-sm text-gray-600">{date}</span>
             </div>
 
             {/* Items */}
             <div className="flex items-center space-x-2">
-              <Inventory className="text-orange-500" fontSize="small" />
+              <Inventory className="text-#0f172a" fontSize="small" />
               <div className="flex flex-wrap gap-2">
                 {items.map((item, index) => (
                   <span
@@ -130,14 +130,14 @@ const Card = ({
             {type === "delivered" && (
               <div className="grid grid-cols-2 gap-3">
                 <div className="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg">
-                  <LocalShipping className="text-orange-500" fontSize="small" />
+                  <LocalShipping className="text-#0f172a" fontSize="small" />
                   <div className="flex flex-col">
                     <span className="text-xs text-gray-500">Delivered</span>
                     <span className="font-semibold">{stats.delivered}</span>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg">
-                  <ThumbUp className="text-orange-500" fontSize="small" />
+                  <ThumbUp className="text-green-500" fontSize="small" />
                   <div className="flex flex-col">
                     <span className="text-xs text-gray-500">Rating</span>
                     <span className="font-semibold">{stats.rating}%</span>
@@ -156,7 +156,7 @@ const Card = ({
 
             {/* Contact Button */}
             <div className="flex items-center space-x-2">
-              <Chat className="text-orange-500" fontSize="small" />
+              <Chat className="text-#0f172a" fontSize="small" />
               <span className="text-sm text-gray-600">Contact Traveler</span>
             </div>
           </div>
@@ -164,11 +164,11 @@ const Card = ({
 
         {/* View Details Button - Always Visible */}
         <button
-          className="w-full mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg font-medium
-            hover:bg-orange-600 active:bg-orange-700 
+          className="w-full mt-4 px-4 py-2 bg-[#0f172a] text-white rounded-lg font-medium
+            hover:bg-blue-600 active:bg-[#0f172a]
             transform transition-all duration-300
             hover:shadow-lg
-            focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+            focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
         >
           <Chat className="text-white" fontSize="small" />
           Contact Traveler
@@ -181,7 +181,7 @@ const Card = ({
           {/* Profile Section */}
           <div className="flex items-center space-x-3">
             <div className="relative">
-              <div className="w-16 h-16 bg-gray-200 rounded-full overflow-hidden ring-2 ring-offset-2 ring-orange-500">
+              <div className="w-16 h-16 bg-gray-200 rounded-full overflow-hidden ring-2 ring-offset-2 ring-#0f172a">
                 <img
                   src="https://via.placeholder.com/48"
                   alt="Traveler"
@@ -228,7 +228,7 @@ const Card = ({
           <div className="space-y-4 pt-2 border-t">
             {/* Delivery Info */}
             <div className="flex items-center space-x-2">
-              <LocalShipping className="text-orange-500" fontSize="small" />
+              <LocalShipping className="text-#0f172a" fontSize="small" />
               <span className="text-sm text-gray-700">ID: {deliveryId}</span>
             </div>
 
@@ -244,7 +244,7 @@ const Card = ({
 
             {/* Items */}
             <div className="flex items-center space-x-2">
-              <Inventory className="text-orange-500" fontSize="small" />
+              <Inventory className="text-#0f172a" fontSize="small" />
               <div className="flex flex-wrap gap-2">
                 {items.map((item, index) => (
                   <span
@@ -261,14 +261,14 @@ const Card = ({
             {type === "delivered" && (
               <div className="grid grid-cols-2 gap-3">
                 <div className="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg">
-                  <LocalShipping className="text-orange-500" fontSize="small" />
+                  <LocalShipping className="text-#0f172a" fontSize="small" />
                   <div className="flex flex-col">
                     <span className="text-xs text-gray-500">Delivered</span>
                     <span className="font-semibold">{stats.delivered}</span>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg">
-                  <ThumbUp className="text-orange-500" fontSize="small" />
+                  <ThumbUp className="text-green-500" fontSize="small" />
                   <div className="flex flex-col">
                     <span className="text-xs text-gray-500">Rating</span>
                     <span className="font-semibold">{stats.rating}%</span>
@@ -287,11 +287,22 @@ const Card = ({
 
             {/* Contact Button */}
             <div className="flex items-center space-x-2">
-              <Chat className="text-orange-500" fontSize="small" />
+              <Chat className="text-#0f172a" fontSize="small" />
               <span className="text-sm text-gray-600">Contact Traveler</span>
             </div>
           </div>
         </div>
+        {/* View Details Button - Always Visible */}
+        <button
+          className="w-full mt-4 px-4 py-2 bg-[#0f172a] text-white rounded-lg font-medium
+            hover:bg-blue-600 active:bg-[#0f172a]
+            transform transition-all duration-300
+            hover:shadow-lg
+            focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+        >
+          <Chat className="text-white" fontSize="small" />
+          Contact Traveler
+        </button>
       </div>
     </div>
   );
