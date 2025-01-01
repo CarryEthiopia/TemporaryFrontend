@@ -7,6 +7,7 @@ import {
   Dashboard as DashboardIcon,
   Assessment as AssessmentIcon,
   Menu as MenuIcon,
+  FlightTakeoff as FlightTakeoffIcon, // New icon for Go To Traveler
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -38,14 +39,14 @@ const Sidebar = ({ setActiveComponent }) => {
       component: "Delivery",
     },
     {
-      id: "Reports", 
+      id: "Reports",
       text: "Reports",
       icon: <AssessmentIcon />,
       component: "Reports",
     },
     {
       id: "Profile",
-      text: "Profile", 
+      text: "Profile",
       icon: <AccountCircleIcon />,
       component: "Profile",
     },
@@ -54,7 +55,19 @@ const Sidebar = ({ setActiveComponent }) => {
       text: "Logout",
       icon: <ExitToAppIcon />,
       onClick: () => navigate("/"),
-    }
+    },
+    {
+      id: "Traveler",
+      text: "Go To Traveler",
+      icon: <FlightTakeoffIcon />,
+      onClick: () => navigate("/traveler"),
+      style: {
+        backgroundColor: "#F0F4FF",
+        border: "1px solid #2E5CFF",
+        borderRadius: "8px",
+        color: "#2E5CFF",
+      },
+    },
   ];
 
   const MenuItem = ({ item }) => {
@@ -78,6 +91,7 @@ const Sidebar = ({ setActiveComponent }) => {
           ${isMobile ? "flex-col p-2" : "p-3 mb-2"}
           group
         `}
+        style={item.style || {}}
       >
         <div
           className={`
