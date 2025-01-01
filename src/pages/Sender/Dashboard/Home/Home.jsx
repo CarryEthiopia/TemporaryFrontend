@@ -13,6 +13,7 @@ import {
 } from "@mui/icons-material";
 import TravelersList from "./TravelersList";
 import { dashboardStats, travelers } from "../../../Sender/FetchedData";
+import SendPackageModal from "./SendPackageModal";
 
 
 const StatCard = ({ icon: Icon, title, value, color }) => (
@@ -59,6 +60,11 @@ const ActionCard = ({ icon: Icon, title, description, onClick, color }) => (
 const Home = () => {
   const [stats, setStats] = useState(dashboardStats);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <div className="min-h-screen bg-gray-50 w-full pt-10 px-4">
       {/* Header */}
@@ -77,7 +83,7 @@ const Home = () => {
           icon={AddIcon}
           title="Send Package"
           description="Create new delivery"
-          onClick={() => navigate("/request")}
+          onClick={openModal}
           color="border-blue-500"
         />
         <ActionCard
@@ -123,6 +129,7 @@ const Home = () => {
           color="border-purple-500"
         />
       </div>
+      <SendPackageModal isOpen={isModalOpen} onClose={closeModal} />
       <TravelersList travelers={travelers} />
     </div>
   );
