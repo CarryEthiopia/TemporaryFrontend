@@ -11,7 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
-const Sidebar = ({ setActiveComponent }) => {
+const Sidebar = ({ TsetActiveComponent }) => {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState("Dashboard");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
@@ -68,7 +68,7 @@ const Sidebar = ({ setActiveComponent }) => {
       if (item.onClick) {
         item.onClick();
       } else {
-        setActiveComponent(item.component);
+        TsetActiveComponent(item.component);
         setActiveItem(item.id);
       }
     };
