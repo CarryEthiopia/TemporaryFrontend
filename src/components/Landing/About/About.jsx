@@ -1,0 +1,72 @@
+import React, { useState } from "react";
+import Our from "./Our";
+import { Link, useNavigate } from "react-router-dom";
+
+const About = () => {
+  const navigate = useNavigate(); // For programmatic navigation
+  const [isSignedIn, setIsSignedIn] = useState(false); // Simulated signed-in state
+
+  const handleGetInTouchClick = () => {
+    if (isSignedIn) {
+      // Proceed to the "Get in Touch" page
+      navigate("/get-in-touch");
+    } else {
+      // Redirect to the Sign-in page
+      navigate("/signin");
+    }
+  };
+
+  return (
+    <section
+      id="about"
+      className="min-h-screen bg-gradient-to-b from-white to-gray-50 py-20"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <span className="text-gray-900">About </span>
+            <span className="text-orange-600">Us</span>
+          </h2>
+          <div className="w-24 h-1 bg-orange-600 mx-auto my-6"></div>
+          <p className="mt-8 max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
+            Transforming global logistics through innovation and reliability.
+            We're committed to creating seamless shipping experiences that
+            connect businesses and people worldwide.
+          </p>
+        </div>
+
+        {/* Our Component */}
+        <div className="mb-5 mt-20">
+          <Our />
+        </div>
+
+        {/* CTA Section */}
+        <div className="mt-6 text-center">
+          <div className="inline-flex rounded-md shadow">
+            <button
+              className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 transition-all duration-300 transform hover:scale-105"
+              onClick={handleGetInTouchClick}
+            >
+              Get in Touch
+              <svg
+                className="ml-3 -mr-1 h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;
