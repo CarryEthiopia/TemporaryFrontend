@@ -21,11 +21,11 @@ const Our = () => {
         {sections.map((section, index) => (
           <div
             key={index}
-            className="relative p-8 bg-white border-2 border-blue-600 rounded-none shadow-lg transition-shadow duration-300 hover:shadow-xl"
+            className="relative p-8 bg-white border-2 border-orange-600 rounded-none shadow-lg transition-shadow duration-300 hover:shadow-xl"
           >
             <div className="relative z-10">
-              <h3 className="text-2xl font-semibold text-blue-600 mb-4">{section.title}</h3>
-              <div className="w-20 h-1 bg-blue-600 mb-4 rounded-full" />
+              <h3 className="text-2xl font-semibold text-orange-600 mb-4">{section.title}</h3>
+              <div className="w-20 h-1 bg-orange-600 mb-4 rounded-full" />
               <p className="text-gray-700 leading-relaxed text-lg">{section.content}</p>
             </div>
           </div>

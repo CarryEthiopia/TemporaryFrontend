@@ -1,40 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   Add as AddIcon,
-  LocalShipping,
   History,
   Timeline,
-  TrendingUp,
-  Stars,
-  Search,
-  LocationOn,
-  AccessTime,
 } from "@mui/icons-material";
 import TravelersList from "./TravelersList";
 import { dashboardStats, travelers } from "../../../Sender/FetchedData";
 import SendPackageModal from "./SendPackageModal";
 
-
-const StatCard = ({ icon: Icon, title, value, color }) => (
-  <div className={`bg-white rounded-lg p-4 shadow-sm border-l-4 ${color}`}>
-    <div className="flex flex-col">
-      <div className="flex items-center justify-between mb-2">
-        <div
-          className={`p-2 rounded-lg ${color
-            .replace("border", "bg")
-            .replace("-500", "-50")}`}
-        >
-          <Icon className={color.replace("border", "text")} />
-        </div>
-      </div>
-      <div className="mt-2">
-        <h3 className="text-xl font-bold text-gray-800">{value}</h3>
-        <p className="text-sm text-gray-600">{title}</p>
-      </div>
-    </div>
-  </div>
-);
 
 const ActionCard = ({ icon: Icon, title, description, onClick, color }) => (
   <div
@@ -99,34 +72,6 @@ const Home = () => {
           description="Monitor shipments"
           onClick={() => navigate("/tracking")}
           color="border-green-500"
-        />
-      </div>
-
-      {/* Statistics */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <StatCard
-          icon={LocalShipping}
-          title="Total Deliveries"
-          value={stats.deliveries.toLocaleString()}
-          color="border-orange-500"
-        />
-        <StatCard
-          icon={TrendingUp}
-          title="Active Deliveries"
-          value={stats.active}
-          color="border-blue-500"
-        />
-        <StatCard
-          icon={Stars}
-          title="Success Rate"
-          value={`${stats.success}%`}
-          color="border-green-500"
-        />
-        <StatCard
-          icon={Stars}
-          title="Total Earnings"
-          value={`$${stats.earnings.toLocaleString()}`}
-          color="border-purple-500"
         />
       </div>
       <SendPackageModal isOpen={isModalOpen} onClose={closeModal} />

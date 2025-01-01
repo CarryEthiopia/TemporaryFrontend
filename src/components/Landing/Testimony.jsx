@@ -13,7 +13,7 @@ const Testimony = () => {
       text: "Carry Ethiopia has transformed our international shipping experience. The platform's efficiency and reliability have made it an integral part of our business operations.",
       name: "Sarah Johnson",
       role: "Regular Sender",
-      icon: <PersonIcon />,
+      icon: <PersonIcon />, 
       profileImage: "profile1",
       category: "Business Owner",
     },
@@ -64,12 +64,20 @@ const Testimony = () => {
             sx={{
               fontWeight: 700,
               mb: 2,
-              background: "linear-gradient(45deg, #2B2B2B 30%, #F66F1E 90%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
             }}
           >
-            Customer Testimonials
+            <span style={{ color: "#000" }}>Customer </span>
+            <span style={{ color: "#F66F1E" }}>Testimonials</span>
+            <Box
+              component="span"
+              sx={{
+                display: "block",
+                width: "60px",
+                height: "4px",
+                backgroundColor: "#F66F1E",
+                margin: "8px auto 0",
+              }}
+            ></Box>
           </Typography>
           <Typography
             variant="subtitle1"
