@@ -9,6 +9,7 @@ import {
   KeyboardArrowDown,
   Badge,
 } from "@mui/icons-material";
+import ChatModal from "../../../../components/chat/ChatModal";
 
 const FilterModal = ({ isOpen, onClose, filters, setFilters }) => {
   const [tempFilters, setTempFilters] = useState(filters);
@@ -194,6 +195,13 @@ const TravelersList = ({ travelers }) => {
   const toggleExpand = (travelerId) => {
     setExpandedTraveler(expandedTraveler === travelerId ? null : travelerId);
   };
+  const [selectedTraveler, setSelectedTraveler] = useState(null);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+    const handleContactClick = (traveler) => {
+      setSelectedTraveler(traveler);
+      setIsChatOpen(true);
+    };
 
   return (
     <div className="bg-white shadow-sm rounded-lg overflow-hidden pb-16">
@@ -293,12 +301,25 @@ const TravelersList = ({ travelers }) => {
                     }`}
                   />
                 </button>
-                <button className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                <button
+                  onClick={() => handleContactClick(traveler)}
+                  className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                >
                   Contact
                 </button>
               </div>
             </div>
 
+            {selectedTraveler && (
+              <ChatModal
+                isOpen={isChatOpen}
+                onClose={() => {
+                  setIsChatOpen(false);
+                  setSelectedTraveler(null);
+                }}
+                traveler={selectedTraveler}
+              />
+            )}
             {/* Expandable Content */}
             <div
               className={`
