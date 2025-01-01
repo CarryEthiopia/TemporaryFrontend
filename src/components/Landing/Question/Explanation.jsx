@@ -23,7 +23,9 @@ const Explanation = () => {
       navigate("/signin");
     }
   };
-
+const handleToggle = (id) => {
+  setOpenQuestion((prev) => (prev === id ? null : id));
+};
   const sections = [
     {
       title: "General",

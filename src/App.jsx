@@ -11,14 +11,16 @@ import Home from "./pages/Sender/Dashboard/Home/Home";
 import Message from "./pages/Sender/Message/Left";
 import Profile from "./pages/Sender/Profile/Profile";
 import Report from "./pages/Sender/Report/Report";
-import ItemRequest from "./pages/Sender/Request/ItemRequest"; // Corrected import
-
-const Team = () => <div>Team Component</div>;
-const Statistics = () => <div>Statistics Component</div>;
-const Settings = () => <div>Settings Component</div>;
+import ItemRequest from "./pages/Sender/Request/ItemRequest";
+import TravelerSidebar from "./pages/Traveler/Shared/Sidebar";
+import TravelerHome from "./pages/Traveler/Dashboard/Home/Home";
+import TravelerProfile from "./pages/Traveler/Profile/Profile";
+import TravelerReport from "./pages/Traveler/Report/Report";
+import TravelerDelivery from "./pages/Traveler/Deliveries/Deliveries";
 
 function App() {
   const [activeComponent, setActiveComponent] = useState("Dashboard");
+  const [TactiveComponent, TsetActiveComponent] = useState("TDashboard");
 
   const renderActiveComponent = () => {
     switch (activeComponent) {
@@ -28,16 +30,25 @@ function App() {
         return <Delivery />;
       case "Messages":
         return <Message />;
-      case "Team":
-        return <Team />;
       case "Reports":
         return <Report />;
-      case "Statistics":
-        return <Statistics />;
       case "Profile":
         return <Profile />;
-      case "Settings":
-        return <Settings />;
+      default:
+        return <div>Select an option from the sidebar</div>;
+    }
+  };
+
+  const TrenderActiveComponent = () => {
+    switch (TactiveComponent) {
+      case "TDashboard":
+        return <TravelerHome />;
+      case "TDelivery":
+        return <TravelerDelivery />;
+      case "TReports":
+        return <TravelerReport />;
+      case "TProfile":
+        return <TravelerProfile />;
       default:
         return <div>Select an option from the sidebar</div>;
     }
@@ -46,14 +57,15 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/get-in-touch" element={<GetInTouch />} />
         <Route path="/ask-questions" element={<AskQuestions />} />
-        <Route path="/request" element={<ItemRequest />} />{" "}
-        {/* Corrected route */}
-        {/* Route for Home */}
+        <Route path="/request" element={<ItemRequest />} />
+
+        {/* Sender Routes */}
         <Route
           path="/home"
           element={
@@ -61,6 +73,19 @@ function App() {
               <Sidebar setActiveComponent={setActiveComponent} />
               <main className="flex-1 bg-gray-100">
                 {renderActiveComponent()}
+              </main>
+            </div>
+          }
+        />
+
+        {/* Traveler Routes */}
+        <Route
+          path="/traveler-home"
+          element={
+            <div className="flex h-screen">
+              <TravelerSidebar TsetActiveComponent={TsetActiveComponent} />
+              <main className="flex-1 bg-gray-100">
+                {TrenderActiveComponent()}
               </main>
             </div>
           }
