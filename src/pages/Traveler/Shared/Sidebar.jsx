@@ -26,28 +26,28 @@ const Sidebar = ({ TsetActiveComponent }) => {
 
   const menuItems = [
     {
-      id: "Dashboard",
+      id: "TDashboard",
       text: "Dashboard",
       icon: <DashboardIcon />,
-      component: "Dashboard",
+      component: "TDashboard",
     },
     {
-      id: "Delivery",
+      id: "TDelivery",
       text: "Deliveries",
       icon: <LocalShippingIcon />,
-      component: "Delivery",
+      component: "TDelivery",
     },
     {
-      id: "Reports",
+      id: "TReports",
       text: "Reports",
       icon: <AssessmentIcon />,
-      component: "Reports",
+      component: "TReports",
     },
     {
-      id: "Profile",
+      id: "TProfile",
       text: "Profile",
       icon: <AccountCircleIcon />,
-      component: "Profile",
+      component: "TProfile",
     },
     {
       id: "Logout",
