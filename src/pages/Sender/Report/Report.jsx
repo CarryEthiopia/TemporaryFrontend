@@ -158,7 +158,7 @@ const Report = () => {
         </div>
 
         {/* Report Boxes */}
-        <ReportBox key={contentKey} />
+        {/* <ReportBox key={contentKey} /> */}
 
         {/* Statistics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
