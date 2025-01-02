@@ -122,7 +122,7 @@ const Report = () => {
                   Dashboard Overview
                 </h2>
                 <p className="text-sm text-gray-500">
-                  Welcome back to Carry Ethiopia Dashboard
+                  Welcome back to Carry Ethiopia Dashboard as a Sender 
                 </p>
               </div>
             </div>
