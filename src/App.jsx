@@ -8,7 +8,6 @@ import SignUp from "./pages/Landing/Registration/Signup";
 import Sidebar from "./pages/Sender/Shared/Sidebar";
 import Delivery from "./pages/Sender/Delivery/Delivery";
 import Home from "./pages/Sender/Dashboard/Home/Home";
-import Message from "./pages/Sender/Message/Left";
 import Profile from "./pages/Sender/Profile/Profile";
 import Report from "./pages/Sender/Report/Report";
 import ItemRequest from "./pages/Sender/Request/ItemRequest";
@@ -28,8 +27,6 @@ function App() {
         return <Home />;
       case "Delivery":
         return <Delivery />;
-      case "Messages":
-        return <Message />;
       case "Reports":
         return <Report />;
       case "Profile":
