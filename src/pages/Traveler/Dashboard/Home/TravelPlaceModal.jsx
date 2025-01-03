@@ -1,9 +1,11 @@
 // components/SendPackageModal.jsx
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import {
   Close as CloseIcon,
   CloudUpload as CloudUploadIcon,
 } from '@mui/icons-material';
+import PropTypes from 'prop-types'; // Add this import
+
 
 const SendPackageModal = ({ isOpen, onClose }) => {
   const [form, setForm] = useState({
@@ -262,6 +264,11 @@ const SendPackageModal = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
+};
+// Add PropTypes validation
+SendPackageModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default SendPackageModal;

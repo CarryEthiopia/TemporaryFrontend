@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import {
   FaSearch,
   FaPlane,
   FaClock,
   FaMapMarkerAlt,
-  FaUser,
   FaCalendar,
   FaTicketAlt,
 } from "react-icons/fa";
+import PropTypes from "prop-types"; // Import PropTypes
+
 
 const Status = ({ senders }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -145,6 +146,20 @@ const Status = ({ senders }) => {
       </div>
     </div>
   );
+};
+Status.propTypes = {
+  senders: PropTypes.arrayOf(
+    PropTypes.shape({
+      profileImage: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      bookingId: PropTypes.string.isRequired,
+      destination: PropTypes.string.isRequired,
+      flightTime: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      flightStatus: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Status;

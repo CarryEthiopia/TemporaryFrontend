@@ -1,31 +1,25 @@
-// components/chat/MessageInput.jsx
-import React, { useState } from 'react';
-import { Send, AttachFile, EmojiEmotions } from '@mui/icons-material';
+import { useState } from "react";
+import PropTypes from "prop-types"; // Import PropTypes
+import { Send, AttachFile, EmojiEmotions } from "@mui/icons-material";
 
 const MessageInput = ({ onSendMessage }) => {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (message.trim()) {
       onSendMessage(message);
-      setMessage('');
+      setMessage("");
     }
   };
 
   return (
     <div className="border-t p-4">
       <form onSubmit={handleSubmit} className="flex items-center space-x-2">
-        <button
-          type="button"
-          className="p-2 hover:bg-gray-100 rounded-full"
-        >
+        <button type="button" className="p-2 hover:bg-gray-100 rounded-full">
           <AttachFile className="text-gray-600 transform rotate-45" />
         </button>
-        <button
-          type="button"
-          className="p-2 hover:bg-gray-100 rounded-full"
-        >
+        <button type="button" className="p-2 hover:bg-gray-100 rounded-full">
           <EmojiEmotions className="text-gray-600" />
         </button>
         <input
@@ -45,6 +39,11 @@ const MessageInput = ({ onSendMessage }) => {
       </form>
     </div>
   );
+};
+
+// Define PropTypes for the component
+MessageInput.propTypes = {
+  onSendMessage: PropTypes.func.isRequired, // onSendMessage is a required function
 };
 
 export default MessageInput;

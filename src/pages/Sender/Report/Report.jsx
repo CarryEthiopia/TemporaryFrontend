@@ -12,7 +12,8 @@ import {
   Stars,
 } from "@mui/icons-material";
 import { Button, Menu, MenuItem, IconButton, Tooltip } from "@mui/material";
-import ReportBox from "./ReportBox";
+import PropTypes from 'prop-types'; // Import PropTypes
+
 
 const StatCard = ({ icon: Icon, title, value, color }) => (
   <div className={`bg-white rounded-lg p-4 shadow-sm border-l-4 ${color}`}>
@@ -33,9 +34,16 @@ const StatCard = ({ icon: Icon, title, value, color }) => (
     </div>
   </div>
 );
+// Prop validation for StatCard
+StatCard.propTypes = {
+  icon: PropTypes.elementType.isRequired, // Expecting an icon component (e.g., from react-icons)
+  title: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // Can be string or number
+  color: PropTypes.string.isRequired,
+};
 
 const Report = () => {
-  const [contentKey, setContentKey] = useState(0);
+  const [ setContentKey] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedTime, setSelectedTime] = useState("All Time");
   const [isLoading, setIsLoading] = useState(false);
@@ -61,6 +69,8 @@ const Report = () => {
     { label: "Last 30 Days", value: "month" },
     { label: "All Time", value: "all" },
   ];
+
+
 
   return (
     <div className="min-h-screen bg-gray-50 transition-all duration-300 mt-10 pb-10">

@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import  { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FiShield, FiDollarSign, FiGlobe } from "react-icons/fi";
+import PropTypes from "prop-types";
+
 
 const WhatWeOffer = () => {
   const offers = [
@@ -118,7 +120,11 @@ const CountUpStat = ({ finalValue, label, suffix }) => {
   const [value, setValue] = useState(0);
   const [hasCounted, setHasCounted] = useState(false);
   const sectionRef = useRef(null);
-
+CountUpStat.propTypes = {
+  finalValue: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired,
+  suffix: PropTypes.string,
+};
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {

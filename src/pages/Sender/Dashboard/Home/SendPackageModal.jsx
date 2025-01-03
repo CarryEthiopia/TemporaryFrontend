@@ -1,39 +1,39 @@
-// components/SendPackageModal.jsx
-import React, { useState } from 'react';
+import { useState } from "react";
 import {
   Close as CloseIcon,
   CloudUpload as CloudUploadIcon,
-} from '@mui/icons-material';
+} from "@mui/icons-material";
+import PropTypes from "prop-types"; // Add this import
 
 const SendPackageModal = ({ isOpen, onClose }) => {
   const [form, setForm] = useState({
-    category: '',
-    weight: '',
-    length: '',
-    width: '',
-    height: '',
-    value: '',
-    description: '',
+    category: "",
+    weight: "",
+    length: "",
+    width: "",
+    height: "",
+    value: "",
+    description: "",
     fragile: false,
     image: null,
-    deliverySpeed: 'standard',
-    organizationLevel: 'individual'
+    deliverySpeed: "standard",
+    organizationLevel: "individual",
   });
 
   const [imagePreview, setImagePreview] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm(prev => ({
+    setForm((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setForm(prev => ({ ...prev, image: file }));
+      setForm((prev) => ({ ...prev, image: file }));
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
@@ -57,7 +57,9 @@ const SendPackageModal = ({ isOpen, onClose }) => {
         <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
           {/* Header */}
           <div className="bg-gray-50 px-4 py-3 border-b flex justify-between items-center">
-            <h3 className="text-lg font-semibold text-gray-900">Send Package</h3>
+            <h3 className="text-lg font-semibold text-gray-900">
+              Send Package
+            </h3>
             <button
               onClick={onClose}
               className="text-gray-400 hover:text-gray-500"
@@ -80,7 +82,7 @@ const SendPackageModal = ({ isOpen, onClose }) => {
                       type="radio"
                       name="organizationLevel"
                       value="individual"
-                      checked={form.organizationLevel === 'individual'}
+                      checked={form.organizationLevel === "individual"}
                       onChange={handleInputChange}
                       className="mr-2"
                     />
@@ -91,7 +93,7 @@ const SendPackageModal = ({ isOpen, onClose }) => {
                       type="radio"
                       name="organizationLevel"
                       value="business"
-                      checked={form.organizationLevel === 'business'}
+                      checked={form.organizationLevel === "business"}
                       onChange={handleInputChange}
                       className="mr-2"
                     />
@@ -273,6 +275,12 @@ const SendPackageModal = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
+};
+
+// Add PropTypes validation
+SendPackageModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default SendPackageModal;

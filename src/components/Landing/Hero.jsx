@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
 import {
@@ -16,6 +16,8 @@ import sendAnimation from "../../assets/send.json";
 import sendAnimation2 from "../../assets/send.json";
 import travelAnimation from "../../assets/plane.json";
 import moneyAnimation from "../../assets/money.json";
+import PropTypes from "prop-types";
+
 
 const Hero = () => {
   const [currentAnimation, setCurrentAnimation] = useState(0);
@@ -70,7 +72,7 @@ const Hero = () => {
     fade: true,
     cssEase: "cubic-bezier(0.87, 0.03, 0.41, 0.9)",
     dotsClass: "slick-dots custom-dots",
-    customPaging: (i) => (
+    customPaging: () => (
       <div className="w-2 h-2 rounded-full bg-orange-500 opacity-50 hover:opacity-100 transition-opacity" />
     ),
     responsive: [
@@ -97,6 +99,15 @@ const Hero = () => {
     </motion.div>
   );
 
+  // Prop validation
+  FeatureCard.propTypes = {
+    icon: PropTypes.element.isRequired,
+    text: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
+  };
   return (
     <div
       id="hero"

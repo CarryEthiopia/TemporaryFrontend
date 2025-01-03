@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import {
-  Home as HomeIcon,
   LocalShipping as LocalShippingIcon,
   AccountCircle as AccountCircleIcon,
   ExitToApp as ExitToAppIcon,
   Dashboard as DashboardIcon,
   Assessment as AssessmentIcon,
-  FlightTakeoff as FlightTakeoffIcon, // Icon for Go To Sender
+  FlightTakeoff as FlightTakeoffIcon,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -102,6 +102,16 @@ const Sidebar = ({ TsetActiveComponent }) => {
     );
   };
 
+  MenuItem.propTypes = {
+    item: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      icon: PropTypes.node.isRequired,
+      component: PropTypes.string,
+      onClick: PropTypes.func,
+    }).isRequired,
+  };
+
   return (
     <div className="relative">
       <Navbar />
@@ -129,6 +139,10 @@ const Sidebar = ({ TsetActiveComponent }) => {
       )}
     </div>
   );
+};
+
+Sidebar.propTypes = {
+  TsetActiveComponent: PropTypes.func.isRequired,
 };
 
 export default Sidebar;

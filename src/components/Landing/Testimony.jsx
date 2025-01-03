@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography, Avatar, Container } from "@mui/material";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import PersonIcon from "@mui/icons-material/Person";
@@ -13,7 +12,7 @@ const Testimony = () => {
       text: "Carry Ethiopia has transformed our international shipping experience. The platform's efficiency and reliability have made it an integral part of our business operations.",
       name: "Sarah Johnson",
       role: "Regular Sender",
-      icon: <PersonIcon />, 
+      icon: <PersonIcon />,
       profileImage: "profile1",
       category: "Business Owner",
     },
@@ -83,7 +82,8 @@ const Testimony = () => {
             variant="subtitle1"
             sx={{ color: "text.secondary", maxWidth: "600px", mx: "auto" }}
           >
-            Discover how Carry Ethiopia is revolutionizing international shipping through trusted connections
+            Discover how Carry Ethiopia is revolutionizing international
+            shipping through trusted connections
           </Typography>
         </Box>
 
@@ -148,7 +148,7 @@ const Testimony = () => {
                       fontStyle: "italic",
                     }}
                   >
-                    "{testimony.text}"
+                    &quot;{testimony.text}&quot;
                   </Typography>
                 </Box>
 

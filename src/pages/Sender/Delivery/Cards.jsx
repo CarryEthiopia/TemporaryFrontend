@@ -10,6 +10,8 @@ import {
   Inventory,
   KeyboardArrowDown,
 } from "@mui/icons-material";
+import PropTypes from "prop-types"; // Import PropTypes
+
 
 const StatusBadge = ({ status }) => (
   <div
@@ -27,10 +29,12 @@ const StatusBadge = ({ status }) => (
     {status.charAt(0).toUpperCase() + status.slice(1)}
   </div>
 );
+StatusBadge.propTypes = {
+  status: PropTypes.oneOf(["process", "delivered", "cancelled"]).isRequired,
+};
 
 const Card = ({
   travelerName,
-  travelDestination,
   deliveryId,
   items,
   date,
@@ -42,6 +46,20 @@ const Card = ({
   type,
 }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
+  // Prop validation for Card
+  Card.propTypes = {
+    travelerName: PropTypes.string.isRequired,
+    travelDestination: PropTypes.string.isRequired,
+    deliveryId: PropTypes.string.isRequired,
+    items: PropTypes.array.isRequired,
+    date: PropTypes.string.isRequired,
+    route: PropTypes.string.isRequired,
+    stats: PropTypes.object.isRequired,
+    isVerified: PropTypes.bool.isRequired,
+    status: PropTypes.oneOf(["process", "delivered", "cancelled"]).isRequired,
+    cancelledOn: PropTypes.string,
+    type: PropTypes.string.isRequired,
+  };
 
   return (
     <div className="bg-white rounded-xl p-4 mb-4 transform transition-all duration-300 hover:shadow-lg">

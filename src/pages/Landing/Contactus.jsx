@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
@@ -72,8 +72,8 @@ const ContactUs = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mx-auto my-6"></div>
           <p className="mt-8 max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
-            We're here to assist you. Contact us through any of the following
-            methods or send us a message using the form below.
+            We&apos;re here to assist you. Contact us through any of the
+            following methods or send us a message using the form below.
           </p>
         </motion.div>
 

@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
-import {
-  Add as AddIcon,
-  History,
-  Timeline,
-} from "@mui/icons-material";
+import { useState } from "react";
+import { Add as AddIcon, History, Timeline } from "@mui/icons-material";
+import PropTypes from "prop-types"; // Import PropTypes for validation
 import TravelersList from "./TravelersList";
-import { dashboardStats, travelers } from "../../../Sender/FetchedData";
+import { travelers } from "../../../Sender/FetchedData";
 import SendPackageModal from "./SendPackageModal";
-
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
 const ActionCard = ({ icon: Icon, title, description, onClick, color }) => (
   <div
@@ -30,9 +27,16 @@ const ActionCard = ({ icon: Icon, title, description, onClick, color }) => (
   </div>
 );
 
-const Home = () => {
-  const [stats, setStats] = useState(dashboardStats);
+ActionCard.propTypes = {
+  icon: PropTypes.elementType.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  color: PropTypes.string.isRequired,
+};
 
+const Home = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -46,7 +50,7 @@ const Home = () => {
           Dashboard Overview
         </h1>
         <p className="text-gray-600 mt-2 text-sm md:text-base">
-          Welcome back! Here's what's happening today.
+          Welcome back! Here&apos;s what&apos;s happening today.
         </p>
       </div>
 

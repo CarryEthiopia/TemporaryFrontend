@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Message, ExpandMore, ExpandLess } from "@mui/icons-material";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 
 const Explanation = () => {
@@ -158,9 +158,10 @@ const handleToggle = (id) => {
 
       {/* CTA Section */}
       <div className="col-span-1 flex flex-col items-center mt-12">
-        <p className="text-lg text-gray-800 mb-4">
-          Still have questions? We're here to help.
+        <p className="text-gray-800 font-semibold hover:text-orange-600 transition-colors duration-200">
+          What happens if my package gets lost?&apos;s answer.
         </p>
+
         <button
           onClick={handleContactSupport}
           className="flex items-center justify-center mx-auto px-6 py-3 text-white bg-[#08094b] rounded-full shadow-md hover:bg-[#060741] transition-all duration-300"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types"; // Import for prop validation
 import {
   LocalShipping as LocalShippingIcon,
@@ -13,10 +13,10 @@ import Navbar from "./Navbar";
 
 const Sidebar = ({ setActiveComponent }) => {
   const navigate = useNavigate();
-  const [activeItem, setActiveItem] = useState("Dashboard");
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+  const [activeItem, setActiveItem] = React.useState("Dashboard");
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 1024);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024);
     };
@@ -85,22 +85,21 @@ const Sidebar = ({ setActiveComponent }) => {
       <div
         onClick={handleClick}
         className={`flex items-center cursor-pointer rounded-lg transition-all duration-200
-          ${isActive ? "bg-white shadow-sm" : "hover:bg-gray-50"}
-          ${isMobile ? "flex-col p-2" : "p-3 mb-2"}
-          group`}
+        ${isActive ? "bg-white shadow-sm" : "hover:bg-gray-50"}
+        ${isMobile ? "flex-col p-2" : "p-3 mb-2"} group`}
         style={item.style || {}}
       >
         <div
           className={`transition-transform duration-200
-            group-hover:scale-110
-            ${isActive ? "text-black scale-110" : "text-gray-500"}
-            ${!isMobile && "mr-3"}`}
+          group-hover:scale-110
+          ${isActive ? "text-black scale-110" : "text-gray-500"}
+          ${!isMobile && "mr-3"}`}
         >
           {item.icon}
         </div>
         <span
           className={`font-medium ${isMobile ? "text-xs mt-1" : "text-sm"}
-            ${isActive ? "text-black font-semibold" : "text-gray-500"}`}
+          ${isActive ? "text-black font-semibold" : "text-gray-500"}`}
         >
           {item.text}
         </span>
@@ -108,14 +107,15 @@ const Sidebar = ({ setActiveComponent }) => {
     );
   };
 
+  // Prop validation for MenuItem component
   MenuItem.propTypes = {
     item: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-      icon: PropTypes.node.isRequired,
-      component: PropTypes.string,
-      onClick: PropTypes.func,
-      style: PropTypes.object,
+      id: PropTypes.string.isRequired, // The unique ID for the item
+      text: PropTypes.string.isRequired, // The text to display in the sidebar
+      icon: PropTypes.node.isRequired, // The icon for the item
+      component: PropTypes.string, // The component to show when clicked (if applicable)
+      onClick: PropTypes.func, // The onClick handler for custom behavior like navigation
+      style: PropTypes.object, // Custom styles (if any)
     }).isRequired,
   };
 

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
 import Our from "./Our";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
   const navigate = useNavigate(); // For programmatic navigation
-  const [isSignedIn, setIsSignedIn] = useState(false); // Simulated signed-in state
+  const isSignedIn = false; // Simulated signed-in state, no need for setIsSignedIn
 
   const handleGetInTouchClick = () => {
     if (isSignedIn) {
@@ -31,7 +30,7 @@ const About = () => {
           <div className="w-24 h-1 bg-orange-600 mx-auto my-6"></div>
           <p className="mt-8 max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
             Transforming global logistics through innovation and reliability.
-            We're committed to creating seamless shipping experiences that
+            We&apos;re committed to creating seamless shipping experiences that
             connect businesses and people worldwide.
           </p>
         </div>

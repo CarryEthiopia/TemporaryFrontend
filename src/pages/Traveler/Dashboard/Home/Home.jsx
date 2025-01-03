@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Add as AddIcon, History, Timeline } from "@mui/icons-material";
+import  { useState } from "react";
+import { Add as AddIcon, History} from "@mui/icons-material";
 import SendersList from "./SenderList";
-import { dashboardStats, senders } from "../../FetchedData";
+import {  senders } from "../../FetchedData";
 import SendPackageModal from "./TravelPlaceModal";
+import PropTypes from "prop-types";  // Import PropTypes for validation
+import { useNavigate } from "react-router-dom";  // Import useNavigate for navigation
+
+
 
 const ActionCard = ({ icon: Icon, title, description, onClick, color }) => (
   <div
@@ -24,9 +28,16 @@ const ActionCard = ({ icon: Icon, title, description, onClick, color }) => (
     </div>
   </div>
 );
-
+ActionCard.propTypes = {
+  icon: PropTypes.elementType.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  color: PropTypes.string.isRequired,
+};
 const Home = () => {
-  const [stats, setStats] = useState(dashboardStats);
+ 
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 

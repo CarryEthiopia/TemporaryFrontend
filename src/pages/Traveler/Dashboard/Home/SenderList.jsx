@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import {
-  AccessTime,
-  LocationOn,
   FilterList,
   Close,
   Star,
@@ -10,6 +8,8 @@ import {
   Badge,
 } from "@mui/icons-material";
 import ChatModal from "../../../../components/chat/ChatModal";
+import PropTypes from "prop-types"; // Import PropTypes
+
 
 const FilterModal = ({ isOpen, onClose, filters, setFilters }) => {
   const [tempFilters, setTempFilters] = useState(filters);
@@ -20,7 +20,12 @@ const FilterModal = ({ isOpen, onClose, filters, setFilters }) => {
   };
 
   if (!isOpen) return null;
-
+FilterModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired, // isOpen should be a boolean
+  onClose: PropTypes.func.isRequired, // onClose should be a function
+  filters: PropTypes.object.isRequired, // filters should be an object
+  setFilters: PropTypes.func.isRequired, // setFilters should be a function
+};
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg w-full max-w-md">
@@ -151,6 +156,18 @@ const SenderList = ({ Senders }) => {
     destination: "",
     rating: 0,
   });
+  // Prop validation
+  SenderList.propTypes = {
+    Senders: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        destination: PropTypes.string.isRequired,
+        departure: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        flightTime: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  };
 
   const filteredAndSortedSenders = (Senders || [])
     .filter((Sender) => {

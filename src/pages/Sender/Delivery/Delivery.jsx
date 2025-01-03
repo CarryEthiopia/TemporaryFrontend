@@ -5,6 +5,8 @@ import Delivered from "./DeliveredItems/Delivered";
 import Process from "./ProcessingItems/Process";
 import Cancelled from "./CancelledItems/Cancelled";
 
+import PropTypes from "prop-types"; // Import PropTypes
+
 const TabButton = ({ tab, isActive, onClick, count }) => (
   <motion.div
     whileHover={{ scale: 1.02 }}
@@ -60,6 +62,18 @@ const TabButton = ({ tab, isActive, onClick, count }) => (
     </div>
   </motion.div>
 );
+// Prop validation for TabButton
+TabButton.propTypes = {
+  tab: PropTypes.shape({
+    color: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    icon: PropTypes.node.isRequired,
+  }).isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
+};
 
 const Delivery = () => {
   const [activeTab, setActiveTab] = useState("Processing");

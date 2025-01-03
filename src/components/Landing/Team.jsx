@@ -1,4 +1,3 @@
-import React from "react";
 import teamMember1 from "../../assets/Member1.jpg";
 import teamMember2 from "../../assets/teamMember2.jpeg";
 import teamMember3 from "../../assets/teamMember3.jpg";
