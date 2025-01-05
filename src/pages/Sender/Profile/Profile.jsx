@@ -3,17 +3,27 @@ import { Edit as EditIcon, Security as SecurityIcon, Storage as StorageIcon, Del
 import { useState } from "react";
 import SecuritySection from "../../../components/profile/SecuritySection";
 import ProfileContent from "../../../components/profile/ProfileContent";
+import DeleteAccount from "../../../components/profile/DeleteAccount";
+import Payment from "../../../components/profile/Payment";
 
 const ProfilePage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const menuItems = [
-    { title: "My Profile", icon: <EditIcon />, component: <ProfileContent />},
-    { title: "Security", icon: <SecurityIcon />, component: <SecuritySection /> },
-    { title: "Billing", icon: <StorageIcon />, component: null },
+    { title: "My Profile", icon: <EditIcon />, component: <ProfileContent /> },
+    {
+      title: "Security",
+      icon: <SecurityIcon />,
+      component: <SecuritySection />,
+    },
+    { title: "Billing", icon: <StorageIcon />, component: <Payment /> },
     { title: "Data Export", icon: <StorageIcon />, component: null },
-    { title: "Delete Account", icon: <DeleteIcon />, component: null },
+    {
+      title: "Delete Account",
+      icon: <DeleteIcon />,
+      component: <DeleteAccount />,
+    },
   ];
 
   const [activeSection, setActiveSection] = useState(menuItems[0].component);

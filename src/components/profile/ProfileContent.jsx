@@ -21,7 +21,7 @@ const ProfileContent = () => {
   };
 
   return (
-    <Box sx={{ maxWidth: 800, mx: "auto", pt:10 }}>
+    <Box sx={{ maxWidth: 800, mx: "auto", pt: 10 }}>
       {/* Profile Header */}
       <Box
         sx={{
@@ -34,7 +34,10 @@ const ProfileContent = () => {
           gap: 3,
         }}
       >
-        <Avatar src="https://via.placeholder.com/100" sx={{ width: 80, height: 80 }} />
+        <Avatar
+          src="https://via.placeholder.com/100"
+          sx={{ width: 80, height: 80 }}
+        />
         <Box>
           <Typography variant="h5" sx={{ fontWeight: 600 }}>
             Rafiqur Rahman
@@ -50,7 +53,7 @@ const ProfileContent = () => {
           <Typography variant="h6" sx={{ fontWeight: 600 }}>
             Personal Information
           </Typography>
-          <Button startIcon={<EditIcon />} sx={{ color: "#2196f3" }}>
+          <Button startIcon={<EditIcon />} sx={{ color: "orange" }}>
             Edit
           </Button>
         </Box>
@@ -73,7 +76,10 @@ const ProfileContent = () => {
             </Typography>
             <Typography>rafiqurrahman51@gmail.com</Typography>
             {verificationStatus.emailVerified ? (
-              <Typography color="success.main" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <Typography
+                color="success.main"
+                sx={{ display: "flex", alignItems: "center", gap: 1 }}
+              >
                 <CheckCircleOutline fontSize="small" /> Verified
               </Typography>
             ) : (
@@ -81,7 +87,7 @@ const ProfileContent = () => {
                 variant="contained"
                 size="small"
                 onClick={handleEmailVerification}
-                sx={{ mt: 1, textTransform: "none" }}
+                sx={{ mt: 1, textTransform: "none", backgroundColor: "orange" }}
               >
                 Verify Email
               </Button>
@@ -102,7 +108,7 @@ const ProfileContent = () => {
           <Typography variant="h6" sx={{ fontWeight: 600 }}>
             Address
           </Typography>
-          <Button startIcon={<EditIcon />} sx={{ color: "#2196f3" }}>
+          <Button startIcon={<EditIcon />} sx={{ color: "orange" }}>
             Edit
           </Button>
         </Box>
@@ -141,7 +147,10 @@ const ProfileContent = () => {
             KYC Verification
           </Typography>
           {verificationStatus.kycVerified ? (
-            <Typography color="success.main" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <Typography
+              color="success.main"
+              sx={{ display: "flex", alignItems: "center", gap: 1 }}
+            >
               <CheckCircleOutline fontSize="small" /> Verified
             </Typography>
           ) : (
@@ -149,7 +158,7 @@ const ProfileContent = () => {
               variant="contained"
               size="small"
               onClick={() => setKycModalOpen(true)}
-              sx={{ textTransform: "none" }}
+              sx={{ textTransform: "none", backgroundColor: "orange" }}
             >
               Verify Now
             </Button>
@@ -158,13 +167,23 @@ const ProfileContent = () => {
       </Box>
 
       {/* KYC Verification Modal */}
-      <Dialog open={kycModalOpen} onClose={() => setKycModalOpen(false)} maxWidth="sm" fullWidth>
+      <Dialog
+        open={kycModalOpen}
+        onClose={() => setKycModalOpen(false)}
+        maxWidth="sm"
+        fullWidth
+      >
         <DialogTitle>Upload Verification Document</DialogTitle>
         <DialogContent>
           <Typography mb={2}>
             Please upload your Passport or National ID for verification.
           </Typography>
-          <TextField fullWidth variant="outlined" label="Document Name" sx={{ mb: 3 }} />
+          <TextField
+            fullWidth
+            variant="outlined"
+            label="Document Name"
+            sx={{ mb: 3 }}
+          />
           <Button variant="outlined" startIcon={<Upload />} component="label">
             Upload File
             <input type="file" hidden />
@@ -174,7 +193,11 @@ const ProfileContent = () => {
           <Button onClick={() => setKycModalOpen(false)} color="secondary">
             Cancel
           </Button>
-          <Button onClick={handleKycVerification} variant="contained">
+          <Button
+            sx={{ backgroundColor: "orange" }}
+            onClick={handleKycVerification}
+            variant="contained"
+          >
             Verify
           </Button>
         </DialogActions>

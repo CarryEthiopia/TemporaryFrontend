@@ -57,7 +57,7 @@ const Sidebar = ({ setActiveComponent }) => {
     },
     {
       id: "Traveler",
-      text: "Go To Traveler",
+      text: "Traveler",
       icon: <FlightTakeoffIcon />,
       onClick: () => navigate("/traveler-home"),
       style: {

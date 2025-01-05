@@ -251,7 +251,7 @@ const TravelersList = ({ travelers }) => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="p-2 border rounded-lg hover:bg-gray-50"
+              className="p-2 border rounded-lg hover:bg-gray-50 "
             >
               <option value="name">Sort by Name</option>
               <option value="date">Sort by Date</option>
@@ -323,7 +323,7 @@ const TravelersList = ({ travelers }) => {
                 </button>
                 <button
                   onClick={() => handleContactClick(traveler)}
-                  className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  className=" px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors  bg-orange-500"
                 >
                   Contact
                 </button>

@@ -175,15 +175,15 @@ const Card = ({
             {/* Contact Button */}
             <div className="flex items-center space-x-2">
               <Chat className="text-#0f172a" fontSize="small" />
-              <span className="text-sm text-gray-600">Contact Traveler</span>
+              <span className="text-sm text-orange-500">Contact Traveler</span>
             </div>
           </div>
         </div>
 
         {/* View Details Button - Always Visible */}
         <button
-          className="w-full mt-4 px-4 py-2 bg-[#0f172a] text-white rounded-lg font-medium
-            hover:bg-blue-600 active:bg-[#0f172a]
+          className="w-full mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg font-medium
+            hover:bg-orange-500 active:bg-orange-500
             transform transition-all duration-300
             hover:shadow-lg
             focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
@@ -312,8 +312,8 @@ const Card = ({
         </div>
         {/* View Details Button - Always Visible */}
         <button
-          className="w-full mt-4 px-4 py-2 bg-[#0f172a] text-white rounded-lg font-medium
-            hover:bg-blue-600 active:bg-[#0f172a]
+          className="w-full mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg font-medium
+            hover:bg-orange-500 active:bg-orange-500
             transform transition-all duration-300
             hover:shadow-lg
             focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"

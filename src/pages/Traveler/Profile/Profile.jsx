@@ -14,6 +14,8 @@ import {
 import { useState } from "react";
 import SecuritySection from "../../../components/profile/SecuritySection";
 import ProfileContent from "../../../components/profile/ProfileContent";
+import DeleteAccount from "../../../components/profile/DeleteAccount";
+import GetPaid from "../../../components/profile/GetPaid";
 
 const ProfilePage = () => {
   const theme = useTheme();
@@ -26,9 +28,13 @@ const ProfilePage = () => {
       icon: <SecurityIcon />,
       component: <SecuritySection />,
     },
-    { title: "Billing", icon: <StorageIcon />, component: null },
+    { title: "Billing", icon: <StorageIcon />, component: <GetPaid /> },
     { title: "Data Export", icon: <StorageIcon />, component: null },
-    { title: "Delete Account", icon: <DeleteIcon />, component: null },
+    {
+      title: "Delete Account",
+      icon: <DeleteIcon />,
+      component: <DeleteAccount />,
+    },
   ];
 
   const [activeSection, setActiveSection] = useState(menuItems[0].component);

@@ -88,19 +88,19 @@ const Report = () => {
             <div className="flex flex-wrap items-center gap-2">
               <Tooltip title="Download Report">
                 <IconButton className="hover:bg-blue-50">
-                  <Download className="text-blue-600" />
+                  <Download className="text-orange-500" />
                 </IconButton>
               </Tooltip>
 
               <Tooltip title="Share Report">
                 <IconButton className="hover:bg-blue-50">
-                  <Share className="text-blue-600" />
+                  <Share className="text-orange-500" />
                 </IconButton>
               </Tooltip>
 
               <Tooltip title="Print Report">
                 <IconButton className="hover:bg-blue-50">
-                  <Print className="text-blue-600" />
+                  <Print className="text-orange-500" />
                 </IconButton>
               </Tooltip>
 
@@ -111,7 +111,7 @@ const Report = () => {
                 }
                 onClick={handleRefresh}
                 disabled={isLoading}
-                className="bg-blue-600 hover:bg-blue-700 text-white shadow-md text-sm"
+                className="bg-orange-500 hover:bg-orange-500 text-white shadow-md text-sm"
               >
                 {isLoading ? "Refreshing..." : "Refresh"}
               </Button>

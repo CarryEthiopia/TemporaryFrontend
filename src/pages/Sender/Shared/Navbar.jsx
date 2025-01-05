@@ -40,13 +40,13 @@ const Navbar = () => {
             alt="Organization Logo"
             className="w-10 h-10 rounded-lg transform hover:scale-105 transition-transform duration-300"
           />
-          <span className="text-xl font-bold text-gray-800 hidden sm:block">
+          <span className="text-xl font-bold text-orange-500 hidden sm:block">
             Organization
           </span>
         </div>
 
         {/* Center Text */}
-        <div className="text-center text-gray-700 font-medium transition-all duration-500 text-sm sm:text-base">
+        <div className="text-center text-orange-500 font-medium transition-all duration-500 text-sm sm:text-base">
           {activeText}
         </div>
 
@@ -97,7 +97,7 @@ const Navbar = () => {
           {/* Profile Icon Only */}
           <button className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded-lg transition-colors duration-300">
             <AccountCircle className="text-gray-600" />
-            <span className="text-sm text-gray-700">Joshua</span>
+            <span className="text-sm text-orange-500">Joshua</span>
           </button>
         </div>
       </div>

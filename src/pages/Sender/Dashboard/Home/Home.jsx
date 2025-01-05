@@ -46,10 +46,10 @@ const Home = () => {
     <div className="min-h-screen bg-gray-50 w-full pt-10 px-4">
       {/* Header */}
       <div className="mt-10 mb-10">
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-700">
           Dashboard Overview
         </h1>
-        <p className="text-gray-600 mt-2 text-sm md:text-base">
+        <p className="text-gray-500 mt-2 text-sm md:text-base">
           Welcome back! Here&apos;s what&apos;s happening today.
         </p>
       </div>

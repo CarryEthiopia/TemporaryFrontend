@@ -57,9 +57,15 @@ const Sidebar = ({ TsetActiveComponent }) => {
     },
     {
       id: "GoToSender",
-      text: "Go To Sender",
+      text: " Sender",
       icon: <FlightTakeoffIcon />,
       onClick: () => navigate("/home"),
+      style: {
+        backgroundColor: "#F0F4FF",
+        border: "1px solid #2E5CFF",
+        borderRadius: "8px",
+        color: "#2E5CFF",
+      },
     },
   ];
 
