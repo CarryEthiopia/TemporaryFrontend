@@ -21,19 +21,25 @@ const TravelerReviews = () => {
       <div className="divide-y divide-gray-200">
         {reviews.map((review) => (
           <div key={review.id} className="p-4">
-            <div className="flex items-start space-x-4">
-              <div className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0">
+            <div className="flex items-start space-x-4 flex-col sm:flex-row">
+              <div className="w-16 h-16 rounded-full bg-gray-200 flex-shrink-0 mb-2 sm:mb-0">
                 {/* Avatar placeholder */}
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-semibold">{review.sender}</h4>
-                  <span className="text-gray-500 text-sm">{review.date}</span>
+                  <h4 className="font-semibold text-sm sm:text-base">
+                    {review.sender}
+                  </h4>
+                  <span className="text-gray-500 text-xs sm:text-sm">
+                    {review.date}
+                  </span>
                 </div>
                 <div className="text-yellow-500 my-1">
                   {"★".repeat(review.rating)}
                 </div>
-                <p className="text-gray-600 text-sm">{review.comment}</p>
+                <p className="text-gray-600 text-xs sm:text-sm">
+                  {review.comment}
+                </p>
               </div>
             </div>
           </div>
@@ -44,3 +50,4 @@ const TravelerReviews = () => {
 };
 
 export default TravelerReviews;
+

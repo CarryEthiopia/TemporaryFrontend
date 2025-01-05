@@ -1,4 +1,3 @@
-// src/components/History/TravelerHistory/DeliveryHistory.jsx
 const DeliveryHistory = () => {
   const deliveries = [
     {
@@ -23,7 +22,7 @@ const DeliveryHistory = () => {
         <h3 className="text-lg font-semibold">Delivery History</h3>
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full">
+        <table className="w-full table-auto">
           <thead className="bg-gray-50">
             <tr>
               <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">

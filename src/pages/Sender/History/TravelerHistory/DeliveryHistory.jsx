@@ -22,8 +22,9 @@ const DeliveryHistory = () => {
       <div className="p-4 border-b border-gray-200">
         <h3 className="text-lg font-semibold">Delivery History</h3>
       </div>
-      <div className="overflow-x-auto">
-        <table className="w-full">
+      {/* Responsive table */}
+      <div className="overflow-x-auto sm:overflow-visible">
+        <table className="w-full hidden sm:table">
           <thead className="bg-gray-50">
             <tr>
               <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
@@ -79,6 +80,40 @@ const DeliveryHistory = () => {
             ))}
           </tbody>
         </table>
+        {/* Mobile view */}
+        <div className="sm:hidden space-y-4 p-4">
+          {deliveries.map((delivery) => (
+            <div
+              key={delivery.id}
+              className="border border-gray-200 rounded-lg p-4 bg-gray-50"
+            >
+              <p className="text-sm text-gray-600">
+                <span className="font-semibold">Date:</span> {delivery.date}
+              </p>
+              <p className="text-sm text-gray-600">
+                <span className="font-semibold">Sender:</span> {delivery.sender}
+              </p>
+              <p className="text-sm text-gray-600">
+                <span className="font-semibold">Route:</span>{" "}
+                {delivery.route.from} → {delivery.route.to}
+              </p>
+              <p className="text-sm text-gray-600">
+                <span className="font-semibold">Package:</span>{" "}
+                {delivery.package}
+              </p>
+              <p className="text-sm text-gray-600">
+                <span className="font-semibold">Earnings:</span>{" "}
+                {delivery.earnings}
+              </p>
+              <p className="text-sm text-green-700">
+                <span className="font-semibold">Status:</span> {delivery.status}
+              </p>
+              <p className="text-sm text-yellow-500">
+                {"★".repeat(delivery.rating)}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
