@@ -2,7 +2,7 @@
 import SenderProfile from "./SenderProfile";
 import SenderStats from "./SenderStatus";
 import RecentTransactions from "./RecentTransactions";
-import Testimonials from "../shared/Testimonials";
+import Testimonials from "../Shared/Testimonials";
 
 const SenderHistory = () => {
   return (
