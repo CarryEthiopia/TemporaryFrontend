@@ -3,8 +3,6 @@ import first from "../../assets/first.png";
 import middle from "../../assets/middle.png";
 import last from "../../assets/last.png";
 
-
-
 const Ready = () => {
   // State to track the current image
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
