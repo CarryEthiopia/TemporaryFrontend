@@ -82,7 +82,7 @@ const Navbar = () => {
 
         {/* Get Started Button */}
         <button
-          onClick={() => navigate("/signin")}
+          onClick={() => navigate("/signup")}
           className="hidden md:flex items-center px-5 py-2 text-sm font-medium text-black bg-white rounded-lg hover:bg-blue-700 hover:text-white transform hover:-translate-y-0.5 transition-all duration-300"
         >
           Get Started
@@ -135,7 +135,7 @@ const Navbar = () => {
           <div className="p-6 border-t border-gray-700">
             <button
               onClick={() => {
-                navigate("/signin");
+                navigate("/signup");
                 setMenuOpen(false);
               }}
               className="w-full px-4 py-3 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-300"
