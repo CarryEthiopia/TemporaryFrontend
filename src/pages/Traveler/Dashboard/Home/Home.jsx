@@ -1,10 +1,13 @@
 import  { useState } from "react";
-import { Add as AddIcon, History} from "@mui/icons-material";
+import { Add as AddIcon, History, Timeline } from "@mui/icons-material";
 import SendersList from "./SenderList";
 import {  senders } from "../../FetchedData";
+
 import SendPackageModal from "./TravelPlaceModal";
 import PropTypes from "prop-types";  // Import PropTypes for validation
-import { useNavigate } from "react-router-dom";  // Import useNavigate for navigation
+
+import HistoryComponent from "../../History/History"; // Import HistoryComponent
+
 
 
 
@@ -36,13 +39,21 @@ ActionCard.propTypes = {
   color: PropTypes.string.isRequired,
 };
 const Home = () => {
- 
-  const navigate = useNavigate(); // Initialize useNavigate
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeComponent, TsetActiveComponent] = useState("default");
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const renderContent = () => {
+    switch (activeComponent) {
+      case "history":
+        return <HistoryComponent />;
+      
+      default:
+        return <SendersList travelers={senders} />;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 w-full pt-10 px-4">
@@ -60,21 +71,26 @@ const Home = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <ActionCard
           icon={AddIcon}
-          title="Be Traveler"
-          description="Travel and Get Birr"
+          title="Send Package"
+          description="Create new delivery"
           onClick={openModal}
           color="border-blue-500"
         />
         <ActionCard
           icon={History}
           title="View History"
-          description="Check past Travelers"
-          onClick={() => navigate("/history")}
+          description="Check past deliveries"
+          onClick={() => TsetActiveComponent("history")}
           color="border-purple-500"
         />
+        
       </div>
+
+      {/* Dynamic Content */}
+      <div className="bg-white rounded-lg shadow-md p-4">{renderContent()}</div>
+
+      {/* Modal */}
       <SendPackageModal isOpen={isModalOpen} onClose={closeModal} />
-      <SendersList senders={senders} />
     </div>
   );
 };

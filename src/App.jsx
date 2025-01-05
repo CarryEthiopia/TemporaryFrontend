@@ -16,6 +16,8 @@ import TravelerHome from "./pages/Traveler/Dashboard/Home/Home";
 import TravelerProfile from "./pages/Traveler/Profile/Profile";
 import TravelerReport from "./pages/Traveler/Report/Report";
 import TravelerDelivery from "./pages/Traveler/Deliveries/Deliveries";
+import History from "./pages/Sender/History/History"
+import Tracking from "./pages/Sender/Tracking/Tracking"
 
 function App() {
   const [activeComponent, setActiveComponent] = useState("Dashboard");
@@ -24,28 +26,37 @@ function App() {
   const renderActiveComponent = () => {
     switch (activeComponent) {
       case "Dashboard":
-        return <Home />;
+        return <Home setActiveComponent={setActiveComponent} />;
       case "Delivery":
         return <Delivery />;
       case "Reports":
         return <Report />;
       case "Profile":
         return <Profile />;
+      case "History":
+        return <History />;
+      case "Tracking":
+        return <Tracking />;
       default:
         return <div>Select an option from the sidebar</div>;
     }
   };
 
+
   const TrenderActiveComponent = () => {
     switch (TactiveComponent) {
       case "TDashboard":
-        return <TravelerHome />;
+        return <TravelerHome setActiveComponent={TsetActiveComponent} />;
       case "TDelivery":
         return <TravelerDelivery />;
       case "TReports":
         return <TravelerReport />;
       case "TProfile":
         return <TravelerProfile />;
+      case "History":
+        return <History />;
+      case "Tracking":
+        return <Tracking />;
       default:
         return <div>Select an option from the sidebar</div>;
     }

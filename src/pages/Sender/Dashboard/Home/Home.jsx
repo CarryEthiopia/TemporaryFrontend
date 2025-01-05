@@ -4,12 +4,13 @@ import PropTypes from "prop-types"; // Import PropTypes for validation
 import TravelersList from "./TravelersList";
 import { travelers } from "../../../Sender/FetchedData";
 import SendPackageModal from "./SendPackageModal";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import HistoryComponent from "../../History/History"; // Import HistoryComponent
+import TrackingComponent from "../../Tracking/Tracking"; // Import TrackingComponent
 
 const ActionCard = ({ icon: Icon, title, description, onClick, color }) => (
   <div
     onClick={onClick}
-    className={`bg-white rounded-lg p-4 shadow-sm border-l-4 ${color}`}
+    className={`bg-white rounded-lg p-4 shadow-sm border-l-4 ${color} cursor-pointer`}
   >
     <div className="flex items-center space-x-3">
       <div
@@ -36,11 +37,22 @@ ActionCard.propTypes = {
 };
 
 const Home = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeComponent, setActiveComponent] = useState("default");
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const renderContent = () => {
+    switch (activeComponent) {
+      case "history":
+        return <HistoryComponent />;
+      case "tracking":
+        return <TrackingComponent />;
+      default:
+        return <TravelersList travelers={travelers} />;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 w-full pt-10 px-4">
@@ -67,19 +79,23 @@ const Home = () => {
           icon={History}
           title="View History"
           description="Check past deliveries"
-          onClick={() => navigate("/history")}
+          onClick={() => setActiveComponent("history")}
           color="border-purple-500"
         />
         <ActionCard
           icon={Timeline}
           title="Track Deliveries"
           description="Monitor shipments"
-          onClick={() => navigate("/tracking")}
+          onClick={() => setActiveComponent("tracking")}
           color="border-green-500"
         />
       </div>
+
+      {/* Dynamic Content */}
+      <div className="bg-white rounded-lg shadow-md p-4">{renderContent()}</div>
+
+      {/* Modal */}
       <SendPackageModal isOpen={isModalOpen} onClose={closeModal} />
-      <TravelersList travelers={travelers} />
     </div>
   );
 };
