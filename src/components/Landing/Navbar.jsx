@@ -3,11 +3,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../contexts/AppContext";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const navigate = useNavigate();
+  const { isLoggedIn } = useAppContext(); 
 
   const handleNavigation = (section) => {
     setActiveSection(section);
@@ -35,6 +37,14 @@ const Navbar = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const handleButtonClick = () => {
+    if (isLoggedIn) {
+      navigate("/home");
+    } else {
+      navigate("/signup");
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 w-full h-20 z-50 bg-[#0f172a] shadow-md px-6 py-3">
@@ -82,10 +92,10 @@ const Navbar = () => {
 
         {/* Get Started Button */}
         <button
-          onClick={() => navigate("/signup")}
+          onClick={handleButtonClick}
           className="hidden md:flex items-center px-5 py-2 text-sm font-medium text-black bg-white rounded-lg hover:bg-blue-700 hover:text-white transform hover:-translate-y-0.5 transition-all duration-300"
         >
-          Get Started
+          {isLoggedIn ? "Go to Home" : "Get Started"}
         </button>
       </div>
 
@@ -135,12 +145,12 @@ const Navbar = () => {
           <div className="p-6 border-t border-gray-700">
             <button
               onClick={() => {
-                navigate("/signup");
+                handleButtonClick();
                 setMenuOpen(false);
               }}
               className="w-full px-4 py-3 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-300"
             >
-              Get Started
+              {isLoggedIn ? "Go to Home" : "Get Started"}
             </button>
           </div>
         </div>
