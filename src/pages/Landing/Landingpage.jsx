@@ -1,6 +1,6 @@
 // src/pages/LandingPage.jsx
 
-import React, { useState } from "react";
+import  { useState } from "react";
 import Navbar from "../../components/Landing/Navbar";
 import Footer from "../../components/Landing/Footer";
 import Home from "../../components/Landing/Hero"; // Import the Home component
@@ -10,7 +10,6 @@ import WhatWeOffer from "../../components/Landing/WhatWeOffer";
 import Team from "../../components/Landing/Team";
 import Testimony from "../../components/Landing/Testimony";
 import Question from "../../components/Landing/Question/Questions";
-import Ready from "../../components/Landing/Ready";
 
 const LandingPage = () => {
   const [activeSection, setActiveSection] = useState("home");

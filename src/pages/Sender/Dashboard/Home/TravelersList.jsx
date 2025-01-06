@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import {
   AccessTime,
   LocationOn,
@@ -10,6 +10,8 @@ import {
   Badge,
 } from "@mui/icons-material";
 import ChatModal from "../../../../components/chat/ChatModal";
+import PropTypes from "prop-types"; // Import PropTypes
+
 
 const FilterModal = ({ isOpen, onClose, filters, setFilters }) => {
   const [tempFilters, setTempFilters] = useState(filters);
@@ -18,6 +20,12 @@ const FilterModal = ({ isOpen, onClose, filters, setFilters }) => {
     setFilters(tempFilters);
     onClose();
   };
+FilterModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired, // isOpen should be a boolean
+  onClose: PropTypes.func.isRequired, // onClose should be a function
+  filters: PropTypes.object.isRequired, // filters should be an object
+  setFilters: PropTypes.func.isRequired, // setFilters should be a function
+};
 
   if (!isOpen) return null;
 
@@ -198,10 +206,22 @@ const TravelersList = ({ travelers }) => {
   const [selectedTraveler, setSelectedTraveler] = useState(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
-    const handleContactClick = (traveler) => {
-      setSelectedTraveler(traveler);
-      setIsChatOpen(true);
-    };
+  const handleContactClick = (traveler) => {
+    setSelectedTraveler(traveler);
+    setIsChatOpen(true);
+  };
+  // Prop validation
+  TravelersList.propTypes = {
+    travelers: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        destination: PropTypes.string.isRequired,
+        departure: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        flightTime: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  };
 
   return (
     <div className="bg-white shadow-sm rounded-lg overflow-hidden pb-16">
@@ -231,7 +251,7 @@ const TravelersList = ({ travelers }) => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="p-2 border rounded-lg hover:bg-gray-50"
+              className="p-2 border rounded-lg hover:bg-gray-50 "
             >
               <option value="name">Sort by Name</option>
               <option value="date">Sort by Date</option>
@@ -303,7 +323,7 @@ const TravelersList = ({ travelers }) => {
                 </button>
                 <button
                   onClick={() => handleContactClick(traveler)}
-                  className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  className=" px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors  bg-orange-500"
                 >
                   Contact
                 </button>

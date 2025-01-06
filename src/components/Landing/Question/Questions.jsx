@@ -1,4 +1,3 @@
-import React from "react";
 import Explanation from "./Explanation";
 
 const Question = () => {

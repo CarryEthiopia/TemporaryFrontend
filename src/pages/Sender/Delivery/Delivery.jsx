@@ -5,6 +5,8 @@ import Delivered from "./DeliveredItems/Delivered";
 import Process from "./ProcessingItems/Process";
 import Cancelled from "./CancelledItems/Cancelled";
 
+import PropTypes from "prop-types"; // Import PropTypes
+
 const TabButton = ({ tab, isActive, onClick, count }) => (
   <motion.div
     whileHover={{ scale: 1.02 }}
@@ -60,6 +62,18 @@ const TabButton = ({ tab, isActive, onClick, count }) => (
     </div>
   </motion.div>
 );
+// Prop validation for TabButton
+TabButton.propTypes = {
+  tab: PropTypes.shape({
+    color: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    icon: PropTypes.node.isRequired,
+  }).isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
+};
 
 const Delivery = () => {
   const [activeTab, setActiveTab] = useState("Processing");
@@ -71,11 +85,11 @@ const Delivery = () => {
         <div className="mb-8">
           <div className="flex items-center justify-between flex-col sm:flex-row">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                <Dashboard className="text-#0f172a" />
+              <h1 className="text-2xl font-bold text-gray-700 flex items-center gap-2">
+                <Dashboard className="text-orange-500" />
                 Delivery Management
               </h1>
-              <p className="mt-2 text-sm text-#0f172a">
+              <p className="mt-2 text-sm text-gray-500">
                 Track and manage your deliveries efficiently
               </p>
             </div>

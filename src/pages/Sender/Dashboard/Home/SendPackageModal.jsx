@@ -1,39 +1,39 @@
-// components/SendPackageModal.jsx
-import React, { useState } from 'react';
+import { useState } from "react";
 import {
   Close as CloseIcon,
   CloudUpload as CloudUploadIcon,
-} from '@mui/icons-material';
+} from "@mui/icons-material";
+import PropTypes from "prop-types"; // Add this import
 
 const SendPackageModal = ({ isOpen, onClose }) => {
   const [form, setForm] = useState({
-    category: '',
-    weight: '',
-    length: '',
-    width: '',
-    height: '',
-    value: '',
-    description: '',
+    category: "",
+    weight: "",
+    length: "",
+    width: "",
+    height: "",
+    value: "",
+    description: "",
     fragile: false,
     image: null,
-    deliverySpeed: 'standard',
-    organizationLevel: 'individual'
+    deliverySpeed: "standard",
+    organizationLevel: "individual",
   });
 
   const [imagePreview, setImagePreview] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm(prev => ({
+    setForm((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setForm(prev => ({ ...prev, image: file }));
+      setForm((prev) => ({ ...prev, image: file }));
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
@@ -57,7 +57,9 @@ const SendPackageModal = ({ isOpen, onClose }) => {
         <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
           {/* Header */}
           <div className="bg-gray-50 px-4 py-3 border-b flex justify-between items-center">
-            <h3 className="text-lg font-semibold text-gray-900">Send Package</h3>
+            <h3 className="text-lg font-semibold text-gray-900">
+              Send Package
+            </h3>
             <button
               onClick={onClose}
               className="text-gray-400 hover:text-gray-500"
@@ -80,7 +82,7 @@ const SendPackageModal = ({ isOpen, onClose }) => {
                       type="radio"
                       name="organizationLevel"
                       value="individual"
-                      checked={form.organizationLevel === 'individual'}
+                      checked={form.organizationLevel === "individual"}
                       onChange={handleInputChange}
                       className="mr-2"
                     />
@@ -91,7 +93,7 @@ const SendPackageModal = ({ isOpen, onClose }) => {
                       type="radio"
                       name="organizationLevel"
                       value="business"
-                      checked={form.organizationLevel === 'business'}
+                      checked={form.organizationLevel === "business"}
                       onChange={handleInputChange}
                       className="mr-2"
                     />
@@ -109,7 +111,7 @@ const SendPackageModal = ({ isOpen, onClose }) => {
                   name="category"
                   value={form.category}
                   onChange={handleInputChange}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500"
                 >
                   <option value="">Select category</option>
                   <option value="electronics">Electronics</option>
@@ -131,7 +133,7 @@ const SendPackageModal = ({ isOpen, onClose }) => {
                     name="length"
                     value={form.length}
                     onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500"
                   />
                 </div>
                 <div>
@@ -222,7 +224,7 @@ const SendPackageModal = ({ isOpen, onClose }) => {
                       <CloudUploadIcon className="mx-auto h-12 w-12 text-gray-400" />
                     )}
                     <div className="flex text-sm text-gray-600">
-                      <label className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                      <label className="relative cursor-pointer bg-white rounded-md font-medium text-orange-500 hover:text-orange-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-orange-500">
                         <span>Upload a file</span>
                         <input
                           type="file"
@@ -244,7 +246,7 @@ const SendPackageModal = ({ isOpen, onClose }) => {
                   name="fragile"
                   checked={form.fragile}
                   onChange={handleInputChange}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded"
                 />
                 <label className="ml-2 block text-sm text-gray-900">
                   Mark as Fragile
@@ -257,13 +259,13 @@ const SendPackageModal = ({ isOpen, onClose }) => {
               <button
                 type="button"
                 onClick={onClose}
-                className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-orange-500 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="bg-blue-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="bg-orange-500 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
               >
                 Create Delivery
               </button>
@@ -273,6 +275,12 @@ const SendPackageModal = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
+};
+
+// Add PropTypes validation
+SendPackageModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default SendPackageModal;

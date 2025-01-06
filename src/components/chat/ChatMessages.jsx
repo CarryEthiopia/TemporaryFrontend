@@ -1,6 +1,6 @@
-// components/chat/ChatMessages.jsx
-import React, { useEffect, useRef } from 'react';
-import ChatMessage from './ChatMessage';
+import { useEffect, useRef } from "react";
+import PropTypes from "prop-types"; // Import PropTypes
+import ChatMessage from "./ChatMessage";
 
 const ChatMessages = ({ messages }) => {
   const messagesEndRef = useRef(null);
@@ -21,6 +21,21 @@ const ChatMessages = ({ messages }) => {
       <div ref={messagesEndRef} />
     </div>
   );
+};
+
+// Define PropTypes for the component
+ChatMessages.propTypes = {
+  messages: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // id is required and can be string or number
+      sender: PropTypes.string.isRequired, // sender is a string, required
+      text: PropTypes.string.isRequired, // text is a string, required
+      timestamp: PropTypes.oneOfType([
+        PropTypes.instanceOf(Date), // Can be a Date object
+        PropTypes.string, // Or a string representing a date
+      ]).isRequired, // timestamp is required
+    })
+  ).isRequired, // messages is an array of objects, required
 };
 
 export default ChatMessages;
