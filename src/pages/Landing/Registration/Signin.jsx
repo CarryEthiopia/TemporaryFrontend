@@ -40,13 +40,13 @@ const SignIn = () => {
               <img
                 src={logo}
                 alt="Carry"
-                className="w-14 h-14 rounded-lg transform group-hover:scale-105 transition-all duration-300"
+                className="w-28 h-28 rounded-lg transform group-hover:scale-105 transition-all duration-300"
               />
             </div>
-            <h2 className="mt-6 text-3xl font-bold text-gray-900">
+            <h2 className="mt-6 text-3xl sm:text-4xl font-extrabold text-gray-900">
               Welcome Back
             </h2>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-lg text-gray-600">
               Please sign in to your account or{" "}
               <a
                 href="signup"
