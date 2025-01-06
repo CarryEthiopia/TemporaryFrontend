@@ -12,7 +12,8 @@ import {
   Stars,
 } from "@mui/icons-material";
 import { Button, Menu, MenuItem, IconButton, Tooltip } from "@mui/material";
-import ReportBox from "./ReportBox";
+import PropTypes from 'prop-types'; // Import PropTypes
+
 
 const StatCard = ({ icon: Icon, title, value, color }) => (
   <div className={`bg-white rounded-lg p-4 shadow-sm border-l-4 ${color}`}>
@@ -33,9 +34,16 @@ const StatCard = ({ icon: Icon, title, value, color }) => (
     </div>
   </div>
 );
+// Prop validation for StatCard
+StatCard.propTypes = {
+  icon: PropTypes.elementType.isRequired, // Expecting an icon component (e.g., from react-icons)
+  title: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // Can be string or number
+  color: PropTypes.string.isRequired,
+};
 
 const Report = () => {
-  const [contentKey, setContentKey] = useState(0);
+  const [ setContentKey] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedTime, setSelectedTime] = useState("All Time");
   const [isLoading, setIsLoading] = useState(false);
@@ -62,6 +70,8 @@ const Report = () => {
     { label: "All Time", value: "all" },
   ];
 
+
+
   return (
     <div className="min-h-screen bg-gray-50 transition-all duration-300 mt-10 pb-10">
       <div className="px-4 py-10">
@@ -81,30 +91,32 @@ const Report = () => {
             <div className="flex flex-wrap items-center gap-2">
               <Tooltip title="Download Report">
                 <IconButton className="hover:bg-blue-50">
-                  <Download className="text-blue-600" />
+                  <Download className="text-orange-500" />
                 </IconButton>
               </Tooltip>
 
               <Tooltip title="Share Report">
                 <IconButton className="hover:bg-blue-50">
-                  <Share className="text-blue-600" />
+                  <Share className="text-orange-500" />
                 </IconButton>
               </Tooltip>
 
               <Tooltip title="Print Report">
                 <IconButton className="hover:bg-blue-50">
-                  <Print className="text-blue-600" />
+                  <Print className="text-orange-500" />
                 </IconButton>
               </Tooltip>
 
               <Button
+              
                 variant="contained"
                 startIcon={
                   <Refresh className={isLoading ? "animate-spin" : ""} />
                 }
+                
                 onClick={handleRefresh}
                 disabled={isLoading}
-                className="bg-blue-600 hover:bg-blue-700 text-white shadow-md text-sm"
+                className="bg-orange-500 hover:bg-orange-500 text-white shadow-md text-sm"
               >
                 {isLoading ? "Refreshing..." : "Refresh"}
               </Button>
@@ -122,7 +134,7 @@ const Report = () => {
                   Dashboard Overview
                 </h2>
                 <p className="text-sm text-gray-500">
-                  Welcome back to Carry Ethiopia Dashboard
+                  Welcome back to Carry Ethiopia Dashboard as a Sender 
                 </p>
               </div>
             </div>
@@ -130,7 +142,7 @@ const Report = () => {
             <Button
               endIcon={<ArrowDropDown />}
               onClick={(e) => setAnchorEl(e.currentTarget)}
-              className="text-gray-700 hover:bg-gray-50 text-sm"
+              className="text-gray-700 hover:bg-gray-50 text-sm "
             >
               {selectedTime}
             </Button>
@@ -158,7 +170,7 @@ const Report = () => {
         </div>
 
         {/* Report Boxes */}
-        <ReportBox key={contentKey} />
+        {/* <ReportBox key={contentKey} /> */}
 
         {/* Statistics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">

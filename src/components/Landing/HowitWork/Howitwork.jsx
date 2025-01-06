@@ -1,7 +1,8 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { FiPackage, FiUsers, FiMap } from "react-icons/fi";
 import { useInView } from "react-intersection-observer";
+import PropTypes from "prop-types";
+
 
 const HowItWorks = () => {
   const [ref, inView] = useInView({
@@ -100,6 +101,13 @@ const StepCard = ({ icon, title, description, color, index }) => {
       },
     },
   };
+StepCard.propTypes = {
+  icon: PropTypes.element.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+};
 
   return (
     <motion.div

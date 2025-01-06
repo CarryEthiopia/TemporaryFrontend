@@ -10,6 +10,8 @@ import {
   Inventory,
   KeyboardArrowDown,
 } from "@mui/icons-material";
+import PropTypes from "prop-types"; // Import PropTypes
+
 
 const StatusBadge = ({ status }) => (
   <div
@@ -27,10 +29,12 @@ const StatusBadge = ({ status }) => (
     {status.charAt(0).toUpperCase() + status.slice(1)}
   </div>
 );
+StatusBadge.propTypes = {
+  status: PropTypes.oneOf(["process", "delivered", "cancelled"]).isRequired,
+};
 
 const Card = ({
   travelerName,
-  travelDestination,
   deliveryId,
   items,
   date,
@@ -42,6 +46,20 @@ const Card = ({
   type,
 }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
+  // Prop validation for Card
+  Card.propTypes = {
+    travelerName: PropTypes.string.isRequired,
+    travelDestination: PropTypes.string.isRequired,
+    deliveryId: PropTypes.string.isRequired,
+    items: PropTypes.array.isRequired,
+    date: PropTypes.string.isRequired,
+    route: PropTypes.string.isRequired,
+    stats: PropTypes.object.isRequired,
+    isVerified: PropTypes.bool.isRequired,
+    status: PropTypes.oneOf(["process", "delivered", "cancelled"]).isRequired,
+    cancelledOn: PropTypes.string,
+    type: PropTypes.string.isRequired,
+  };
 
   return (
     <div className="bg-white rounded-xl p-4 mb-4 transform transition-all duration-300 hover:shadow-lg">
@@ -157,15 +175,15 @@ const Card = ({
             {/* Contact Button */}
             <div className="flex items-center space-x-2">
               <Chat className="text-#0f172a" fontSize="small" />
-              <span className="text-sm text-gray-600">Contact Traveler</span>
+              <span className="text-sm text-orange-500">Contact Traveler</span>
             </div>
           </div>
         </div>
 
         {/* View Details Button - Always Visible */}
         <button
-          className="w-full mt-4 px-4 py-2 bg-[#0f172a] text-white rounded-lg font-medium
-            hover:bg-blue-600 active:bg-[#0f172a]
+          className="w-full mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg font-medium
+            hover:bg-orange-500 active:bg-orange-500
             transform transition-all duration-300
             hover:shadow-lg
             focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
@@ -294,8 +312,8 @@ const Card = ({
         </div>
         {/* View Details Button - Always Visible */}
         <button
-          className="w-full mt-4 px-4 py-2 bg-[#0f172a] text-white rounded-lg font-medium
-            hover:bg-blue-600 active:bg-[#0f172a]
+          className="w-full mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg font-medium
+            hover:bg-orange-500 active:bg-orange-500
             transform transition-all duration-300
             hover:shadow-lg
             focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"

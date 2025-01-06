@@ -1,179 +1,105 @@
-import React, { useState, useEffect } from "react";
-import { Grid, Snackbar, Alert } from "@mui/material";
-import { ProfileContainer } from "./common/StyledComponents";
-import ProfileAvatar from "./Avatar/ProfileAvatar";
-import ProfileInformation from "./Information/ProfileInformation";
-import ProfileSettings from "./Settings/ProfileSettings";
-import LoadingSpinner from "./common/LoadingSpinner";
-import { profileData as initialProfileData } from "../FetchedData";
+import { Box, Typography, Button, useMediaQuery, useTheme } from "@mui/material";
+import { Edit as EditIcon, Security as SecurityIcon, Storage as StorageIcon, Delete as DeleteIcon } from "@mui/icons-material";
+import { useState } from "react";
+import SecuritySection from "../../../components/profile/SecuritySection";
+import ProfileContent from "../../../components/profile/ProfileContent";
+import DeleteAccount from "../../../components/profile/DeleteAccount";
+import Payment from "../../../components/profile/Payment";
 
-const Profile = () => {
-  const [profile, setProfile] = useState(null);
-  const [settings, setSettings] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [hasChanges, setHasChanges] = useState(false);
-  const [openSettingsDialog, setOpenSettingsDialog] = useState(false);
-  const [notification, setNotification] = useState({
-    open: false,
-    message: "",
-    severity: "info",
-  });
+const ProfilePage = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  useEffect(() => {
-    fetchProfileData();
-  }, []);
+  const menuItems = [
+    { title: "My Profile", icon: <EditIcon />, component: <ProfileContent /> },
+    {
+      title: "Security",
+      icon: <SecurityIcon />,
+      component: <SecuritySection />,
+    },
+    { title: "Billing", icon: <StorageIcon />, component: <Payment /> },
+    { title: "Data Export", icon: <StorageIcon />, component: null },
+    {
+      title: "Delete Account",
+      icon: <DeleteIcon />,
+      component: <DeleteAccount />,
+    },
+  ];
 
-  // Function to fetch profile data - will be replaced with actual API call
-  const fetchProfileData = async () => {
-    try {
-      // Simulate API call
-      // Replace this with actual API call when backend is ready
-      // const response = await axios.get('/api/profile');
-      // const data = response.data;
+  const [activeSection, setActiveSection] = useState(menuItems[0].component);
 
-      setProfile(initialProfileData);
-      setSettings(initialProfileData.settings);
-      setLoading(false);
-    } catch (error) {
-      setNotification({
-        open: true,
-        message: "Error loading profile data",
-        severity: "error",
-      });
-      setLoading(false);
-    }
-  };
+  const Sidebar = () => (
+    <Box sx={{ width: 280, bgcolor: "white", p: 3, pt:10, borderRight: "1px solid #e0e0e0" }}>
+      <Typography variant="h6" sx={{ mb: 4, fontWeight: 600 }}>
+        Account Settings
+      </Typography>
+      {menuItems.map((item, index) => (
+        <Button
+          key={index}
+          startIcon={item.icon}
+          onClick={() => setActiveSection(item.component)}
+          sx={{
+            width: "100%",
+            justifyContent: "flex-start",
+            color: index === 0 ? "#2196f3" : "#424242",
+            py: 1.5,
+            mb: 1,
+            textTransform: "none",
+            fontWeight: 400,
+            bgcolor: activeSection === item.component ? "#f5f5f5" : "transparent",
+            "&:hover": {
+              bgcolor: "#f5f5f5",
+            },
+          }}
+        >
+          {item.title}
+        </Button>
+      ))}
+    </Box>
+  );
 
-  const handleImageUpload = async (imageFile) => {
-    try {
-      setLoading(true);
-      // Replace with actual API call when backend is ready
-      // const formData = new FormData();
-      // formData.append('image', imageFile);
-      // await axios.post('/api/profile/image', formData);
-
-      setNotification({
-        open: true,
-        message: "Profile image updated successfully",
-        severity: "success",
-      });
-    } catch (error) {
-      setNotification({
-        open: true,
-        message: "Error uploading image",
-        severity: "error",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleInputChange = (field, value) => {
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      [field]: value,
-    }));
-    setHasChanges(true);
-  };
-
-  const handleSaveChanges = async () => {
-    try {
-      setLoading(true);
-      // Replace with actual API call when backend is ready
-      // await axios.put('/api/profile', profile);
-
-      setHasChanges(false);
-      setNotification({
-        open: true,
-        message: "Profile updated successfully",
-        severity: "success",
-      });
-    } catch (error) {
-      setNotification({
-        open: true,
-        message: "Error updating profile",
-        severity: "error",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSettingsChange = async (newSettings) => {
-    try {
-      setLoading(true);
-      // Replace with actual API call when backend is ready
-      // await axios.put('/api/profile/settings', newSettings);
-
-      setSettings(newSettings);
-      setNotification({
-        open: true,
-        message: "Settings updated successfully",
-        severity: "success",
-      });
-    } catch (error) {
-      setNotification({
-        open: true,
-        message: "Error updating settings",
-        severity: "error",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleNotificationClose = () => {
-    setNotification((prev) => ({ ...prev, open: false }));
-  };
-
-  if (loading || !profile) {
-    return <LoadingSpinner />;
-  }
+  const MobileAccordion = () => (
+    <Box sx={{pt:8, pb:8}}>
+      {menuItems.map((item, index) => (
+        <Box
+          key={index}
+          sx={{
+            bgcolor: "white",
+            mb: 2,
+            p: 3,
+            borderRadius: 2,
+            boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+          }}
+        >
+          <Button
+            fullWidth
+            startIcon={item.icon}
+            onClick={() => setActiveSection(item.component)}
+            sx={{
+              justifyContent: "flex-start",
+              color: "#424242",
+              textTransform: "none",
+              fontWeight: 500,
+            }}
+          >
+            {item.title}
+          </Button>
+          {activeSection === item.component && (
+            <Box sx={{ mt: 2 }}>{item.component}</Box>
+          )}
+        </Box>
+      ))}
+    </Box>
+  );
 
   return (
-    <ProfileContainer>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={4}>
-          <ProfileAvatar
-            profileData={profile}
-            handleImageUpload={handleImageUpload}
-            openSettings={() => setOpenSettingsDialog(true)}
-          />
-        </Grid>
-
-        <Grid item xs={12} md={8}>
-          <ProfileInformation
-            profileData={profile}
-            handleInputChange={handleInputChange}
-            handleSaveChanges={handleSaveChanges}
-            loading={loading}
-            hasChanges={hasChanges}
-          />
-        </Grid>
-      </Grid>
-
-      <ProfileSettings
-        open={openSettingsDialog}
-        onClose={() => setOpenSettingsDialog(false)}
-        settings={settings}
-        handleSettingsChange={handleSettingsChange}
-      />
-
-      <Snackbar
-        open={notification.open}
-        autoHideDuration={6000}
-        onClose={handleNotificationClose}
-      >
-        <Alert
-          onClose={handleNotificationClose}
-          severity={notification.severity}
-          sx={{ width: "100%" }}
-        >
-          {notification.message}
-        </Alert>
-      </Snackbar>
-    </ProfileContainer>
+    <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "#f5f5f5" }}>
+      {!isMobile && <Sidebar />}
+      <Box sx={{ flex: 1, p: 3 }}>
+        {isMobile ? <MobileAccordion /> : activeSection || <Typography>Select a section.</Typography>}
+      </Box>
+    </Box>
   );
 };
 
-export default Profile;
+export default ProfilePage;

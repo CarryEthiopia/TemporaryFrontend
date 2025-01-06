@@ -1,6 +1,6 @@
 // components/chat/ChatHeader.jsx
-import React from 'react';
-import { Close, MoreVert } from '@mui/icons-material';
+import PropTypes from "prop-types"; // Import PropTypes
+import { Close, MoreVert } from "@mui/icons-material";
 
 const ChatHeader = ({ traveler, onClose }) => (
   <div className="p-4 border-b flex items-center justify-between">
@@ -16,7 +16,8 @@ const ChatHeader = ({ traveler, onClose }) => (
       <div>
         <h3 className="font-semibold text-gray-900">{traveler.name}</h3>
         <p className="text-sm text-gray-500">
-          {traveler.destination} • {new Date(traveler.flightTime).toLocaleDateString()}
+          {traveler.destination} •{" "}
+          {new Date(traveler.flightTime).toLocaleDateString()}
         </p>
       </div>
     </div>
@@ -24,14 +25,25 @@ const ChatHeader = ({ traveler, onClose }) => (
       <button className="p-2 hover:bg-gray-100 rounded-full">
         <MoreVert className="text-gray-600" />
       </button>
-      <button
-        onClick={onClose}
-        className="p-2 hover:bg-gray-100 rounded-full"
-      >
+      <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full">
         <Close className="text-gray-600" />
       </button>
     </div>
   </div>
 );
+
+// Define PropTypes for the component
+ChatHeader.propTypes = {
+  traveler: PropTypes.shape({
+    profileImage: PropTypes.string.isRequired, // Image URL, required
+    name: PropTypes.string.isRequired, // Traveler's name, required
+    destination: PropTypes.string.isRequired, // Destination, required
+    flightTime: PropTypes.oneOfType([
+      PropTypes.string, // Can be a string
+      PropTypes.instanceOf(Date), // Or a Date object
+    ]).isRequired,
+  }).isRequired, // Entire traveler object is required
+  onClose: PropTypes.func.isRequired, // onClose callback, required
+};
 
 export default ChatHeader;
