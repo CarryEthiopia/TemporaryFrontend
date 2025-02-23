@@ -32,9 +32,9 @@ const handleToggle = (id) => {
       questions: [
         {
           id: 1,
-          question: "What is Carry Ethiopia?",
+          question: "What is DamaDash?",
           answer:
-            "Carry Ethiopia is a platform that connects senders with travelers to ensure safe and reliable delivery of items.",
+            "DamaDash is a platform that connects senders with travelers to ensure safe and reliable delivery of items.",
         },
         {
           id: 2,
@@ -46,7 +46,7 @@ const handleToggle = (id) => {
           id: 3,
           question: "What happens if my package gets lost?",
           answer:
-            "Carry Ethiopia has protocols in place to address lost packages, ensuring compensation or resolution.",
+            "DamaDash has protocols in place to address lost packages, ensuring compensation or resolution.",
         },
       ],
     },

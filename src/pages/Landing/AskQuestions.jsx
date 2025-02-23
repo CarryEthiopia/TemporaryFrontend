@@ -22,9 +22,9 @@ const AskQuestions = () => {
     {
       id: 1,
       category: "general",
-      question: "What is Carry Ethiopia?",
+      question: "What is DamaDash?",
       answer:
-        "Carry Ethiopia is a platform that connects senders with travelers to ensure safe and reliable delivery of items.",
+        "DamaDash is a platform that connects senders with travelers to ensure safe and reliable delivery of items.",
     },
     {
       id: 2,

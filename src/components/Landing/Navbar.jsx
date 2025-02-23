@@ -1,27 +1,42 @@
-import  { useState, useEffect } from "react";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import logo from "../../assets/logo.png";
-import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../../contexts/AppContext";
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Wallet } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import logo from '../../assets/logo.png'; // Import the logo
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useAppContext } from '../../contexts/AppContext';//Import useAppContext
+
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
-  const navigate = useNavigate();
-  const { isLoggedIn } = useAppContext(); 
+  const [activeSection, setActiveSection] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
+  const { isLoggedIn } = useAppContext(); // Get isLoggedIn from context
+  const navigate = useNavigate(); //Initialize useNavigate
 
   const handleNavigation = (section) => {
     setActiveSection(section);
     const element = document.getElementById(section);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
     setMenuOpen(false);
   };
 
+    const handleButtonClick = () => {
+    if (isLoggedIn) {
+      navigate("/home");
+    } else {
+      navigate("/signup");
+    }
+  };
+
+
   useEffect(() => {
-    const sections = document.querySelectorAll(".section");
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    const sections = document.querySelectorAll('.section');
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -34,128 +49,155 @@ const Navbar = () => {
     );
 
     sections.forEach((section) => observer.observe(section));
+    window.addEventListener('scroll', handleScroll);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
-  const handleButtonClick = () => {
-    if (isLoggedIn) {
-      navigate("/home");
-    } else {
-      navigate("/signup");
-    }
-  };
+  const navItems = ['home', 'about', 'how-it-works', 'faqs'];
+
+  const buttonText = isLoggedIn ? 'Go to Home' : 'Top Up Wallet';
 
   return (
-    <nav className="fixed top-0 left-0 w-full h-20 z-50 bg-[#0f172a] shadow-md px-6 py-3">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center space-x-3 group cursor-pointer">
-          <img
-            src={logo}
-            alt="Carry"
-            className="w-14 h-14 rounded-lg transform group-hover:scale-105 transition-transform duration-300"
-          />
-          <span className="text-xl font-semibold text-white group-hover:text-blue-600 transition-colors duration-300">
-            CarryEthiopia
-          </span>
-        </div>
-
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex space-x-8">
-          {["home", "about", "how-it-works", "faqs"].map((section) => (
-            <button
-              key={section}
-              onClick={() => handleNavigation(section)}
-              className={`relative px-3 py-2 text-sm font-medium tracking-wide ${
-                activeSection === section
-                  ? "text-white after:content-[''] after:block after:h-0.5 after:bg-blue-600 after:animate-slide-in"
-                  : "text-white hover:text-blue-600"
-              } transition-all duration-300`}
-              aria-label={section}
-            >
-              {section.replace("-", " ").toUpperCase()}
-            </button>
-          ))}
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button
-            className="text-white hover:text-blue-600 transition-colors duration-300"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Open Menu"
+    <motion.nav
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: 'easeInOut' }}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/60 backdrop-blur-md shadow-lg border-b border-gray-200'
+          : 'bg-gradient-to-b from-black/20 to-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="flex items-center space-x-3 cursor-pointer "
           >
-            <MenuIcon fontSize="medium" />
-          </button>
-        </div>
+            <img src={logo} alt="Logo" className=" w-16 h-16 rounded-lg object-contain" /> {/* Use the imported logo */}
 
-        {/* Get Started Button */}
-        <button
-          onClick={handleButtonClick}
-          className="hidden md:flex items-center px-5 py-2 text-sm font-medium text-black bg-white rounded-lg hover:bg-blue-700 hover:text-white transform hover:-translate-y-0.5 transition-all duration-300"
-        >
-          {isLoggedIn ? "Go to Home" : "Get Started"}
-        </button>
-      </div>
+          </motion.div>
 
-      {/* Mobile Drawer */}
-      {menuOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 z-40"
-          onClick={() => setMenuOpen(false)}
-          aria-hidden="true"
-        />
-      )}
-      <div
-        className={`fixed inset-y-0 right-0 w-[280px] bg-[#0f172a] shadow-lg transform transition-transform duration-300 z-50 ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-        aria-hidden={!menuOpen}
-      >
-        <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between p-6 border-b border-gray-700">
-            <span className="text-lg font-semibold text-white">Menu</span>
-            <button
-              className="text-gray-400 hover:text-white transition-colors duration-300"
-              onClick={() => setMenuOpen(false)}
-              aria-label="Close Menu"
-            >
-              <CloseIcon fontSize="medium" />
-            </button>
-          </div>
-
-          <div className="flex-1 overflow-y-auto py-6">
-            {["home", "about", "how-it-works", "faqs"].map((section) => (
-              <button
-                key={section}
-                onClick={() => handleNavigation(section)}
-                className={`block px-6 py-3 text-left text-sm font-medium ${
-                  activeSection === section
-                    ? "text-blue-500 bg-blue-500/10"
-                    : "text-gray-300 hover:text-white hover:bg-white/5"
-                } transition-colors duration-300`}
-                aria-label={section}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <motion.button
+                key={item}
+                whileHover={{ y: -2 }}
+                onClick={() => handleNavigation(item)}
+                className={`relative px-3 py-2 text-sm font-medium transition-colors ${
+                  scrolled
+                    ? activeSection === item
+                      ? 'text-gray-900 font-semibold'
+                      : 'text-gray-700 hover:text-gray-900'
+                    : activeSection === item
+                    ? 'text-orange-300 font-semibold'
+                    : 'text-black hover:text-white' // Change text to black when on top
+                }`}
               >
-                {section.replace("-", " ").toUpperCase()}
-              </button>
+                {item.replace('-', ' ').toUpperCase()}
+                {activeSection === item && (
+                  <motion.div
+                    layoutId="activeSection"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500"
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  />
+                )}
+              </motion.button>
             ))}
+
+            <motion.button
+                onClick={handleButtonClick}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center space-x-2 px-6 py-2.5 bg-orange-500 text-white rounded-full font-medium shadow-lg hover:bg-orange-600 transition-colors"
+              style={{
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+              }}
+            >
+              <Wallet size={18} />
+              <span>{buttonText}</span>
+            </motion.button>
           </div>
 
-          <div className="p-6 border-t border-gray-700">
-            <button
-              onClick={() => {
-                handleButtonClick();
-                setMenuOpen(false);
-              }}
-              className="w-full px-4 py-3 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-300"
-            >
-              {isLoggedIn ? "Go to Home" : "Get Started"}
-            </button>
-          </div>
+          {/* Mobile Menu Button */}
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setMenuOpen(true)}
+            className="md:hidden p-2"
+          >
+            <Menu className={scrolled ? 'text-gray-900' : 'text-white'} />
+          </motion.button>
         </div>
       </div>
-    </nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setMenuOpen(false)}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm md:hidden"
+            />
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.3 }}
+              className="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl md:hidden"
+            >
+              <div className="p-5 flex justify-between items-center border-b border-gray-200">
+                <span className="font-semibold text-gray-900">Menu</span>
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <X className="text-gray-500" />
+                </motion.button>
+              </div>
+
+              <div className="py-4">
+                {navItems.map((item) => (
+                  <motion.button
+                    key={item}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => handleNavigation(item)}
+                    className={`w-full px-5 py-3 text-left text-sm font-medium transition-colors ${
+                      activeSection === item
+                        ? 'text-orange-600 bg-orange-50'
+                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
+                    }`}
+                  >
+                    {item.replace('-', ' ').toUpperCase()}
+                  </motion.button>
+                ))}
+
+                <div className="px-5 pt-4">
+                  <motion.button
+                      onClick={handleButtonClick}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-orange-500 text-white rounded-full font-medium shadow-lg hover:bg-orange-600 transition-colors"
+                  >
+                    <Wallet size={18} />
+                    <span>{buttonText}</span>
+                  </motion.button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 

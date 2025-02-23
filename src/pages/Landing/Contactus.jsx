@@ -33,8 +33,8 @@ const ContactUs = () => {
     {
       icon: <FiMail className="w-6 h-6" />,
       title: "Email Us",
-      content: "contact@carryethiopia.com",
-      link: "mailto:contact@carryethiopia.com",
+      content: "contact@DamaDash.com",
+      link: "mailto:contact@DamaDash.com",
     },
     {
       icon: <FiPhone className="w-6 h-6" />,

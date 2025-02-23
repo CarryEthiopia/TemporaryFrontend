@@ -15,7 +15,7 @@ const Question = () => {
 
       {/* Subtitle */}
       <p className="text-gray-700 text-center mt-4">
-        Find answers to common questions about Carry Ethiopia and features
+        Find answers to common questions about DamaDash and features
       </p>
 
       {/* Horizontal underline */}

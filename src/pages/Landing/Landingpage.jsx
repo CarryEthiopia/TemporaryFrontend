@@ -15,7 +15,7 @@ const LandingPage = () => {
   const [activeSection, setActiveSection] = useState("home");
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-blue-50">
       <Navbar
         activeSection={activeSection}
         setActiveSection={setActiveSection}
@@ -23,10 +23,10 @@ const LandingPage = () => {
       <Home /> {/* Use the Home component here */}
       <About /> {/* Use the About component here */}
       <Howitworks />
-      <WhatWeOffer />
-      <Testimony />
+      {/* <WhatWeOffer />
+      <Testimony /> */}
       <Question />
-      <Team />
+      {/* <Team /> */}
       {/* <Ready /> */}
       <Footer />
     </div>

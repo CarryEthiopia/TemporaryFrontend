@@ -9,7 +9,7 @@ import "react-multi-carousel/lib/styles.css";
 const Testimony = () => {
   const testimonies = [
     {
-      text: "Carry Ethiopia has transformed our international shipping experience. The platform's efficiency and reliability have made it an integral part of our business operations.",
+      text: "DamaDash has transformed our international shipping experience. The platform's efficiency and reliability have made it an integral part of our business operations.",
       name: "Sarah Johnson",
       role: "Regular Sender",
       icon: <PersonIcon />,
@@ -82,7 +82,7 @@ const Testimony = () => {
             variant="subtitle1"
             sx={{ color: "text.secondary", maxWidth: "600px", mx: "auto" }}
           >
-            Discover how Carry Ethiopia is revolutionizing international
+            Discover how DamaDash is revolutionizing international
             shipping through trusted connections
           </Typography>
         </Box>

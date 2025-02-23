@@ -48,7 +48,7 @@ const Footer = () => {
               fontWeight: 900,
             }}
           >
-            Carry Ethiopia
+            DamaDash
           </Typography>
           <Typography variant="body2" color="white">
             Connecting travelers and businesses in Ethiopia for seamless
@@ -112,7 +112,7 @@ const Footer = () => {
                 <FaEnvelope />
               </ListItemIcon>
               <ListItemText
-                primary="contact@carryethiopia.com"
+                primary="contact@DamaDash.com"
                 sx={{ color: "white" }}
               />
             </ListItem>
@@ -136,7 +136,7 @@ const Footer = () => {
           sx={{ textAlign: "center" }}
         >
           <Typography variant="body2" sx={{ color: "white" }}>
-            Carry Ethiopia © 2024 All rights reserved
+            DamaDash © 2024 All rights reserved
           </Typography>
           <Stack direction="row" spacing={1}>
             <IconButton aria-label="Facebook" href="https://www.facebook.com/">
