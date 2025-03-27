@@ -6,9 +6,6 @@ import Footer from "../../components/Landing/Footer";
 import Home from "../../components/Landing/Hero"; // Import the Home component
 import About from "../../components/Landing/About/About"; // Import the About component
 import Howitworks from "../../components/Landing/HowitWork/Howitwork";
-import WhatWeOffer from "../../components/Landing/WhatWeOffer";
-import Team from "../../components/Landing/Team";
-import Testimony from "../../components/Landing/Testimony";
 import Question from "../../components/Landing/Question/Questions";
 
 const LandingPage = () => {

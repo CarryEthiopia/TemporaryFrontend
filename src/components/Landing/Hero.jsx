@@ -1,11 +1,22 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Send, Globe, Clock, Wallet, Users, Navigation, DollarSign, Shield 
+import {
+  Send, Globe, Clock, Wallet, Users, Navigation, DollarSign, Shield
 } from 'lucide-react';
+import image1 from '../../assets/cards/c3.jpg';
+import image2 from '../../assets/cards/c2.jpg';
+import image3 from '../../assets/cards/c1.png';
 
 const Hero = () => {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [activeImage, setActiveImage] = useState(0);
+
+  // Replace these with your actual image paths
+  const images = [
+    image1,
+    image2,
+    image3
+  ];
 
   const slides = [
     {
@@ -37,7 +48,8 @@ const Hero = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+      setActiveImage((prev) => (prev + 1) % images.length);
+    }, 7000);
     return () => clearInterval(timer);
   }, []);
 
@@ -55,6 +67,51 @@ const Hero = () => {
     </motion.div>
   );
 
+  const ImageSlider = () => (
+    <div className="relative w-full h-full rounded-3xl overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={activeImage}
+          src={images[activeImage]}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.5 }}
+          className="w-200-full"
+          alt={`Slide ${activeImage + 1}`}
+        />
+      </AnimatePresence>
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent" />
+      
+      {/* Navigation Dots */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setActiveImage(idx)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              idx === activeImage ? 'w-8 bg-white' : 'bg-white/50'
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={() => setActiveImage((prev) => (prev - 1 + images.length) % images.length)}
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all"
+      >
+        <Navigation className="w-6 h-6 text-white rotate-180" />
+      </button>
+      <button
+        onClick={() => setActiveImage((prev) => (prev + 1) % images.length)}
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all"
+      >
+        <Navigation className="w-6 h-6 text-white" />
+      </button>
+    </div>
+  );
+
   return (
     <div className="relative min-h-screen overflow-hidden">
       <AnimatePresence mode="wait">
@@ -68,7 +125,6 @@ const Hero = () => {
       </AnimatePresence>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        {/* Trust Badges */}
         <motion.div 
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -121,28 +177,12 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="relative aspect-square"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden">
-              {/* Here you can add your Lottie animation or other visual content */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  animate={{ 
-                    scale: [1, 1.05, 1],
-                    rotate: [0, 5, -5, 0]
-                  }}
-                  transition={{ 
-                    duration: 4,
-                    repeat: Infinity,
-                    repeatType: "reverse"
-                  }}
-                >
-                  <Send className="w-32 h-32 text-orange-500" />
-                </motion.div>
-              </div>
+            <div className="absolute inset-0 rounded-3xl shadow-2xl overflow-hidden">
+              <ImageSlider />
             </div>
           </motion.div>
         </div>
 
-        {/* Slide indicators */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
           {slides.map((_, idx) => (
             <button

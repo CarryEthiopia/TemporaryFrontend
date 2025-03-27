@@ -1,166 +1,118 @@
-import {
-  Box,
-  Typography,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  IconButton,
-  Stack,
-  Link,
-} from "@mui/material";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaTiktok,
-  FaLinkedin,
-  FaYoutube,
-  FaMapMarkerAlt,
-  FaPhoneAlt,
-  FaEnvelope,
-} from "react-icons/fa";
+import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail } from "lucide-react";
 
 const Footer = () => {
+  const quickLinks = [
+    { text: "Home", href: "#hero" },
+    { text: "How it Works", href: "#how-it-works" },
+    { text: "About Us", href: "#about" },
+    { text: "Contact Us", href: "#contact" }
+  ];
+
+  const contactInfo = [
+    { icon: <MapPin className="w-5 h-5" />, text: "Addis Ababa, Ethiopia" },
+    { icon: <Mail className="w-5 h-5" />, text: "contact@damadash.com" },
+    { icon: <Phone className="w-5 h-5" />, text: "+251 985 316 396" }
+  ];
+
+  const socialLinks = [
+    { icon: <Facebook className="w-5 h-5" />, href: "https://facebook.com" },
+    { icon: <Instagram className="w-5 h-5" />, href: "https://instagram.com" },
+    { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com" },
+    { icon: <Youtube className="w-5 h-5" />, href: "https://youtube.com" }
+  ];
+
   return (
-    <Box
-      id="faqs"
-      sx={{
-        backgroundColor: "#0f172a",
-        py: 6,
-        px: { xs: 4, md: 12 },
-        textAlign: "left",
-      }}
-    >
-      <Grid
-        container
-        spacing={6}
-        justifyContent="center"
-        alignItems="flex-start"
-        sx={{ maxWidth: "1200px", mx: "auto" }}
-      >
-        <Grid item xs={12} md={4}>
-          <Typography
-            variant="h6"
-            gutterBottom
-            sx={{
-              color: "#fff",
-              fontWeight: 900,
-            }}
-          >
-            DamaDash
-          </Typography>
-          <Typography variant="body2" color="white">
-            Connecting travelers and businesses in Ethiopia for seamless
-            delivery experiences. We are committed to providing efficient, safe,
-            and reliable services across the country.
-          </Typography>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography
-            variant="h6"
-            gutterBottom
-            sx={{
-              color: "#fff",
-              fontWeight: 900,
-            }}
-          >
-            Quick Links
-          </Typography>
-          <List dense sx={{ padding: 0 }}>
-            {[
-              { text: "Hero", id: "hero" },
-              { text: "How it Works", id: "how-it-works" },
-              { text: "About Us", id: "about" },
-              { text: "Contact Us", id: "faqs" },
-            ].map((link, index) => (
-              <ListItem key={index} disablePadding id={link.id}>
-                <Link
-                  href={`#${link.id}`}
-                  underline="hover"
-                  sx={{ color: "white" }}
+    <footer className="bg-gradient-to-b from-gray-900 to-gray-950 text-gray-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Brand Section */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-white">
+              Dama<span className="text-orange-500">Dash</span>
+            </h2>
+            <p className="text-sm leading-relaxed opacity-75">
+              Connecting travelers and businesses in Ethiopia for seamless delivery experiences. 
+              We are committed to providing efficient, safe, and reliable services across the country.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              {quickLinks.map((link, index) => (
+                <li key={index}>
+                  <a 
+                    href={link.href}
+                    className="text-sm hover:text-orange-500 transition-colors duration-200 block py-1"
+                  >
+                    {link.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
+            <ul className="space-y-4">
+              {contactInfo.map((item, index) => (
+                <li key={index} className="flex items-center gap-3">
+                  <span className="text-orange-500">{item.icon}</span>
+                  <span className="text-sm">{item.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">Newsletter</h3>
+            <p className="text-sm mb-4 opacity-75">
+              Subscribe to our newsletter for updates and offers.
+            </p>
+            <form className="space-y-2">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-orange-500 text-sm"
+              />
+              <button 
+                type="submit"
+                className="w-full px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="mt-12 pt-8 border-t border-gray-800">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm opacity-75">
+              © 2024 DamaDash. All rights reserved.
+            </p>
+            
+            {/* Social Links */}
+            <div className="flex gap-4">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-orange-500 transition-colors duration-200"
                 >
-                  <ListItemText primary={link.text} />
-                </Link>
-              </ListItem>
-            ))}
-          </List>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography
-            variant="h6"
-            gutterBottom
-            sx={{
-              color: "#fff",
-              fontWeight: 900,
-            }}
-          >
-            Contact Us
-          </Typography>
-          <List dense sx={{ padding: 0 }}>
-            <ListItem disablePadding>
-              <ListItemIcon sx={{ color: "#fff" }}>
-                <FaMapMarkerAlt />
-              </ListItemIcon>
-              <ListItemText
-                primary="Addis Ababa, Ethiopia"
-                sx={{ color: "white" }}
-              />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon sx={{ color: "#fff" }}>
-                <FaEnvelope />
-              </ListItemIcon>
-              <ListItemText
-                primary="contact@DamaDash.com"
-                sx={{ color: "white" }}
-              />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon sx={{ color: "#fff" }}>
-                <FaPhoneAlt />
-              </ListItemIcon>
-              <ListItemText
-                primary="+251 911 234 567"
-                sx={{ color: "white" }}
-              />
-            </ListItem>
-          </List>
-        </Grid>
-      </Grid>
-      <Box mt={4} pt={2} borderTop="1px solid #ddd">
-        <Stack
-          direction="column"
-          spacing={2}
-          alignItems="center"
-          sx={{ textAlign: "center" }}
-        >
-          <Typography variant="body2" sx={{ color: "white" }}>
-            DamaDash © 2024 All rights reserved
-          </Typography>
-          <Stack direction="row" spacing={1}>
-            <IconButton aria-label="Facebook" href="https://www.facebook.com/">
-              <FaFacebook color="#fff" fontSize="medium" />
-            </IconButton>
-            <IconButton
-              aria-label="Instagram"
-              href="https://www.instagram.com/"
-            >
-              <FaInstagram color="#fff" fontSize="medium" />
-            </IconButton>
-            <IconButton aria-label="Tiktok" href="https://www.tiktok.com/">
-              <FaTiktok color="#fff" fontSize="medium" />
-            </IconButton>
-            <IconButton aria-label="Linkedin" href="https://www.linkedin.com/">
-              <FaLinkedin color="#fff" fontSize="medium" />
-            </IconButton>
-            <IconButton aria-label="YouTube" href="https://www.youtube.com/">
-              <FaYoutube color="#fff" fontSize="medium" />
-            </IconButton>
-          </Stack>
-        </Stack>
-      </Box>
-    </Box>
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 
