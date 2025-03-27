@@ -1,14 +1,11 @@
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
-import * as api from "../api";
 import { toast } from "react-hot-toast";
 
 const AppContext = React.createContext(undefined);
 
 export const AppContextProvider = ({ children }) => {
-  const { isError } = useQuery("validateToken", api.validateToken, {
-    retry: false,
-  });
+
 
   const showToast = (message, type) => {
     if (type === "SUCCESS") {
@@ -40,7 +37,6 @@ export const AppContextProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         showToast,
-        isLoggedIn: !isError,
       }}
     >
       {children}
