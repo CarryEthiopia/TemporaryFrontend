@@ -4,6 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/logo.png"; // Import the logo
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { useAppContext } from "../../contexts/AppContext"; //Import useAppContext
+import {Dialog} from "@headlessui/react";
+import {XCircle} from "lucide-react";
+import { set } from "react-hook-form";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,6 +14,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const { isLoggedIn } = useAppContext(); // Get isLoggedIn from context
   const navigate = useNavigate(); //Initialize useNavigate
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleNavigation = (section) => {
     setActiveSection(section);
@@ -22,11 +26,7 @@ const Navbar = () => {
   };
 
   const handleButtonClick = () => {
-    if (isLoggedIn) {
-      navigate("/home");
-    } else {
-      navigate("/signup");
-    }
+    setIsModalOpen(true);
   };
 
   useEffect(() => {
@@ -64,11 +64,8 @@ const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeInOut" }}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/60 backdrop-blur-md shadow-lg border-b border-gray-200"
-          : "bg-gradient-to-b from-black/20 to-transparent"
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white/60 shadow-lg border-b border-gray-200 bg-gradient-to-b from-black/20
+      `}
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -134,7 +131,7 @@ const Navbar = () => {
             onClick={() => setMenuOpen(true)}
             className="md:hidden p-2"
           >
-            <Menu className={scrolled ? "text-gray-900" : "text-white"} />
+            <Menu className={scrolled ? "text-gray-900" : "text-gray-900"} />
           </motion.button>
         </div>
       </div>
@@ -198,6 +195,66 @@ const Navbar = () => {
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* Top-up Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <Dialog
+            static
+            as={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            open={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            className="relative z-50"
+          >
+            <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" />
+
+            <div className="fixed inset-0 flex items-center justify-center p-4">
+              <Dialog.Panel
+                as={motion.div}
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                className="mx-auto max-w-sm rounded-xl bg-white p-6 shadow-lg"
+              >
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="text-gray-400 hover:text-gray-500"
+                  >
+                    <XCircle size={24} />
+                  </button>
+                </div>
+
+                <div className="mt-2 text-center">
+                  <Dialog.Title className="text-lg font-medium text-gray-900">
+                    Top-up Currently Unavailable
+                  </Dialog.Title>
+                  <div className="mt-4">
+                    <p className="text-gray-500">
+                      Top-up functionality is not supported at the moment.
+                    </p>
+                    <p className="mt-2 text-gray-500">
+                      However, you receive 4 invites each month that you can use!
+                    </p>
+                  </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setIsModalOpen(false)}
+                    className="mt-6 w-full rounded-full bg-orange-500 px-4 py-2 text-white hover:bg-orange-600 transition-colors"
+                  >
+                    Got it
+                  </motion.button>
+                </div>
+              </Dialog.Panel>
+            </div>
+          </Dialog>
         )}
       </AnimatePresence>
     </motion.nav>
