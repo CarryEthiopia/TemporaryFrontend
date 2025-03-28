@@ -66,7 +66,7 @@ const Hero = () => {
   );
 
   const ImageSlider = () => (
-    <div className="relative w-full h-full rounded-3xl overflow-hidden">
+    <div id="home" className="relative w-full h-full rounded-3xl overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.img
           key={activeImage}

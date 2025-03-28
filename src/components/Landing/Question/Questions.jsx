@@ -13,17 +13,20 @@ const FAQ = () => {
         {
           id: 1,
           question: "What is DamaDash?",
-          answer: "DamaDash is a platform that connects senders with travelers to ensure safe and reliable delivery of items.",
+          answer:
+            "DamaDash is a platform that connects senders with travelers to ensure safe and reliable delivery of items.",
         },
         {
           id: 2,
           question: "How can I send a Package?",
-          answer: "You can send a package by posting your delivery needs on our platform, and a traveler will accept your request.",
+          answer:
+            "You can send a package by posting your delivery needs on our platform, and a traveler will accept your request.",
         },
         {
           id: 3,
           question: "What happens if my package gets lost?",
-          answer: "DamaDash has protocols in place to address lost packages, ensuring compensation or resolution.",
+          answer:
+            "DamaDash has protocols in place to address lost packages, ensuring compensation or resolution.",
         },
       ],
     },
@@ -34,12 +37,14 @@ const FAQ = () => {
         {
           id: 4,
           question: "How do I earn while traveling?",
-          answer: "Travelers earn by delivering packages for senders based on agreed-upon rates.",
+          answer:
+            "Travelers earn by delivering packages for senders based on agreed-upon rates.",
         },
         {
           id: 5,
           question: "How do I become a verified traveler?",
-          answer: "You can become a verified traveler by completing our verification process, which includes ID checks.",
+          answer:
+            "You can become a verified traveler by completing our verification process, which includes ID checks.",
         },
       ],
     },
@@ -50,12 +55,14 @@ const FAQ = () => {
         {
           id: 6,
           question: "Is my package safe with the traveler?",
-          answer: "Yes, we verify all travelers to ensure the safety and security of your packages.",
+          answer:
+            "Yes, we verify all travelers to ensure the safety and security of your packages.",
         },
         {
           id: 7,
           question: "What destinations can I send packages to?",
-          answer: "You can send packages to any destination supported by our travelers' routes.",
+          answer:
+            "You can send packages to any destination supported by our travelers' routes.",
         },
       ],
     },
@@ -66,24 +73,30 @@ const FAQ = () => {
         {
           id: 8,
           question: "How much does it cost to send a package?",
-          answer: "The cost of sending a package varies based on its size, weight, and destination.",
+          answer:
+            "The cost of sending a package varies based on its size, weight, and destination.",
         },
         {
           id: 9,
           question: "What payment methods do you accept?",
-          answer: "We accept various payment methods, including credit cards and mobile payments.",
+          answer:
+            "We accept various payment methods, including credit cards and mobile payments.",
         },
         {
           id: 10,
           question: "Are there size or weight restrictions for packages?",
-          answer: "Yes, size and weight restrictions depend on the traveler's capacity and route.",
+          answer:
+            "Yes, size and weight restrictions depend on the traveler's capacity and route.",
         },
       ],
     },
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-orange-50 to-white py-20 px-4">
+    <section
+      id="faqs"
+      className="min-h-screen bg-gradient-to-b from-orange-50 to-white py-20 px-4"
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -112,14 +125,21 @@ const FAQ = () => {
           >
             <div className="flex items-center gap-3 mb-6">
               <span className="text-2xl">{section.icon}</span>
-              <h3 className="text-xl font-bold text-gray-900">{section.title}</h3>
+              <h3 className="text-xl font-bold text-gray-900">
+                {section.title}
+              </h3>
             </div>
 
             <div className="space-y-4">
               {section.questions.map((q) => (
-                <div key={q.id} className="border-b border-gray-100 last:border-0">
+                <div
+                  key={q.id}
+                  className="border-b border-gray-100 last:border-0"
+                >
                   <button
-                    onClick={() => setOpenQuestion(openQuestion === q.id ? null : q.id)}
+                    onClick={() =>
+                      setOpenQuestion(openQuestion === q.id ? null : q.id)
+                    }
                     className="w-full flex items-center justify-between py-4 text-left hover:text-orange-600 transition-colors"
                   >
                     <span className="font-medium pr-8">{q.question}</span>
@@ -129,7 +149,7 @@ const FAQ = () => {
                       <ChevronDown className="w-5 h-5 flex-shrink-0" />
                     )}
                   </button>
-                  
+
                   <AnimatePresence>
                     {openQuestion === q.id && (
                       <motion.div
@@ -157,13 +177,16 @@ const FAQ = () => {
         transition={{ duration: 0.5 }}
         className="mt-16 text-center"
       >
-        <p className="text-gray-600 mb-6">Still have questions? We're here to help!</p>
-        <button 
+        <p className="text-gray-600 mb-6">
+          Still have questions? We're here to help!
+        </p>
+        <a
+          href="mailto:support@damadash.com"
           className="inline-flex items-center gap-2 px-8 py-4 bg-orange-600 text-white rounded-full font-medium hover:bg-orange-700 transition-colors"
         >
           <MessageCircle className="w-5 h-5" />
           Contact Support
-        </button>
+        </a>
       </motion.div>
     </section>
   );
