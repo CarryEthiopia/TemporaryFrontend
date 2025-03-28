@@ -10,7 +10,7 @@ const Footer = () => {
 
   const contactInfo = [
     { icon: <MapPin className="w-5 h-5" />, text: "Addis Ababa, Ethiopia" },
-    { icon: <Mail className="w-5 h-5" />, text: "contact@damadash.com" },
+    { icon: <Mail className="w-5 h-5" />, text: "support@damadash.com" },
     { icon: <Phone className="w-5 h-5" />, text: "+251 985 316 396" }
   ];
 

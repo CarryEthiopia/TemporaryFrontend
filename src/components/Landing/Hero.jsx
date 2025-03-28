@@ -3,9 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Send, Globe, Clock, Wallet, Users, Navigation, DollarSign, Shield
 } from 'lucide-react';
-import image1 from '../../assets/cards/c3.jpg';
-import image2 from '../../assets/cards/c2.jpg';
-import image3 from '../../assets/cards/c1.png';
+import image2 from '../../assets/cards/c2.jpeg';
+import image3 from '../../assets/cards/c1.jpeg';
 
 const Hero = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -13,7 +12,6 @@ const Hero = () => {
 
   // Replace these with your actual image paths
   const images = [
-    image1,
     image2,
     image3
   ];
