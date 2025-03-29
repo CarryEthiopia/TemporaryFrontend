@@ -47,7 +47,7 @@ const Hero = () => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % slides.length);
       setActiveImage((prev) => (prev + 1) % images.length);
-    }, 7000);
+    }, 10000);
     return () => clearInterval(timer);
   }, []);
 
