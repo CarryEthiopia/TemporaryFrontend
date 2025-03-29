@@ -70,7 +70,10 @@ const HowItWorks = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-b from-orange-50 to-white py-24 px-6 min-h-screen overflow-hidden">
+    <section
+      id="how-it-works"
+      className="relative bg-gradient-to-b from-orange-50 to-white py-24 px-6 min-h-screen overflow-hidden"
+    >
       {/* Blockchain Network Background */}
       <div className="absolute inset-0 z-0">
         <svg className="w-full h-full">
@@ -84,15 +87,15 @@ const HowItWorks = () => {
             <motion.line
               key={connection.id}
               initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ 
-                pathLength: 1, 
+              animate={{
+                pathLength: 1,
                 opacity: 0.3,
               }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
                 repeatType: "reverse",
-                ease: "linear"
+                ease: "linear",
               }}
               x1={`${connection.start.x}%`}
               y1={`${connection.start.y}%`}
@@ -106,7 +109,7 @@ const HowItWorks = () => {
             <motion.circle
               key={node.id}
               initial={{ scale: 0 }}
-              animate={{ 
+              animate={{
                 scale: [1, 1.2, 1],
               }}
               transition={{
@@ -114,7 +117,7 @@ const HowItWorks = () => {
                 repeat: Infinity,
                 repeatType: "reverse",
                 ease: "easeInOut",
-                delay: Math.random() * 2
+                delay: Math.random() * 2,
               }}
               cx={`${node.x}%`}
               cy={`${node.y}%`}
@@ -126,26 +129,26 @@ const HowItWorks = () => {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
           className="text-center mb-20"
         >
-          <motion.h2 
+          <motion.h2
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold text-gray-900"
           >
             How It <span className="text-orange-600">Works</span>
           </motion.h2>
           <motion.div
-            variants={itemVariants} 
+            variants={itemVariants}
             className="w-24 h-1 bg-orange-600 mx-auto mt-6"
           />
         </motion.div>
 
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

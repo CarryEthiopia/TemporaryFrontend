@@ -1,24 +1,44 @@
-import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Youtube,
+  MapPin,
+  Phone,
+  Mail,
+} from "lucide-react";
+import { useState } from "react";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email) {
+      const mailtoLink = `mailto:support@damadash.com?subject=Newsletter Subscription&body=I would like to subscribe to the newsletter with my email: ${email}`;
+      window.location.href = mailtoLink;
+      setEmail("");
+    }
+  };
+
   const quickLinks = [
-    { text: "Home", href: "#hero" },
+    { text: "Home", href: "#home" },
     { text: "How it Works", href: "#how-it-works" },
     { text: "About Us", href: "#about" },
-    { text: "Contact Us", href: "#contact" }
+    { text: "Contact Us", href: "#contact" },
   ];
 
   const contactInfo = [
     { icon: <MapPin className="w-5 h-5" />, text: "Addis Ababa, Ethiopia" },
     { icon: <Mail className="w-5 h-5" />, text: "support@damadash.com" },
-    { icon: <Phone className="w-5 h-5" />, text: "+251 985 316 396" }
+    { icon: <Phone className="w-5 h-5" />, text: "+251 985 316 396" },
   ];
 
   const socialLinks = [
     { icon: <Facebook className="w-5 h-5" />, href: "https://facebook.com" },
     { icon: <Instagram className="w-5 h-5" />, href: "https://instagram.com" },
     { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com" },
-    { icon: <Youtube className="w-5 h-5" />, href: "https://youtube.com" }
+    { icon: <Youtube className="w-5 h-5" />, href: "https://youtube.com" },
   ];
 
   return (
@@ -31,18 +51,21 @@ const Footer = () => {
               Dama<span className="text-orange-500">Dash</span>
             </h2>
             <p className="text-sm leading-relaxed opacity-75">
-              Connecting travelers and businesses in Ethiopia for seamless delivery experiences. 
-              We are committed to providing efficient, safe, and reliable services across the country.
+              Connecting travelers and businesses in Ethiopia for seamless
+              delivery experiences. We are committed to providing efficient,
+              safe, and reliable services across the country.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">
+              Quick Links
+            </h3>
             <ul className="space-y-2">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a 
+                  <a
                     href={link.href}
                     className="text-sm hover:text-orange-500 transition-colors duration-200 block py-1"
                   >
@@ -55,7 +78,9 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">
+              Contact Us
+            </h3>
             <ul className="space-y-4">
               {contactInfo.map((item, index) => (
                 <li key={index} className="flex items-center gap-3">
@@ -68,17 +93,21 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Newsletter</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">
+              Newsletter
+            </h3>
             <p className="text-sm mb-4 opacity-75">
               Subscribe to our newsletter for updates and offers.
             </p>
-            <form className="space-y-2">
+            <form onSubmit={handleSubscribe} className="space-y-2">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email address"
                 className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-orange-500 text-sm"
               />
-              <button 
+              <button
                 type="submit"
                 className="w-full px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
               >
@@ -94,7 +123,7 @@ const Footer = () => {
             <p className="text-sm opacity-75">
               © 2024 DamaDash. All rights reserved.
             </p>
-            
+
             {/* Social Links */}
             <div className="flex gap-4">
               {socialLinks.map((social, index) => (
