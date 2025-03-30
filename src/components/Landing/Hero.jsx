@@ -3,18 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Send, Globe, Clock, Wallet, Users, Navigation, DollarSign, Shield
 } from 'lucide-react';
-import image2 from '../../assets/cards/c2.jpeg';
-import image3 from '../../assets/cards/c1.jpeg';
+import image1 from '../../assets/heroimage.png';
 
 const Hero = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [activeImage, setActiveImage] = useState(0);
-
-  // Replace these with your actual image paths
-  const images = [
-    image2,
-    image3
-  ];
 
   const slides = [
     {
@@ -46,7 +38,6 @@ const Hero = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % slides.length);
-      setActiveImage((prev) => (prev + 1) % images.length);
     }, 10000);
     return () => clearInterval(timer);
   }, []);
@@ -63,51 +54,6 @@ const Hero = () => {
       </div>
       <p className="font-medium text-gray-700">{text}</p>
     </motion.div>
-  );
-
-  const ImageSlider = () => (
-    <div id="home" className="relative w-full h-full rounded-3xl overflow-hidden">
-      <AnimatePresence mode="wait">
-        <motion.img
-          key={activeImage}
-          src={images[activeImage]}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.5 }}
-          className="w-200-full"
-          alt={`Slide ${activeImage + 1}`}
-        />
-      </AnimatePresence>
-      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent" />
-      
-      {/* Navigation Dots */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        {images.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setActiveImage(idx)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              idx === activeImage ? 'w-8 bg-white' : 'bg-white/50'
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* Navigation Arrows */}
-      <button
-        onClick={() => setActiveImage((prev) => (prev - 1 + images.length) % images.length)}
-        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all"
-      >
-        <Navigation className="w-6 h-6 text-white rotate-180" />
-      </button>
-      <button
-        onClick={() => setActiveImage((prev) => (prev + 1) % images.length)}
-        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all"
-      >
-        <Navigation className="w-6 h-6 text-white" />
-      </button>
-    </div>
   );
 
   return (
@@ -175,9 +121,12 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="relative aspect-square"
           >
-            <div className="absolute inset-0 rounded-3xl shadow-2xl overflow-hidden">
-              <ImageSlider />
-            </div>
+            <img
+              src={image1}
+              alt="Hero Image"
+              className="w-full h-full object-contain" // Adjusted for better image display
+              style={{ backgroundColor: 'transparent' }}
+            />
           </motion.div>
         </div>
 
