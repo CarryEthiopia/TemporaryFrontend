@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FileText, ShieldAlert, UserX, Scale, Power, RefreshCw, Mail, AlertCircle } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const TermsOfUse = () => {
   const containerVariants = {
@@ -91,6 +92,14 @@ Key points of acceptance include:
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 py-12 px-4 lg:px-16">
+      <Helmet>
+        <title>Terms of Use | DamaDash</title>
+        <meta
+          name="description"
+          content="Read our terms of use to understand the conditions of using DamaDash's services."
+        />
+        <link rel="canonical" href="https://www.damadash.com/terms-of-use" />
+      </Helmet>
       <motion.div
         initial="hidden"
         animate="visible"

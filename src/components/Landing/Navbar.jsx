@@ -2,18 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, Wallet } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/logo.png"; // Import the logo
-import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { useAppContext } from "../../contexts/AppContext"; //Import useAppContext
 import {Dialog} from "@headlessui/react";
 import {XCircle} from "lucide-react";
-import { set } from "react-hook-form";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
   const { isLoggedIn } = useAppContext(); // Get isLoggedIn from context
-  const navigate = useNavigate(); //Initialize useNavigate
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleNavigation = (section) => {
@@ -77,7 +74,9 @@ const Navbar = () => {
             <img
               src={logo}
               alt="DamaDash Logo"
-              style={{height:35 }}
+              width="2585" height="897"
+              loading="eager"
+              style={{width:105}}
             />
             {/* Use the imported logo */}
           </motion.div>

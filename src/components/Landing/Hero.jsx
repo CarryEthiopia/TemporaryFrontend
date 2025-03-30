@@ -124,6 +124,8 @@ const Hero = () => {
             <img
               src={image1}
               alt="Hero Image"
+              loading="lazy"
+              width="1107" height="922"
               className="w-full h-full object-contain" // Adjusted for better image display
               style={{ backgroundColor: 'transparent' }}
             />

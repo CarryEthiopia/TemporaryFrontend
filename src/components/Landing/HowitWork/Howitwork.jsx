@@ -212,7 +212,7 @@ const HowItWorks = () => {
             whileTap={{ scale: 0.95 }}
             aria-label="Get it on Google Play"
           >
-            <img src={triangleIcon} alt="Google Play" className="w-8 h-8" />
+            <img src={triangleIcon} alt="Google Play" loading="lazy" width="3000" height="3000" style={{height: 30, width:30}} />
             <div className="flex flex-col">
               <span className="text-xs">GET IT ON</span>
               <span className="text-xl font-semibold">Google Play</span>
