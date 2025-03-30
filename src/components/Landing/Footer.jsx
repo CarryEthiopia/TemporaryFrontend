@@ -23,15 +23,15 @@ const Footer = () => {
 
   const quickLinks = [
     { text: "Home", href: "#home" },
-    { text: "How it Works", href: "#how-it-works" },
     { text: "About Us", href: "#about" },
-    { text: "Contact Us", href: "#contact" },
+    { text: "How it Works", href: "#how-it-works" },
+    { text: "FAQS", href: "#faqs" },
   ];
 
   const contactInfo = [
     { icon: <MapPin className="w-5 h-5" />, text: "Addis Ababa, Ethiopia" },
     { icon: <Mail className="w-5 h-5" />, text: "support@damadash.com" },
-    { icon: <Phone className="w-5 h-5" />, text: "+251 985 316 396" },
+    { icon: <Phone className="w-5 h-5" />, text: "+2517 779 42138" },
   ];
 
   const socialLinks = [

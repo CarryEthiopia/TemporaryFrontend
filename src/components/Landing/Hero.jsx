@@ -57,7 +57,7 @@ const Hero = () => {
   );
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden" id="home">
       <AnimatePresence mode="wait">
         <motion.div
           key={activeSlide}
@@ -74,6 +74,7 @@ const Hero = () => {
           animate={{ y: 0, opacity: 1 }}
           className="max-w-lg mx-auto mb-12 bg-white/80 backdrop-blur-sm rounded-full px-8 py-4 shadow-lg flex items-center justify-center gap-6"
         >
+           <div className="w-1.5 h-1.5 bg-orange-500 rounded-full -mr-3" />
           {["Secure", "Swift", "Simple"].map((badge, index) => (
             <div key={badge} className="flex items-center gap-2">
               {index > 0 && <div className="w-1.5 h-1.5 bg-orange-500 rounded-full" />}
