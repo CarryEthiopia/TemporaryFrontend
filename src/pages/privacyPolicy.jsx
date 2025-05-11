@@ -25,7 +25,7 @@ const PrivacyPolicy = () => {
 
   const sections = [
     {
-      icon: <Shield className="w-6 h-6 text-orange-600" />,
+      icon: <Shield className="w-6 h-6 text-orange-500" />,
       title: "Information We Collect",
       content: `We collect and process the following personal information:
       • Full Name: For identification and personalization
@@ -37,7 +37,7 @@ const PrivacyPolicy = () => {
       All collected data is encrypted using industry-standard AES-256 encryption protocols and stored securely on our protected servers.`,
     },
     {
-      icon: <Lock className="w-6 h-6 text-orange-600" />,
+      icon: <Lock className="w-6 h-6 text-orange-500" />,
       title: "Data Security",
       content: `Your security is our top priority. We implement multiple layers of protection:
       • End-to-end encryption for all personal data
@@ -48,7 +48,7 @@ const PrivacyPolicy = () => {
       • Compliance with international data protection standards`,
     },
     {
-      icon: <Eye className="w-6 h-6 text-orange-600" />,
+      icon: <Eye className="w-6 h-6 text-orange-500" />,
       title: "How We Use Your Information",
       content: `We use your information responsibly and transparently:
       • Identity verification and fraud prevention
@@ -59,7 +59,7 @@ const PrivacyPolicy = () => {
       • Legal compliance and verification processes`,
     },
     {
-      icon: <UserCheck className="w-6 h-6 text-orange-600" />,
+      icon: <UserCheck className="w-6 h-6 text-orange-500" />,
       title: "Your Rights & Control",
       content: `You have complete control over your personal data:
       • Access your personal information anytime
@@ -70,7 +70,7 @@ const PrivacyPolicy = () => {
       • Request data processing limitations`,
     },
     {
-      icon: <Server className="w-6 h-6 text-orange-600" />,
+      icon: <Server className="w-6 h-6 text-orange-500" />,
       title: "Data Storage & Retention",
       content: `We maintain strict data retention policies:
       • Data is stored only for the necessary duration
@@ -81,7 +81,7 @@ const PrivacyPolicy = () => {
       • Regular storage audit processes`,
     },
     {
-      icon: <Bell className="w-6 h-6 text-orange-600" />,
+      icon: <Bell className="w-6 h-6 text-orange-500" />,
       title: "Updates & Notifications",
       content: `We keep you informed about your data:
       • Regular privacy policy updates
@@ -145,7 +145,7 @@ const PrivacyPolicy = () => {
             className="mt-12 p-6 bg-orange-50 rounded-xl border border-orange-100"
           >
             <div className="flex items-center gap-3 mb-4">
-              <Settings className="w-6 h-6 text-orange-600" />
+              <Settings className="w-6 h-6 text-orange-500" />
               <h2 className="text-2xl font-semibold text-gray-800">
                 Contact & Support
               </h2>
@@ -156,7 +156,7 @@ const PrivacyPolicy = () => {
               <br />
               <br />
               Support:{" "}
-              <span className="text-orange-600 font-semibold">
+              <span className="text-orange-500 font-semibold">
                 support@damadash.com
               </span>
               <br />

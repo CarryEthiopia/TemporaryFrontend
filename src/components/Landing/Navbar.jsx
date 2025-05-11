@@ -113,7 +113,7 @@ const Navbar = () => {
               onClick={handleButtonClick}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2 px-6 py-2.5 bg-orange-500 text-white rounded-full font-medium shadow-lg hover:bg-orange-600 transition-colors"
+              className="flex items-center space-x-2 px-6 py-2.5 bg-orange-500 text-white rounded-full font-medium shadow-lg hover:bg-orange-500 transition-colors"
               style={{
                 boxShadow:
                   "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
@@ -172,7 +172,7 @@ const Navbar = () => {
                     onClick={() => handleNavigation(item)}
                     className={`w-full px-5 py-3 text-left text-sm font-medium transition-colors ${
                       activeSection === item
-                        ? "text-orange-600 bg-orange-50"
+                        ? "text-orange-500 bg-orange-50"
                         : "text-gray-600 hover:bg-gray-50 hover:text-gray-800"
                     }`}
                   >
@@ -185,7 +185,7 @@ const Navbar = () => {
                     onClick={handleButtonClick}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-orange-500 text-white rounded-full font-medium shadow-lg hover:bg-orange-600 transition-colors"
+                    className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-orange-500 text-white rounded-full font-medium shadow-lg hover:bg-orange-500 transition-colors"
                   >
                     <Wallet size={18} />
                     <span>{buttonText}</span>
@@ -246,7 +246,7 @@ const Navbar = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setIsModalOpen(false)}
-                    className="mt-6 w-full rounded-full bg-orange-500 px-4 py-2 text-white hover:bg-orange-600 transition-colors"
+                    className="mt-6 w-full rounded-full bg-orange-500 px-4 py-2 text-white hover:bg-orange-500 transition-colors"
                   >
                     Got it
                   </motion.button>

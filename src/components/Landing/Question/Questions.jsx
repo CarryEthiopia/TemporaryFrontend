@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { MessageCircle, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  MessageCircle,
+  ChevronDown,
+  ChevronUp,
+  Lightbulb,
+  Plane,
+  Shield,
+  Wallet,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const FAQ = () => {
@@ -8,7 +16,7 @@ const FAQ = () => {
   const sections = [
     {
       title: "General",
-      icon: "💡",
+      icon: <Lightbulb className="w-6 h-6 text-orange-500" />,
       questions: [
         {
           id: 1,
@@ -26,13 +34,13 @@ const FAQ = () => {
           id: 3,
           question: "What happens if my package gets lost?",
           answer:
-            "DamaDash has protocols in place to address lost packages, ensuring compensation or resolution.",
+            "DamaDash is not responsible if an item gets lost. We simply connect senders and travelers. Please choose your traveler carefully based on their ratings and reviews.",
         },
       ],
     },
     {
       title: "For Travelers",
-      icon: "✈️",
+      icon: <Plane className="w-6 h-6 text-orange-500" />,
       questions: [
         {
           id: 4,
@@ -50,7 +58,7 @@ const FAQ = () => {
     },
     {
       title: "Safety & Security",
-      icon: "🛡️",
+      icon: <Shield className="w-6 h-6 text-orange-500" />,
       questions: [
         {
           id: 6,
@@ -68,7 +76,7 @@ const FAQ = () => {
     },
     {
       title: "Pricing & Payments",
-      icon: "💰",
+      icon: <Wallet className="w-6 h-6 text-orange-500" />,
       questions: [
         {
           id: 8,
@@ -80,7 +88,7 @@ const FAQ = () => {
           id: 9,
           question: "What payment methods do you accept?",
           answer:
-            "We accept various payment methods, including credit cards and mobile payments.",
+            "Payment methods depends on travelers' requirement for payment method.",
         },
         {
           id: 10,
@@ -105,12 +113,12 @@ const FAQ = () => {
         className="max-w-6xl mx-auto text-center mb-16"
       >
         <h2 className="text-4xl md:text-5xl font-bold">
-          Frequently Asked <span className="text-orange-600">Questions</span>
+          Frequently Asked <span className="text-orange-500">Questions</span>
         </h2>
         <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
           Find answers to common questions about DamaDash and its features
         </p>
-        <div className="w-24 h-1 bg-orange-600 mx-auto mt-6" />
+        <div className="w-24 h-1 bg-orange-500 mx-auto mt-6" />
       </motion.div>
 
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
@@ -140,7 +148,7 @@ const FAQ = () => {
                     onClick={() =>
                       setOpenQuestion(openQuestion === q.id ? null : q.id)
                     }
-                    className="w-full flex items-center justify-between py-4 text-left hover:text-orange-600 transition-colors"
+                    className="w-full flex items-center justify-between py-4 text-left hover:text-orange-500 transition-colors"
                   >
                     <span className="font-medium pr-8">{q.question}</span>
                     {openQuestion === q.id ? (
@@ -182,7 +190,7 @@ const FAQ = () => {
         </p>
         <a
           href="mailto:support@damadash.com"
-          className="inline-flex items-center gap-2 px-8 py-4 bg-orange-600 text-white rounded-full font-medium hover:bg-orange-700 transition-colors"
+          className="inline-flex items-center gap-2 px-8 py-4 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-700 transition-colors"
         >
           <MessageCircle className="w-5 h-5" />
           Contact Support

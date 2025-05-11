@@ -11,7 +11,7 @@ const WhatWeOffer = () => {
       title: "Secure Deliveries",
       description:
         "Verified travelers and encrypted payments ensure your items' safety",
-      color: "from-orange-400 to-orange-600",
+      color: "from-orange-400 to-orange-500",
     },
     {
       icon: <FiDollarSign className="w-6 h-6" />,
@@ -45,9 +45,9 @@ const WhatWeOffer = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            What We <span className="text-orange-600">Offer</span>
+            What We <span className="text-orange-500">Offer</span>
           </h2>
-          <div className="w-20 h-1 bg-orange-600 mx-auto rounded-full mb-6" />
+          <div className="w-20 h-1 bg-orange-500 mx-auto rounded-full mb-6" />
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Experience seamless global deliveries with our comprehensive suite
             of services

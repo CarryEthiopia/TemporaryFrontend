@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Send, Globe, Clock, Wallet, Users, Navigation, DollarSign, Shield
 } from 'lucide-react';
-import image1 from '../../assets/heroimage.png';
+import image1 from '../../assets/screenshot.jpg';
 
 const Hero = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -110,7 +110,8 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => window.open("https://play.google.com/store/apps/details?id=com.baslaelw.damadash", "_blank")}
+                className="px-8 py-4 bg-orange-500 hover:bg-orange-500 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 {slides[activeSlide].cta} →
               </motion.button>
@@ -120,16 +121,21 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="relative aspect-square"
+            className="relative flex justify-center items-center"
           >
-            <img
-              src={image1}
-              alt="Hero Image"
-              loading="lazy"
-              width="1107" height="922"
-              className="w-full h-full object-contain" // Adjusted for better image display
-              style={{ backgroundColor: 'transparent' }}
-            />
+            {/* Custom Mobile Mockup */}
+            <div className="relative w-[260px] h-[520px] md:w-[320px] md:h-[640px] bg-white rounded-[2.5rem] shadow-2xl border-4 border-gray-200 flex items-center justify-center overflow-hidden">
+              {/* Speaker/Camera Notch */}
+              <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-2 bg-gray-300 rounded-full opacity-70 z-10" />
+              {/* App Screenshot */}
+              <img
+                src={image1}
+                alt="App Screenshot"
+                loading="lazy"
+                className="w-[90%] h-[94%] object-cover rounded-[2rem] shadow-inner border border-gray-100"
+                style={{ backgroundColor: 'transparent' }}
+              />
+            </div>
           </motion.div>
         </div>
 

@@ -15,7 +15,7 @@ const TermsOfUse = () => {
 
   const sections = [
     {
-      icon: <FileText className="w-6 h-6 text-orange-600" />,
+      icon: <FileText className="w-6 h-6 text-orange-500" />,
       title: "1. Acceptance of Terms",
       content: `By accessing or using DamaDash's services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use. If you do not agree with any part of these terms, you must not use our services.
 
@@ -26,7 +26,7 @@ Key points of acceptance include:
 • Agreement to receive service updates`
     },
     {
-      icon: <ShieldAlert className="w-6 h-6 text-orange-600" />,
+      icon: <ShieldAlert className="w-6 h-6 text-orange-500" />,
       title: "2. User Responsibilities",
       content: `As a user of DamaDash, you are responsible for:
 • Maintaining accurate and up-to-date account information
@@ -39,7 +39,7 @@ Key points of acceptance include:
 • Using the service as intended`
     },
     {
-      icon: <UserX className="w-6 h-6 text-orange-600" />,
+      icon: <UserX className="w-6 h-6 text-orange-500" />,
       title: "3. Prohibited Activities",
       content: `The following activities are strictly prohibited:
 • Creating false or misleading information
@@ -51,7 +51,7 @@ Key points of acceptance include:
 • Spam or unsolicited communications`
     },
     {
-      icon: <Scale className="w-6 h-6 text-orange-600" />,
+      icon: <Scale className="w-6 h-6 text-orange-500" />,
       title: "4. Limitation of Liability",
       content: `DamaDash's liability is limited in the following ways:
 • We are not responsible for user-generated content
@@ -63,7 +63,7 @@ Key points of acceptance include:
 • We are not responsible for any lost items`
     },
     {
-      icon: <Power className="w-6 h-6 text-orange-600" />,
+      icon: <Power className="w-6 h-6 text-orange-500" />,
       title: "5. Account Termination",
       content: `DamaDash reserves the right to terminate accounts for:
 • Violation of these terms
@@ -76,7 +76,7 @@ Key points of acceptance include:
 • Suspicious or harmful behavior`
     },
     {
-      icon: <RefreshCw className="w-6 h-6 text-orange-600" />,
+      icon: <RefreshCw className="w-6 h-6 text-orange-500" />,
       title: "6. Modifications to Terms",
       content: `We may modify these terms:
 • With prior notice when possible
@@ -139,13 +139,13 @@ Key points of acceptance include:
             className="mt-12 p-6 bg-orange-50 rounded-xl border border-orange-100"
           >
             <div className="flex items-center gap-3 mb-4">
-              <Mail className="w-6 h-6 text-orange-600" />
+              <Mail className="w-6 h-6 text-orange-500" />
               <h2 className="text-2xl font-semibold text-gray-800">Contact Information</h2>
             </div>
             <p className="text-gray-700">
               For any questions about these terms or our services, please contact us:
               <br /><br />
-              General Support: <span className="text-orange-600 font-semibold">support@damadash.com</span><br />
+              General Support: <span className="text-orange-500 font-semibold">support@damadash.com</span><br />
               Business Hours: Monday to Friday, 9:00 AM - 6:00 PM EST
             </p>
           </motion.div>

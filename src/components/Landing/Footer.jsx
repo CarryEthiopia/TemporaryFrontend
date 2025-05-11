@@ -6,6 +6,7 @@ import {
   MapPin,
   Phone,
   Mail,
+  Send,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -36,9 +37,9 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: <Facebook className="w-5 h-5" />, href: "https://facebook.com" },
-    { icon: <Instagram className="w-5 h-5" />, href: "https://instagram.com" },
-    { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com" },
-    { icon: <Youtube className="w-5 h-5" />, href: "https://youtube.com" },
+    { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/damadash_p2p" },
+    { icon: <Linkedin className="w-5 h-5" />, href: "https://www.linkedin.com/company/damadash/about/?viewAsMember=true" },
+    { icon: <Send className="w-5 h-5" />, href: "https://t.me/DamaDashP2P" },
   ];
 
   return (
@@ -99,7 +100,7 @@ const Footer = () => {
             <p className="text-sm mb-4 opacity-75">
               Subscribe to our newsletter for updates and offers.
             </p>
-            <form onSubmit={handleSubscribe} className="space-y-2">
+            <form className="space-y-2">
               <input
                 type="email"
                 value={email}
@@ -109,7 +110,7 @@ const Footer = () => {
               />
               <button
                 type="submit"
-                className="w-full px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
+                className="w-full px-4 py-2 bg-orange-500 hover:bg-orange-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
               >
                 Subscribe
               </button>

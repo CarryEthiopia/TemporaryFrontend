@@ -33,7 +33,7 @@ const Ready = () => {
           Ready to Send Your Items or Earn While Travelling?
         </h2>
 
-        <button className="bg-orange-600 text-white py-3 px-6 rounded-full text-lg transition-all duration-300 hover:bg-orange-500 mb-36">
+        <button className="bg-orange-500 text-white py-3 px-6 rounded-full text-lg transition-all duration-300 hover:bg-orange-500 mb-36">
           Get Started &gt;
         </button>
       </div>
@@ -84,7 +84,7 @@ const Ready = () => {
               key={index}
               className={`${
                 currentImageIndex === index
-                  ? "w-6 h-2 bg-orange-600 rounded-full"
+                  ? "w-6 h-2 bg-orange-500 rounded-full"
                   : "w-6 h-2 bg-gray-400 rounded-full"
               } transition-all duration-300`}
             ></div>

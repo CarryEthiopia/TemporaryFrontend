@@ -47,7 +47,7 @@ const About = () => {
               whileHover={{ y: -8 }}
               className="relative group"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform" />
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-500 rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform" />
               <div className="relative p-8 bg-white rounded-2xl shadow-xl">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-bold text-gray-900">{section.title}</h3>
@@ -82,7 +82,7 @@ const About = () => {
         </motion.div> */}
 
         {/* CTA Section */}
-        <motion.div 
+        {/* <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -91,12 +91,13 @@ const About = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
+            href="mailto:support@damadash.com"
+            className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-500 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
           >
             Get in Touch
             <ArrowRight className="ml-2 h-5 w-5" />
           </motion.button>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </section>
   );

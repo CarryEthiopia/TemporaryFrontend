@@ -66,7 +66,7 @@ const AccountDeletion = () => {
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-xl border border-orange-100">
           <div className="flex items-center gap-4 mb-8">
             <div className="bg-orange-100 p-3 rounded-full">
-              <UserX className="w-8 h-8 text-orange-600" />
+              <UserX className="w-8 h-8 text-orange-500" />
             </div>
             <div>
               <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">
@@ -78,7 +78,7 @@ const AccountDeletion = () => {
 
           <div className="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-8">
             <div className="flex items-center gap-3 mb-4">
-              <AlertTriangle className="w-6 h-6 text-orange-600" />
+              <AlertTriangle className="w-6 h-6 text-orange-500" />
               <h2 className="text-lg font-semibold text-gray-800">
                 Please Note
               </h2>
@@ -102,7 +102,7 @@ const AccountDeletion = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-gray-700 font-medium mb-2 flex items-center gap-2">
-                <Phone className="w-5 h-5 text-orange-600" />
+                <Phone className="w-5 h-5 text-orange-500" />
                 Phone Number
               </label>
               <input
@@ -118,7 +118,7 @@ const AccountDeletion = () => {
 
             <div>
               <label className="block text-gray-700 font-medium mb-2 flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-orange-600" />
+                <MessageSquare className="w-5 h-5 text-orange-500" />
                 Reason for Leaving
               </label>
               <textarea
@@ -163,7 +163,7 @@ const AccountDeletion = () => {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold text-lg transition-all duration-200 flex-1 flex items-center justify-center gap-2 ${
+                className={`px-6 py-3 bg-orange-500 hover:bg-orange-700 text-white rounded-lg font-semibold text-lg transition-all duration-200 flex-1 flex items-center justify-center gap-2 ${
                   isSubmitting ? "opacity-75 cursor-not-allowed" : ""
                 }`}
               >
